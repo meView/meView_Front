@@ -39,6 +39,27 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
+## Additional Libraries Installed
+### `react - dom`
+
+Used for DOM-related rendering and manipulation in React applications. It provides a way to interact with the browser's DOM when using React components.
+
+To install `react-dom`, run:
+
+```bash
+npm install react-dom
+```
+
+
+### `react - responsive`
+
+A library for building responsive React applications. It allows you to use media queries with React components to show or hide content based on the screen size or other query results.
+
+To install `react-responsive``, run:
+```bash
+npm install react-responsive
+```
+
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
