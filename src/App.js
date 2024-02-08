@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { Mobile, PC } from "./layout/MediaQuery";
+import styles from "./App.module.css";
+import BodyContent from "./layout/BodyContent";
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <PC>
+        <div className={styles.pcview}>
+          <BodyContent />
+        </div>
+      </PC>
+      <Mobile>
+        <div className={styles.mobileview}>
+          <BodyContent />
+        </div>
+      </Mobile>
+    </>
   );
 }
 
