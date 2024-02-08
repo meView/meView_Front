@@ -55,7 +55,7 @@ npm install react-dom
 
 A library for building responsive React applications. It allows you to use media queries with React components to show or hide content based on the screen size or other query results.
 
-To install `react-responsive``, run:
+To install `react-responsive`, run:
 ```bash
 npm install react-responsive
 ```
