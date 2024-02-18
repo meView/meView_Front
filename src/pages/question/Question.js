@@ -14,7 +14,7 @@ function Question() {
         <QuestionFirst progress={25} />
       ) : page === 2 ? (
         <QuestionSecond progress={50} />
-      ) : page == 3 ? (
+      ) : page === 3 ? (
         <QuestionThird progress={75} />
       ) : (
         <QuestionFinish progress={100} />

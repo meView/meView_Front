@@ -1,7 +1,6 @@
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { pageState, modalState } from "../../recoil/QuestionAtom";
-import Button from "../../util/Button";
 
 const ButtonGroup = styled.div`
   display: flex;
