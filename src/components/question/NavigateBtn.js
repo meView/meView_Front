@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import styled from 'styled-components';
+import styled from "styled-components";
 import { pageState, modalState } from "../../recoil/QuestionAtom";
 import Button from "../../util/Button";
 
@@ -23,27 +23,35 @@ const ButtonGroup = styled.div`
     text-align: center;
     line-height: 56px;
   }
-`
+`;
 
-function NavigateBtn() {
+function NavigateBtn({ isNextDisabled }) {
   const [page, setPage] = useRecoilState(pageState);
   const [modal, setModal] = useRecoilState(modalState);
 
   return (
     <ButtonGroup>
       <div className="back-button">
-        <img alt="back button" src="/image/back-button.svg" onClick={()=>{
-        /* 뒤로 가기 */
-          page === 1
-          ? setModal(true)
-          : setPage(page-1);
-      }}/>
-    </div>
-    <Button text="다음" width="50%" onClick={()=>{
-      setPage(page+1);
-    }}></Button>
-  </ButtonGroup>
-  )
+        <img
+          alt="back button"
+          src="/image/back-button.svg"
+          onClick={() => {
+            /* 뒤로 가기 */
+            page === 1 ? setModal(true) : setPage(page - 1);
+          }}
+        />
+      </div>
+      <Button
+        text="다음"
+        width="50%"
+        onClick={() => {
+          if (!isNextDisabled) {
+            setPage(page + 1);
+          }
+        }}
+      ></Button>
+    </ButtonGroup>
+  );
 }
 
 export default NavigateBtn;
