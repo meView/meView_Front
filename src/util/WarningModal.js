@@ -1,6 +1,6 @@
 import { useRecoilState } from "recoil";
 import { answerState, modalState } from "../recoil/QuestionAtom";
-import styled from "styled-components"
+import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
 const Modal = styled.div`
@@ -11,7 +11,7 @@ const Modal = styled.div`
   left: 20px;
   right: 20px;
   top: 186px;
-`
+`;
 const Top = styled.div`
   height: 122px;
   position: relative;
@@ -20,7 +20,7 @@ const Top = styled.div`
     position: absolute;
     top: 50%;
     left: 50%;
-    transform:translate(-50%,-50%);
+    transform: translate(-50%, -50%);
     width: 100%;
   }
   .title {
@@ -40,10 +40,10 @@ const Top = styled.div`
     justify-content: center;
   }
   .warning {
-    padding-right: 4px;
-    padding-bottom: 4px;
+    //정렬 수정
+    padding: 0 4px;
   }
-`
+`;
 const Bottom = styled.div`
   display: flex;
   flex-direction: row;
@@ -66,11 +66,11 @@ const Bottom = styled.div`
     text-align: center;
     line-height: 56px;
   }
-`
+`;
 
-function WarningModal (props) {
+function WarningModal(props) {
   const [modal, setModal] = useRecoilState(modalState);
-  const [answer, setAnswer] = useRecoilState(answerState)
+  const [answer, setAnswer] = useRecoilState(answerState);
   const navigate = useNavigate();
 
   return (
@@ -78,28 +78,41 @@ function WarningModal (props) {
       <Top>
         <div className="text">
           <p className="title">{props.title}</p>
-          {
-            props.description && 
+          {props.description && (
             <div className="description">
-              <img className="warning" alt="warning icon" src="/image/warning.svg"/>
+              <img
+                className="warning"
+                alt="warning icon"
+                src="/image/warning.svg"
+              />
               <span className="alert">{props.description}</span>
             </div>
-          }
+          )}
         </div>
       </Top>
       <Bottom>
-        <div className="no" onClick={()=>{
-          setModal(false);
-        }}>{props.no}</div>
-        <div className="yes" onClick={()=>{
-          setModal(false);
-          setAnswer({
-            answer1: '',
-            answer2: '',
-            answer3: '',
-          }); 
-          navigate('/');
-        }}>{props.yes}</div>
+        <div
+          className="no"
+          onClick={() => {
+            setModal(false);
+          }}
+        >
+          {props.no}
+        </div>
+        <div
+          className="yes"
+          onClick={() => {
+            setModal(false);
+            setAnswer({
+              answer1: "",
+              answer2: "",
+              answer3: "",
+            });
+            navigate("/");
+          }}
+        >
+          {props.yes}
+        </div>
       </Bottom>
     </Modal>
   );
