@@ -13,16 +13,22 @@ const ButtonGroup = styled.div`
     width: 50%;
     padding-right: 2%;
   }
-  .next-button {
-    background-color: var(--primary);
-    border-radius: 12px;
-    height: 56px;
-    width: 50%;
-    font-size: var(--subtitle-02);
-    font-weight: bold;
-    text-align: center;
-    line-height: 56px;
-  }
+`;
+const StyledButton = styled.button`
+  background-color: ${({ $isDisabled }) =>
+    $isDisabled ? "var(--Gray-14)" : "var(--primary)"};
+  // 텍스트 색상
+  color: ${({ $isDisabled }) =>
+    $isDisabled ? "var(--Gray-11)" : "var(--Gray-14)"};
+  border-radius: 12px;
+  height: 56px;
+  width: 50%;
+  font-size: var(--subtitle-02);
+  font-weight: bold;
+  text-align: center;
+  line-height: 56px;
+  border: none; // 버튼 테두리 제거
+  cursor: ${({ $isDisabled }) => ($isDisabled ? "not-allowed" : "pointer")};
 `;
 
 function NavigateBtn({ isNextDisabled }) {
@@ -41,15 +47,16 @@ function NavigateBtn({ isNextDisabled }) {
           }}
         />
       </div>
-      <Button
-        text="다음"
-        width="50%"
+      <StyledButton
+        $isDisabled={isNextDisabled}
         onClick={() => {
           if (!isNextDisabled) {
             setPage(page + 1);
           }
         }}
-      ></Button>
+      >
+        다음
+      </StyledButton>
     </ButtonGroup>
   );
 }
