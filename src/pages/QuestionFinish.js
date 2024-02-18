@@ -1,9 +1,9 @@
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import styled from "styled-components"
-import Button from "../component/question/Button";
 import QuestionText from "../component/question/QuestionText";
 import { answerState, pageState } from "../recoil/QuestionAtom";
+import WideButton from "../util/WideButton";
 
 const QuestionWrapper = styled.div`
   height: 100vh;
@@ -69,7 +69,7 @@ function QuestionFourth (props) {
         <QuestionText text={"질문지가 생성됐어요!"} description={"링크를 복사해서 지인에게 리뷰를 요청해보세요!"}/>
       </Top>
       <Bottom>
-        <Button text={"질문지 공유하기"}/>
+        <WideButton text={"질문지 공유하기"}/>
       </Bottom>
     </QuestionWrapper>
   )
