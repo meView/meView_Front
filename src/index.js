@@ -3,7 +3,6 @@ import { RecoilRoot } from "recoil";
 import Main from "./Main";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-// /root.render(<Main />);
 root.render(
   <RecoilRoot>
     <Main />
