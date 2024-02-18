@@ -1,6 +1,7 @@
 import { useRecoilState } from "recoil";
 import styled from 'styled-components';
 import { pageState, modalState } from "../../recoil/QuestionAtom";
+import Button from "../../util/Button";
 
 const ButtonGroup = styled.div`
   display: flex;
@@ -38,12 +39,9 @@ function NavigateBtn() {
           : setPage(page-1);
       }}/>
     </div>
-    <div className="next-button" onClick={()=>{
-      /* 다음 페이지 이동 */
+    <Button text="다음" width="50%" onClick={()=>{
       setPage(page+1);
-    }}>
-      다음
-    </div>
+    }}></Button>
   </ButtonGroup>
   )
 }
