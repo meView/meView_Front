@@ -33,9 +33,12 @@ const Top = styled.div`
     }
   }
 `;
-const TextArea = styled.textarea`
-  outline: ${(props) =>
-    props.isOverLimit ? "1px solid var(--Error)" : "none"};
+
+const TextArea = styled.textarea.withConfig({
+  //DOM prop 오류 해결
+  shouldForwardProp: (prop) => !["isOverLimit"].includes(prop),
+})`
+  outline: none;
   height: 280px;
   box-sizing: border-box;
   position: absolute;
@@ -49,13 +52,13 @@ const TextArea = styled.textarea`
   line-height: 28px;
   border-radius: 12px;
   resize: none;
-
-  &:focus {
-    outline: ${(props) =>
-      props.isOverLimit
-        ? "1px solid var(--Error)"
-        : "1px solid var(--primary)"};
-  }
+  
+  ${({ isoverlimit }) =>
+    isoverlimit &&
+    `
+    outline: 1px solid var(--Error);
+  `}
+  
 `;
 
 const Bottom = styled.div`
@@ -69,20 +72,23 @@ const Bottom = styled.div`
 function QuestionSecond(props) {
   /* 프로젝트 팀원 or 주변 지인 */
   const getAnswer = useRecoilValue(answerState);
-  const answer1 = getAnswer.answer1;
-  let text = "어떤 프로젝트 리뷰를 듣고 싶나요?";
-  let description = "진행한 프로젝트 명을 써주세요!";
-  if (answer1 === "project") {
-    text = "어떤 프로젝트 리뷰를 듣고 싶나요?";
-    description = "진행한 프로젝트 명을 써주세요!";
-  } else if (answer1 === "friend") {
-    text = "리뷰 제목을 지어주세요!";
-    description = "무엇과 관련해서 피드백을 받고 싶으신가요?";
-  }
 
   /* 글자 수 세기 + 입력 값 저장 */
   const [answer, setAnswer] = useRecoilState(answerState);
   const [inputText, setInputText] = useState(answer.answer2 || "");
+
+  const answer1 = getAnswer.answer1;
+   const text =
+     answer1 === "project"
+       ? "어떤 프로젝트 리뷰를 듣고 싶나요?"
+       : "리뷰 제목을 지어주세요!";
+   const description =
+     answer1 === "project"
+       ? "진행한 프로젝트 명을 써주세요!"
+       : "무엇과 관련해서 피드백을 받고 싶으신가요?";
+
+  
+
   const handleChange = (e) => {
     if (e.target.value.length <= 20) {
       setInputText(e.target.value);
@@ -92,7 +98,7 @@ function QuestionSecond(props) {
       });
     }
   };
-  const isOverLimit = inputText.length >= 20;
+  const isoverlimit = inputText.length >= 20;
 
   return (
     <QuestionWrapper>
@@ -106,17 +112,17 @@ function QuestionSecond(props) {
         <QuestionText text={text} description={description} />
         <div className="answer">
           <TextArea
-            maxlength="20"
-            value={answer.answer2}
+            maxLength="20"
+            value={inputText}
             placeholder="스위프 프로젝트"
             onChange={handleChange}
-            isOverLimit={isOverLimit}
+            isoverlimit={isoverlimit ? 1 : 0}
           />
           <span className="count">{inputText.length}/20자</span>
         </div>
       </Top>
       <Bottom>
-        <NavigateBtn />
+        <NavigateBtn isNextDisabled={!inputText.trim()} />
       </Bottom>
     </QuestionWrapper>
   );
