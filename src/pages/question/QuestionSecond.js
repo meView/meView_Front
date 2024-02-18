@@ -24,20 +24,15 @@ const Top = styled.div`
     width: 100%;
     height: 280px;
     position: relative;
-
-    .count {
-      position: absolute;
-      color: white;
-      bottom: 16px;
-      left: 36px;
-    }
+  .count {
+    position: absolute;
+    bottom: 16px;
+    left: 36px;
+    color: #8B8B8B;
   }
 `;
 
-const TextArea = styled.textarea.withConfig({
-  //DOM prop 오류 해결
-  shouldForwardProp: (prop) => !["isOverLimit"].includes(prop),
-})`
+const TextArea = styled.textarea`
   outline: none;
   height: 280px;
   box-sizing: border-box;
@@ -52,13 +47,26 @@ const TextArea = styled.textarea.withConfig({
   line-height: 28px;
   border-radius: 12px;
   resize: none;
-  
-  ${({ isoverlimit }) =>
-    isoverlimit &&
+
+  ${({ $textState }) =>
+    $textState === "error" &&
     `
     outline: 1px solid var(--Error);
   `}
-  
+  ${({ $textState }) =>
+    $textState === "writing" &&
+    `
+    outline: 1px solid var(--primary); // 글자 수가 1~19일 때
+  `}
+`;
+
+const TextLength = styled.span`
+  color: ${({ $textState }) =>
+    $textState === "error"
+      ? "var(--Error)"
+      : $textState === "writing"
+      ? "var(--primary)"
+      : "white"};
 `;
 
 const Bottom = styled.div`
@@ -78,16 +86,14 @@ function QuestionSecond(props) {
   const [inputText, setInputText] = useState(answer.answer2 || "");
 
   const answer1 = getAnswer.answer1;
-   const text =
-     answer1 === "project"
-       ? "어떤 프로젝트 리뷰를 듣고 싶나요?"
-       : "리뷰 제목을 지어주세요!";
-   const description =
-     answer1 === "project"
-       ? "진행한 프로젝트 명을 써주세요!"
-       : "무엇과 관련해서 피드백을 받고 싶으신가요?";
-
-  
+  const text =
+    answer1 === "project"
+      ? "어떤 프로젝트 리뷰를 듣고 싶나요?"
+      : "리뷰 제목을 지어주세요!";
+  const description =
+    answer1 === "project"
+      ? "진행한 프로젝트 명을 써주세요!"
+      : "무엇과 관련해서 피드백을 받고 싶으신가요?";
 
   const handleChange = (e) => {
     if (e.target.value.length <= 20) {
@@ -98,7 +104,14 @@ function QuestionSecond(props) {
       });
     }
   };
-  const isoverlimit = inputText.length >= 20;
+
+  const getTextState = (length) => {
+    if (length >= 20) return "error";
+    if (length > 0 && length < 20) return "writing";
+    return "default";
+  };
+
+  const textState = getTextState(inputText.length);
 
   return (
     <QuestionWrapper>
@@ -116,9 +129,12 @@ function QuestionSecond(props) {
             value={inputText}
             placeholder="스위프 프로젝트"
             onChange={handleChange}
-            isoverlimit={isoverlimit ? 1 : 0}
+            $textState={textState}
           />
-          <span className="count">{inputText.length}/20자</span>
+          <div className="count">
+            <TextLength $textState={textState}>{inputText.length}/</TextLength>
+            20자
+          </div>
         </div>
       </Top>
       <Bottom>
