@@ -1,11 +1,9 @@
-import styles from "./TestCode.module.css";
-
 function TestCode() {
   return (
-    <div className={styles.container}>
+    <div >
       <h1>Body Content</h1>
       <h2>Test2</h2>
-      <div className={styles.bodycontent}>
+      <div>
         <p>This is Test2</p>
         <p>This is Test2</p>
         <p>This is Test2</p>

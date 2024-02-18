@@ -1,16 +1,37 @@
-import styles from "./Footer.module.css";
+import styled from "styled-components";
 import { Link } from "react-router-dom";
+
+// Footer 컴포넌트 스타일 정의
+const StyledFooter = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: sticky;
+  bottom: -0.2px;
+  background-color: aqua;
+  height: 50px;
+`;
+
+// FooterContent 컴포넌트 스타일 정의
+const FooterContent = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 10px 40px;
+  background-color: aqua;
+`;
 
 function Footer() {
   return (
-    <div className={styles.footer}>
-      <div className={styles.footercontent}>
-        {/* testcode / testcode2 / about으로 링크 가능하게 만들어줘 링크 써서 */}
+    <StyledFooter>
+      <FooterContent>
         <Link to="/testcode">TestCode</Link>
         <Link to="/testcode2">TestCode2</Link>
         <Link to="/about">About</Link>
-      </div>
-    </div>
+      </FooterContent>
+    </StyledFooter>
   );
 }
 
