@@ -66,11 +66,12 @@ function QuestionSecond (props) {
   /* 프로젝트 팀원 or 주변 지인 */
   const getAnswer = useRecoilValue(answerState);
   const answer1 = getAnswer.answer1;
-  let text, description;
+  let text = "어떤 프로젝트 리뷰를 듣고 싶나요?";
+  let description = "진행한 프로젝트 명을 써주세요!";
   if (answer1 === 'project') {
     text = "어떤 프로젝트 리뷰를 듣고 싶나요?";
     description = "진행한 프로젝트 명을 써주세요!";
-  } else {
+  } else if (answer1 === 'friend'){
     text = "리뷰 제목을 지어주세요!";
     description = "무엇과 관련해서 피드백을 받고 싶으신가요?";
   }
