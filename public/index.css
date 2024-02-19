@@ -7,6 +7,7 @@
 :root {
   --primary: #fff374;
   --primary-800: rgba(255, 243, 116, 0.08);
+  --mainpg: #fef69b;
   --Gray-01: #fbfbfb;
   --Gray-02: #f7f7f7;
   --Gray-11: #555555;
@@ -19,6 +20,7 @@
   --body-02: 16px;
   --button-02: 16px;
   --button-03: 14px;
+  --font-weight-bold: 700;
   --Error: #f5511d;
   --Medium-Emphasis: rgba(255, 255, 255, 0.6);
 }
