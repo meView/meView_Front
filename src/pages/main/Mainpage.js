@@ -5,7 +5,6 @@ import MainBottom from "../../components/main/MainBottom";
 const Container = styled.div`
   height: 100vh;
   background-color: var(--mainpg);
-
 `;
 
 function Mainpage() {
