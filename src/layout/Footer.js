@@ -7,7 +7,6 @@ const StyledFooter = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  position: sticky;
   bottom: -0.2px;
   background-color: aqua;
   height: 50px;
