@@ -10,6 +10,7 @@ export const pageState = atom({
     default: 1,
 });
 
+/* 질문지 생성 시 선택하는 상태 저장 */
 export const answerState = atom({
     key: 'answerState',
     default: {
