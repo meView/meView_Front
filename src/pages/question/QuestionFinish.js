@@ -44,7 +44,7 @@ const Bottom = styled.div`
 
 function QuestionFourth(props) {
   const navigate = useNavigate();
-  const [anser, setAnswer] = useRecoilState(answerState);
+  const [answer, setAnswer] = useRecoilState(answerState);
   const [page, setPage] = useRecoilState(pageState);
   return (
     <QuestionWrapper>
@@ -70,7 +70,7 @@ function QuestionFourth(props) {
                 answer3: "",
               });
               setPage(1);
-              navigate("/");
+              navigate("/home");
             }}
           />
         </div>
