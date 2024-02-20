@@ -10,7 +10,8 @@ const Content = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  
+  padding-top: 20px;
+  background: linear-gradient(180deg, rgba(23, 23, 23, 0) 0%, var(--Gray-15) 80%);
 
   .rightside {
     background: none;
