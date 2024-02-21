@@ -21,9 +21,9 @@ function Myhome() {
     <Container>
       <TopNav />
       {
-        reviewList
-        ? <ReviewList/>  
-        : <NoReview/>        
+        reviewList.length === 0
+        ? <NoReview/>   
+        : <ReviewList/>      
       }
       <Bottombar />
     </Container>
