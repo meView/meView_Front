@@ -22,8 +22,10 @@
   --body-02: 16px;
   --button-02: 16px;
   --button-03: 14px;
+  --font-weight-regular: 400;
   --font-weight-bold: 700;
   --Error: #f5511d;
+  --Success: #6AB6F0;
   --Medium-Emphasis: rgba(255, 255, 255, 0.6);
 }
 

@@ -36,3 +36,8 @@ export const questionFormState = atom({
     }
     ,]
 });
+
+export const linkToastState = atom({
+    key: 'linkToastState',
+    default: false,
+});
