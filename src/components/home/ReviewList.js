@@ -1,6 +1,6 @@
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { questionFormState } from "../../recoil/HomeAtom";
+import { linkToastState, questionFormState } from "../../recoil/HomeAtom";
 import ListItem from "./ListItem";
 
 const Container = styled.div`
@@ -30,6 +30,7 @@ const Container = styled.div`
 function ReviewList() {
 
   const reviewList = useRecoilValue(questionFormState);
+  const [showToast, setShowToast] = useRecoilState(linkToastState);
 
   return (
     <Container>
@@ -42,8 +43,13 @@ function ReviewList() {
         {
           reviewList.map((a, i)=>{
             return (
-              <ListItem question_title={a.question_title} question_id={a.question_id} key={i} onClick={()=>{
+              <ListItem question_title={a.question_title} question_id={a.question_id} key={i}
+                onQuestionClick={()=>{
                 /* 프로젝트 질문지 팝업 */
+              }} 
+                onLinkClick={()=>{
+                /* 링크 복사하기 */
+                setShowToast(true);
               }}/>
             )
           })
