@@ -24,6 +24,7 @@ const Top = styled.div`
     width: 100%;
     height: 280px;
     position: relative;
+  }
   .count {
     position: absolute;
     bottom: 16px;
