@@ -31,6 +31,10 @@ const Top = styled.div`
     left: 36px;
     color: #8B8B8B;
   }
+  .warning {
+    margin-top: 16px;
+    margin-left: 20px;
+  }
 `;
 
 const TextArea = styled.textarea`
@@ -152,6 +156,13 @@ function QuestionSecond(props) {
             20자
           </div>
         </div>
+        {
+          textState === "error" 
+          ? <div className="warning">
+              <img alt="warning message" src="./image/warning-msg.svg"/>
+            </div>
+          : null
+        }
       </Top>
       <Bottom>
         <NavigateBtn isNextDisabled={!inputText.trim()} />
