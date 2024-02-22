@@ -56,6 +56,7 @@ const BodyContent = styled.div`
     font-size: var(--button-01);
     line-height: 34px;
     font-weight: var(--font-weight-bold);
+    white-space: nowrap;
   }
   .question-title {
     font-size: var(--headline-06);
@@ -64,13 +65,31 @@ const BodyContent = styled.div`
   }
   .question-content {
     margin-bottom: 28px;
-    height: 104px;
+    
   }
   .subtitle {
     font-size: var(--subtitle-01);
     font-weight: var(--font-weight-bold);
     line-height: 28px;
     margin-bottom: 12px;
+  }
+  .text-field {
+    max-width: 500px;
+    right: 20px;
+    width: 100vw;
+    height: 64px;
+    position: relative;
+  }
+  .count {
+    position: absolute;
+    top: 50%;
+    transform: translate(0, -50%);
+    margin-right: 20px;
+    right: 15px;
+    color: #8B8B8B;
+  }
+  .warning {
+    margin-top: 12px;
   }
 `
 
@@ -86,15 +105,35 @@ const TextArea = styled.textarea`
   font-size: var(--button-02);
   font-weight: var(--font-weight-bold);
   color: var(--Gray-02);
-  padding: 16px;
-  line-height: 28px;
+  padding: 20px 0 20px 16px;
+  line-height: 24px;
   border-radius: 12px;
   resize: none;
 
   &::placeholder {
     color: var(--Gray-02);
   }
-`
+  ${({ $textState }) =>
+  $textState === "error" &&
+  `
+    outline: 1px solid var(--Error);
+  `}
+  &:focus {
+    ${({ $textState }) =>
+    $textState === "writing" &&
+    `
+    outline: 1px solid var(--primary); // 글자 수가 1~19일 때
+  `}
+}`;
+
+const TextLength = styled.span`
+  color: ${({ $textState, $isFocused }) =>
+    $textState === "error"
+      ? "var(--Error)"
+      : $textState === "writing" && $isFocused
+      ? "var(--primary)"
+      : "white"};
+`;
 
 function BottomSheet() {
 
@@ -112,6 +151,24 @@ function BottomSheet() {
       setInputText(e.target.value);
     }
   };
+
+  /* textarea focus 상태 아닐 경우 */
+  const [isFocused, setIsFocused] = useState(false);
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+  const handleBlur = () => {
+    setIsFocused(false);
+  };
+  
+
+  const getTextState = (length) => {
+    if (length >= 20) return "error";
+    if (length > 0 && length < 20) return "writing";
+    return "default";
+  };
+
+  const textState = getTextState(inputText.length);
 
   /* 리뷰 대상 수정 */
   const [target, setTarget] = useState(data.question_target);
@@ -188,11 +245,27 @@ function BottomSheet() {
               : '리뷰 명'
             }
             </p>
-            <TextArea
-              maxLength="20"
-              value={inputText}
-              onChange={handleChange}
-            />
+            <div className="text-field">
+              <TextArea
+                maxLength="20"
+                value={inputText}
+                onChange={handleChange}
+                $textState={textState}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+              />
+              <div className="count">
+                <TextLength $textState={textState} $isFocused={isFocused}>{inputText.length}/</TextLength>
+                20자
+              </div>
+            </div>
+            {
+              textState === "error"
+              ? <div className='warning'>
+                  <img alt="warning message" src="./image/warning-msg.svg"/>
+                </div>
+              : null
+            }
           </div>
           <div className='question-content'>
             <p className='subtitle'>리뷰 종류</p>
@@ -206,7 +279,7 @@ function BottomSheet() {
           </div>
         </div>
       </BodyContent>
-      
+
       {showToast && <div className="toast"><Toast text="🎉 수정사항이 정상적으로 변경됐어요! 🎉" onClick={()=>{ 
         setShowToast(false);
       }}/></div>}
