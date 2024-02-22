@@ -111,7 +111,7 @@ const ModalOverlay = styled.div`
 
 function QuestionFirst(props) {
   /* 답변 선택 */
-  const [checkedProject, setCheckedProject] = useState("checked");
+  const [checkedTeam, setCheckedTeam] = useState("checked");
   const [checkedFriend, setCheckedFriend] = useState("unchecked");
   /* 답변 저장 */
   const [answer, setAnswer] = useRecoilState(answerState);
@@ -125,7 +125,7 @@ function QuestionFirst(props) {
       // 프로젝트 팀원에게 리뷰 요청
       setAnswer({
         ...answer,
-        answer1: "project",
+        answer1: "team",
       });
     } else if (number === 2) {
       // 주변 지인에게 리뷰 요청
@@ -137,7 +137,7 @@ function QuestionFirst(props) {
   };
 
   useEffect(() => {
-    setCheckedProject(choice.answer1 === "project" ? "checked" : "unchecked");
+    setCheckedTeam(choice.answer1 === "team" ? "checked" : "unchecked");
     setCheckedFriend(choice.answer1 === "friend" ? "checked" : "unchecked");
 
     // blur 처리
@@ -180,7 +180,7 @@ function QuestionFirst(props) {
             {/* 답변 목록 */}
             <div className="answer">
               <div
-                className={`${checkedProject} answer-box1`}
+                className={`${checkedTeam} answer-box1`}
                 onClick={() => {
                   handleAnswer(1);
                 }}
@@ -192,7 +192,7 @@ function QuestionFirst(props) {
                 <img
                   className="radio-button"
                   alt="checked radio"
-                  src={`/image/${checkedProject}-radio.svg`}
+                  src={`/image/${checkedTeam}-radio.svg`}
                 />
               </div>
               <div
