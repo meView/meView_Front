@@ -34,6 +34,7 @@ const Top = styled.div`
 
 const TextArea = styled.textarea`
   outline: none;
+  border: none;
   height: 280px;
   box-sizing: border-box;
   position: absolute;
@@ -53,11 +54,13 @@ const TextArea = styled.textarea`
     `
     outline: 1px solid var(--Error);
   `}
-  ${({ $textState }) =>
+  &:focus {
+    ${({ $textState }) =>
     $textState === "writing" &&
     `
     outline: 1px solid var(--primary); // 글자 수가 1~19일 때
   `}
+  }
 `;
 
 const TextLength = styled.span`
@@ -87,11 +90,11 @@ function QuestionSecond(props) {
 
   const answer1 = getAnswer.answer1;
   const text =
-    answer1 === "project"
+    answer1 === "team"
       ? "어떤 프로젝트 리뷰를 듣고 싶나요?"
       : "리뷰 제목을 지어주세요!";
   const description =
-    answer1 === "project"
+    answer1 === "team"
       ? "진행한 프로젝트 명을 써주세요!"
       : "무엇과 관련해서 피드백을 받고 싶으신가요?";
 
