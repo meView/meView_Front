@@ -64,10 +64,10 @@ const TextArea = styled.textarea`
 `;
 
 const TextLength = styled.span`
-  color: ${({ $textState }) =>
+  color: ${({ $textState, $isFocused }) =>
     $textState === "error"
       ? "var(--Error)"
-      : $textState === "writing"
+      : $textState === "writing" && $isFocused
       ? "var(--primary)"
       : "white"};
 `;
@@ -108,6 +108,16 @@ function QuestionSecond(props) {
     }
   };
 
+  /* textarea focus 상태 아닐 경우 */
+  const [isFocused, setIsFocused] = useState(false);
+  const handleFocus = () => {
+    setIsFocused(true);
+  };
+  const handleBlur = () => {
+    setIsFocused(false);
+  };
+  
+
   const getTextState = (length) => {
     if (length >= 20) return "error";
     if (length > 0 && length < 20) return "writing";
@@ -133,9 +143,11 @@ function QuestionSecond(props) {
             placeholder="스위프 프로젝트"
             onChange={handleChange}
             $textState={textState}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
           />
           <div className="count">
-            <TextLength $textState={textState}>{inputText.length}/</TextLength>
+            <TextLength $textState={textState} $isFocused={isFocused}>{inputText.length}/</TextLength>
             20자
           </div>
         </div>
