@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { answerState, modalState } from "../recoil/QuestionAtom";
+import { answerState } from "../recoil/QuestionAtom";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
@@ -28,6 +28,7 @@ const Top = styled.div`
     font-size: var(--subtitle-01);
     font-weight: bold;
     margin-bottom: 4px;
+    white-space: pre-line;
   }
   .alert {
     color: var(--primary);
@@ -60,6 +61,7 @@ const Bottom = styled.div`
   }
   .yes {
     background-color: var(--primary);
+    color: var(--Gray-14);
     font-size: var(--button-02);
     width: 50%;
     border-radius: 0 0 12px 0;
@@ -69,7 +71,7 @@ const Bottom = styled.div`
 `;
 
 function WarningModal(props) {
-  const [modal, setModal] = useRecoilState(modalState);
+  const [modal, setModal] = useRecoilState(props.modalstate);
   const [answer, setAnswer] = useRecoilState(answerState);
   const navigate = useNavigate();
 
@@ -77,7 +79,7 @@ function WarningModal(props) {
     <Modal>
       <Top>
         <div className="text">
-          <p className="title">{props.title}</p>
+          <div className="title">{props.title}</div>
           {props.description && (
             <div className="description">
               <img
@@ -108,7 +110,10 @@ function WarningModal(props) {
               answer2: "",
               answer3: "",
             });
-            navigate("/");
+            navigate(props.navigate);
+            if (props.onClickYes) {
+              props.onClickYes();
+            }
           }}
         >
           {props.yes}

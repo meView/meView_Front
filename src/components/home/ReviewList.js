@@ -1,6 +1,6 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { linkToastState, questionFormState } from "../../recoil/HomeAtom";
+import { bottomSheetState, linkToastState, questionFormState, questionIdState } from "../../recoil/HomeAtom";
 import ListItem from "./ListItem";
 
 const Container = styled.div`
@@ -8,7 +8,7 @@ const Container = styled.div`
   color: var(--Gray-02);
   position: relative;
   background-color: var(--Gray-15);
-  padding-bottom: 110px;
+  padding-bottom: 104px;
 
   .title {
     font-size: var(--subtitle-01);
@@ -31,6 +31,8 @@ function ReviewList() {
 
   const reviewList = useRecoilValue(questionFormState);
   const [showToast, setShowToast] = useRecoilState(linkToastState);
+  const [showBottom, setShowBottom] = useRecoilState(bottomSheetState);
+  const [questionId, setQuestionId] = useRecoilState(questionIdState);
 
   return (
     <Container>
@@ -46,6 +48,8 @@ function ReviewList() {
               <ListItem question_title={a.question_title} question_id={a.question_id} key={i}
                 onQuestionClick={()=>{
                 /* 프로젝트 질문지 팝업 */
+                setShowBottom(true);
+                setQuestionId(a.question_id);
               }} 
                 onLinkClick={()=>{
                 /* 링크 복사하기 */

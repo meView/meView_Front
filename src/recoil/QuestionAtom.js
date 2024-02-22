@@ -14,7 +14,7 @@ export const pageState = atom({
 export const answerState = atom({
     key: 'answerState',
     default: {
-      answer1: 'project',
+      answer1: 'team',
       anwser2: '',
       answer3: 'strength',
     },

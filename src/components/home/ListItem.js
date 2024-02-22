@@ -52,7 +52,7 @@ function ListItem(props) {
       <div>
         <div className="question-title" onClick={()=>{
           /* 질문지 이동 */
-
+          props.onQuestionClick();
         }}> 
           <p className="question-text">{props.question_title}</p>
           <img className="arrow-icon" alt="arrow icon" src="./image/arrow-icon.svg"/>
@@ -60,7 +60,7 @@ function ListItem(props) {
         <div className="copy">
           <img className="copy-button" alt="copy button" src="./image/link-copy-button.svg" onClick={()=>{
             /* 링크 복사 */
-            props.onLinkClick()
+            props.onLinkClick();
           }}/>
         </div>
       </div>

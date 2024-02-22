@@ -44,7 +44,7 @@ function Toast(props) {
   return (
     <Container>
       <div className='div-box'>
-        <div className='text'>설문지 링크가 복사되었어요!</div>
+        <div className='text'>{props.text}</div>
         <div className='button'>
           <span className='button-text' onClick={()=>{
             props.onClick()

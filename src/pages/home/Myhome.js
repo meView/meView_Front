@@ -4,7 +4,8 @@ import styled from "styled-components";
 import NoReview from "../../components/home/NoReview";
 import ReviewList from "../../components/home/ReviewList";
 import { useRecoilValue } from "recoil";
-import { questionFormState } from "../../recoil/HomeAtom";
+import { bottomSheetState, questionFormState } from "../../recoil/HomeAtom";
+import BottomSheet from "../../components/home/bottomsheet/BottomSheet";
 
 const Container = styled.div`
   height: 100vh;
@@ -16,6 +17,7 @@ function Myhome() {
 
   /* 전역 상태에 저장해둔 생성 질문지 가져오기 */
   const reviewList = useRecoilValue(questionFormState);
+  const showBottomSheet = useRecoilValue(bottomSheetState);
 
   return (
     <Container>
@@ -23,9 +25,10 @@ function Myhome() {
       {
         reviewList.length === 0
         ? <NoReview/>   
-        : <ReviewList/>      
+        : <ReviewList/>  
       }
-      <Bottombar />
+      <Bottombar /> 
+      { showBottomSheet && <BottomSheet/> }
     </Container>
   );
 }
