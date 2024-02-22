@@ -6,12 +6,23 @@ import ReviewList from "../../components/home/ReviewList";
 import { useRecoilValue } from "recoil";
 import { bottomSheetState, questionFormState } from "../../recoil/HomeAtom";
 import BottomSheet from "../../components/home/bottomsheet/BottomSheet";
+import { useEffect } from "react";
 
 const Container = styled.div`
   height: 100vh;
   position: relative;
-  background-color: var(--Gray-15);
+  background-color: ${props => props.show ? '#000000' : 'var(--Gray-15)'};
 `;
+
+const BlurContainer = styled.div`
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  backdrop-filter: blur(4px);
+  display: ${props => props.show ? 'block' : 'none'};
+`
 
 function Myhome() {
 
@@ -19,17 +30,31 @@ function Myhome() {
   const reviewList = useRecoilValue(questionFormState);
   const showBottomSheet = useRecoilValue(bottomSheetState);
 
+  useEffect(() => {
+    if (showBottomSheet) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [showBottomSheet]);
+
   return (
-    <Container>
-      <TopNav />
-      {
-        reviewList.length === 0
-        ? <NoReview/>   
-        : <ReviewList/>  
+    <>
+      <Container show={showBottomSheet}>
+        <TopNav />
+        {
+          reviewList.length === 0
+          ? <NoReview/>   
+          : <ReviewList/>  
+        }
+        <Bottombar /> 
+      </Container>
+      <BlurContainer show={showBottomSheet}/>
+      { 
+        showBottomSheet &&
+        <BottomSheet/>
       }
-      <Bottombar /> 
-      { showBottomSheet && <BottomSheet/> }
-    </Container>
+    </>
   );
 }
 
