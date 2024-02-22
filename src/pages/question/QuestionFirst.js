@@ -227,6 +227,8 @@ function QuestionFirst(props) {
               no="계속 할게요"
               yes="네"
               onClose={() => setModal(false)}
+              modalstate={modalState}
+              navigate="/home"
             />
           </div>
         </ModalOverlay>

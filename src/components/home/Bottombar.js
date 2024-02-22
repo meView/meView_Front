@@ -33,7 +33,7 @@ function Bottombar() {
 
   return (
     <Container>
-      {showToast && <Toast onClick={()=>{ 
+      {showToast && <Toast text="설문지 링크가 복사되었어요!" onClick={()=>{ 
         setShowToast(false);
       }}/>}
       <Content>
