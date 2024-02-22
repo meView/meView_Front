@@ -42,6 +42,10 @@ const Container = styled.div`
     padding-top: 20px;
     padding-left: 4px;
   }
+
+  &:hover {
+    background-color: #2A291E;
+  }
 `
 
 function ListItem(props) {
