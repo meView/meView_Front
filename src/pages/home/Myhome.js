@@ -24,7 +24,7 @@ const BlurContainer = styled.div`
   max-width: 500px;
   backdrop-filter: blur(4px);
   background-color: rgba(0, 0, 0, 0.48);
-  display: ${props => props.show ? 'block' : 'none'};
+  display: ${({$show}) => $show === 'true' ? 'block' : 'none'};
 `
 
 function Myhome() {
@@ -52,7 +52,7 @@ function Myhome() {
         }
         <Bottombar /> 
       </Container>
-      <BlurContainer show={showBottomSheet}/>
+      <BlurContainer $show={showBottomSheet.toString()}/>
       { 
         showBottomSheet &&
         <BottomSheet/>
