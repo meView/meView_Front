@@ -11,16 +11,19 @@ import { useEffect } from "react";
 const Container = styled.div`
   height: 100vh;
   position: relative;
-  background-color: ${props => props.show ? '#000000' : 'var(--Gray-15)'};
+  background-color: var(--Gray-15);
 `;
 
 const BlurContainer = styled.div`
   height: 100vh;
   position: fixed;
   top: 0;
-  left: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
   width: 100%;
+  max-width: 500px;
   backdrop-filter: blur(4px);
+  background-color: rgba(0, 0, 0, 0.48);
   display: ${props => props.show ? 'block' : 'none'};
 `
 
@@ -40,7 +43,7 @@ function Myhome() {
 
   return (
     <>
-      <Container show={showBottomSheet}>
+      <Container>
         <TopNav />
         {
           reviewList.length === 0
