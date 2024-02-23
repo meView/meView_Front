@@ -135,6 +135,27 @@ const TextLength = styled.span`
       : "white"};
 `;
 
+const Modal = styled.div`
+  position: fixed;
+  top: 0;
+  width: 100%;
+  max-width: 500px; 
+`
+
+/* 배경 블러 처리 */
+const BlurContainer = styled.div`
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 100%;
+  max-width: 500px;
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.48);
+  display: ${props => props.show ? 'block' : 'none'};
+`
+
 function BottomSheet() {
 
   const [bottomsheet, setBottomsheet] = useRecoilState(bottomSheetState);
@@ -212,103 +233,110 @@ function BottomSheet() {
   const [deleteModal, setDeleteModal] = useRecoilState(deleteModalState);
 
   return (
-    <Container>
-      <Header>
-        <img className='handler' alt="handler" src="./image/handler.svg"/>
-      </Header>
-      <BodyContent>
-        <div className='title'>
-          <div className='title-box'>
-            <div className='question-title'>{inputText}</div>
-            <div className='delete-button' onClick={()=>{
-              /* 삭제하기 버튼 눌렀을 때 */
-              setDeleteModal(true);
-            }}>삭제하기</div>
-          </div>
-          <img alt="divider" src="./image/divider.svg"/>
-        </div>
-        {/* 답변 수정 부분 */}
-        <div className='content'>
-          <div className='question-content'>
-            <p className='subtitle'>리뷰 대상</p>
-            <Segment2Btn id={id} onClickTeam={()=>{
-              changeTarget('team');
-            }} onClickFriend={()=>{
-              changeTarget('friend');
-            }} target={target}/>
-          </div>
-          <div className='question-content'>
-            <p className='subtitle'>
-            {
-              target === 'team'
-              ? '프로젝트 명'
-              : '리뷰 명'
-            }
-            </p>
-            <div className="text-field">
-              <TextArea
-                maxLength="20"
-                value={inputText}
-                onChange={handleChange}
-                $textState={textState}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-              />
-              <div className="count">
-                <TextLength $textState={textState} $isFocused={isFocused}>{inputText.length}/</TextLength>
-                20자
-              </div>
+    <>
+      <Container>
+        <Header>
+          <img className='handler' alt="handler" src="./image/handler.svg"/>
+        </Header>
+        <BodyContent>
+          <div className='title'>
+            <div className='title-box'>
+              <div className='question-title'>{inputText}</div>
+              <div className='delete-button' onClick={()=>{
+                /* 삭제하기 버튼 눌렀을 때 */
+                setDeleteModal(true);
+              }}>삭제하기</div>
             </div>
-            {
-              textState === "error"
-              ? <div className='warning'>
-                  <img alt="warning message" src="./image/warning-msg.svg"/>
+            <img alt="divider" src="./image/divider.svg"/>
+          </div>
+          {/* 답변 수정 부분 */}
+          <div className='content'>
+            <div className='question-content'>
+              <p className='subtitle'>리뷰 대상</p>
+              <Segment2Btn id={id} onClickTeam={()=>{
+                changeTarget('team');
+              }} onClickFriend={()=>{
+                changeTarget('friend');
+              }} target={target}/>
+            </div>
+            <div className='question-content'>
+              <p className='subtitle'>
+              {
+                target === 'team'
+                ? '프로젝트 명'
+                : '리뷰 명'
+              }
+              </p>
+              <div className="text-field">
+                <TextArea
+                  maxLength="20"
+                  value={inputText}
+                  onChange={handleChange}
+                  $textState={textState}
+                  onFocus={handleFocus}
+                  onBlur={handleBlur}
+                />
+                <div className="count">
+                  <TextLength $textState={textState} $isFocused={isFocused}>{inputText.length}/</TextLength>
+                  20자
                 </div>
-              : null
-            }
+              </div>
+              {
+                textState === "error"
+                ? <div className='warning'>
+                    <img alt="warning message" src="./image/warning-msg.svg"/>
+                  </div>
+                : null
+              }
+            </div>
+            <div className='question-content'>
+              <p className='subtitle'>리뷰 종류</p>
+              <Segment3Btn id={id} onClickStrength={()=>{
+                changeType('strength')
+              }} onClickWeakness={()=>{
+                changeType('weakness')
+              }} onClickBoth={()=>{
+                changeType('both')
+              }} type={type}/>
+            </div>
           </div>
-          <div className='question-content'>
-            <p className='subtitle'>리뷰 종류</p>
-            <Segment3Btn id={id} onClickStrength={()=>{
-              changeType('strength')
-            }} onClickWeakness={()=>{
-              changeType('weakness')
-            }} onClickBoth={()=>{
-              changeType('both')
-            }} type={type}/>
-          </div>
-        </div>
-      </BodyContent>
+        </BodyContent>
 
-      {showToast && <div className="toast"><Toast text="🎉 수정사항이 정상적으로 변경됐어요! 🎉" onClick={()=>{ 
-        setShowToast(false);
-      }}/></div>}
-      <NavigateBtn isModifiedDisabled={isModifiedDisabled} onClickButton={()=>{
-        /* 수정하기 버튼 눌렀을 때 */
-        setIsModifiedDisabled(true);
-        setShowToast(true);
-      }} onClickBackButton={()=>{
-        /* 뒤로가기 버튼 눌렀을 때 */
-        if (isModifiedDisabled === true) { // 수정된 내용 저장 or 수정 내용 없음
+        {showToast && <div className="toast"><Toast text="🎉 수정사항이 정상적으로 변경됐어요! 🎉" onClick={()=>{ 
           setShowToast(false);
-          setBottomsheet(false);
-        } else { // 수정 내용 저장하지 않고 뒤로가기
-          setBackModal(true);
-        }
-      }}/>
-      { backModal && 
-        <WarningModal 
-          title="변경된 내용이 저장되지 않았어요!" 
-          description="수정하기 버튼을 눌러야 변경사항이 저장이 돼요"
-          no="취소"
-          yes="저장 안함"
-          navigate="/home"
-          modalstate={backModalState}
-          onClickYes={()=>{
+        }}/></div>}
+        <NavigateBtn isModifiedDisabled={isModifiedDisabled} onClickButton={()=>{
+          /* 수정하기 버튼 눌렀을 때 */
+          setIsModifiedDisabled(true);
+          setShowToast(true);
+        }} onClickBackButton={()=>{
+          /* 뒤로가기 버튼 눌렀을 때 */
+          if (isModifiedDisabled === true) { // 수정된 내용 저장 or 수정 내용 없음
+            setShowToast(false);
             setBottomsheet(false);
-          }}
-        />}
-        { deleteModal && 
+          } else { // 수정 내용 저장하지 않고 뒤로가기
+            setBackModal(true);
+          }
+        }}/>
+      </Container>
+      <BlurContainer show={backModal}/>
+      { backModal && 
+        <Modal>
+          <WarningModal 
+            title="변경된 내용이 저장되지 않았어요!" 
+            description="수정하기 버튼을 눌러야 변경사항이 저장이 돼요"
+            no="취소"
+            yes="저장 안함"
+            navigate="/home"
+            modalstate={backModalState}
+            onClickYes={()=>{
+              setBottomsheet(false);
+            }}
+          />
+        </Modal>}
+      <BlurContainer show={deleteModal}/>
+      { deleteModal && 
+        <Modal>
           <WarningModal 
             title={`삭제한 질문지는 복구되지 않아요.\n괜찮으신가요?`}
             no="취소"
@@ -318,8 +346,9 @@ function BottomSheet() {
             onClickYes={()=>{
               setBottomsheet(false);
             }}
-          />}
-    </Container>
+          />
+        </Modal>}
+    </>
   )
 };
 
