@@ -103,10 +103,11 @@ const Bottom = styled.div`
 `;
 
 function QuestionThird(props) {
+  const choice = useRecoilValue(answerState);
   /* 답변 선택 */
-  const [checkedStrength, setCheckedStrength] = useState("checked");
-  const [checkedWeakness, setCheckedWeakness] = useState("unchecked");
-  const [checkedBoth, setCheckedBoth] = useState("unchecked");
+  const [checkedStrength, setCheckedStrength] = useState(choice.answer3 === "strength" ? "checked" : "unchecked");
+  const [checkedWeakness, setCheckedWeakness] = useState(choice.answer3 === "weakness" ? "checked" : "unchecked");
+  const [checkedBoth, setCheckedBoth] = useState(choice.answer3 === "both" ? "checked" : "unchecked");
   const [answer, setAnswer] = useRecoilState(answerState);
 
   const handleAnswer = (number) => {
@@ -129,7 +130,6 @@ function QuestionThird(props) {
   };
 
   /* 다른 페이지 이동 시에도 답변 그대로 유지 */
-  const choice = useRecoilValue(answerState);
   useEffect(() => {
     if (choice.answer3 === "strength") {
       setCheckedStrength("checked");

@@ -110,13 +110,13 @@ const ModalOverlay = styled.div`
 `;
 
 function QuestionFirst(props) {
-  /* 답변 선택 */
-  const [checkedTeam, setCheckedTeam] = useState("checked");
-  const [checkedFriend, setCheckedFriend] = useState("unchecked");
   /* 답변 저장 */
   const [answer, setAnswer] = useRecoilState(answerState);
   /* 다른 페이지 이동 시에도 답변 그대로 유지 */
   const choice = useRecoilValue(answerState);
+  /* 답변 선택 */
+  const [checkedTeam, setCheckedTeam] = useState(choice.answer1 === "team" ? "checked" : "unchecked");
+  const [checkedFriend, setCheckedFriend] = useState(choice.answer1 === "friend" ? "checked" : "unchecked");
   /* 뒤로가기 버튼 - 모달 */
   const [modal, setModal] = useRecoilState(modalState);
 
