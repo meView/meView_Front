@@ -153,7 +153,7 @@ const BlurContainer = styled.div`
   max-width: 500px;
   backdrop-filter: blur(8px);
   background-color: rgba(0, 0, 0, 0.48);
-  display: ${props => props.show ? 'block' : 'none'};
+  display: ${({ $show }) => $show === 'true' ? 'block' : 'none'};
 `
 
 function BottomSheet() {
@@ -224,6 +224,20 @@ function BottomSheet() {
       setIsModifiedDisabled(false);
     }
   }, [target, inputText, type])
+
+  /* 수정하기 버튼 눌렀을 때 내용 변경 */
+  const handleUpdate = () => {
+    setQuestions(questions.map(question =>
+      question.question_id === id
+      ? {...question, question_target: target, question_title: inputText, question_type: type}
+      : question
+    ));
+  }
+
+  /* 삭제하기 눌렀을 때 삭제 */
+  const handleDelete = () => {
+    setQuestions((questions) => questions.filter((question) => question.question_id !== id));
+  }
 
   /* 토스트 팝업 - 수정하기 버튼 눌렸을 때 */
   const [showToast, setShowToast] = useRecoilState(modifiedToastState);
@@ -307,6 +321,9 @@ function BottomSheet() {
         }}/></div>}
         <NavigateBtn isModifiedDisabled={isModifiedDisabled} onClickButton={()=>{
           /* 수정하기 버튼 눌렀을 때 */
+          /* 전역 상태에 수정 업데이트 */
+          handleUpdate();
+          /* 수정하기 버튼 - disabled, toast 팝업 */
           setIsModifiedDisabled(true);
           setShowToast(true);
         }} onClickBackButton={()=>{
@@ -319,7 +336,7 @@ function BottomSheet() {
           }
         }}/>
       </Container>
-      <BlurContainer show={backModal}/>
+      <BlurContainer $show={backModal.toString()}/>
       { backModal && 
         <Modal>
           <WarningModal 
@@ -334,7 +351,7 @@ function BottomSheet() {
             }}
           />
         </Modal>}
-      <BlurContainer show={deleteModal}/>
+      <BlurContainer $show={deleteModal.toString()}/>
       { deleteModal && 
         <Modal>
           <WarningModal 
@@ -344,6 +361,7 @@ function BottomSheet() {
             navigate="/home"
             modalstate={deleteModalState}
             onClickYes={()=>{
+              handleDelete();
               setBottomsheet(false);
             }}
           />
