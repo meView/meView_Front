@@ -60,7 +60,7 @@ const NavBar = styled.div`
     background: none;
     border: none;
     cursor: pointer;
-    padding: 0;
+    padding-top: 10px;
     position: relative;
   }
 `;
