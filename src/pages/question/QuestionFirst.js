@@ -5,7 +5,7 @@ import styled, { createGlobalStyle } from "styled-components";
 import NavigateBtn from "../../components/question/NavigateBtn";
 import QuestionText from "../../components/question/QuestionText";
 import { modalState, answerState } from "../../recoil/QuestionAtom";
-import WarningModal from "../../util/WarningModal";
+import WarningModal from "../../components/question/WarningModal";
 
 const GlobalStyle = createGlobalStyle`
   body.modal-active {
