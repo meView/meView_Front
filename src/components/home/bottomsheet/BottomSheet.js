@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import styled from 'styled-components'
+import styled, {keyframes} from 'styled-components'
 import { backModalState, bottomSheetState, deleteModalState, modifiedToastState, questionFormState, questionIdState } from '../../../recoil/HomeAtom';
 import Toast from '../../../util/Toast';
 import WarningModal from '../../../util/WarningModal';
@@ -8,7 +8,17 @@ import NavigateBtn from './NavigateBtn';
 import Segment2Btn from './Segment2Btn';
 import Segment3Btn from './Segment3Btn';
 
+const slideUp = keyframes`
+  0% { transform: translateY(100%); }
+  100% { transform: translateY(0); }
+`;
+const slideDown = keyframes`
+  0% { transform: translateY(0); }
+  100% { transform: translateY(100%); }
+`;
+
 const Container = styled.div`
+  animation: ${({$isOpen}) => $isOpen ? slideUp : slideDown} 0.25s cubic-bezier(0.5, 0.0, 0.5, 0.7);
   max-width: 500px;
   width: 100%;
   background-color: var(--Gray-15);
@@ -64,8 +74,7 @@ const BodyContent = styled.div`
     line-height: 34px;
   }
   .question-content {
-    margin-bottom: 28px;
-    
+    margin-bottom: 28px; 
   }
   .subtitle {
     font-size: var(--subtitle-01);
@@ -159,7 +168,7 @@ const BlurContainer = styled.div`
 function BottomSheet() {
 
   const [bottomsheet, setBottomsheet] = useRecoilState(bottomSheetState);
-
+  const [isOpen, setIsOpen] = useState(bottomsheet);
   /* question_id와 일치하는 데이터 가져오기 */
   const id = useRecoilValue(questionIdState);
   const [questions, setQuestions] = useRecoilState(questionFormState);
@@ -248,7 +257,7 @@ function BottomSheet() {
 
   return (
     <>
-      <Container>
+      <Container $isOpen={isOpen}>
         <Header>
           <img className='handler' alt="handler" src="./image/handler.svg"/>
         </Header>
@@ -283,6 +292,7 @@ function BottomSheet() {
               </p>
               <div className="text-field">
                 <TextArea
+                  name="title"
                   maxLength="20"
                   value={inputText}
                   onChange={handleChange}
@@ -329,8 +339,11 @@ function BottomSheet() {
         }} onClickBackButton={()=>{
           /* 뒤로가기 버튼 눌렀을 때 */
           if (isModifiedDisabled === true) { // 수정된 내용 저장 or 수정 내용 없음
-            setShowToast(false);
-            setBottomsheet(false);
+            setIsOpen(false);
+            setTimeout(()=>{
+              setShowToast(false);
+              setBottomsheet(false);
+            }, 240);
           } else { // 수정 내용 저장하지 않고 뒤로가기
             setBackModal(true);
           }
