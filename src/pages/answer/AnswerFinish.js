@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 const Top = styled.div`
@@ -42,6 +43,8 @@ const Bottom = styled.div`
 `
 
 function AnswerFinish(props) {
+  const navigate = useNavigate();
+
   return (
     <>
       <Top>
@@ -60,7 +63,7 @@ function AnswerFinish(props) {
       </Body>
       <Bottom>
         <button className='button-img' onClick={()=>{
-          
+          navigate('/')
         }}>
           <img className='button' alt="answer finish" src="./image/answer-finish.svg"/>
         </button>
