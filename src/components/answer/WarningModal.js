@@ -1,4 +1,5 @@
 import { useRecoilState } from "recoil";
+import { answerState, pageState } from "../../recoil/AnswerAtom";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
@@ -71,6 +72,8 @@ const Bottom = styled.div`
 
 function WarningModal(props) {
   const [modal, setModal] = useRecoilState(props.modalstate);
+  const [answer, setAnswer] = useRecoilState(answerState);
+  const [page, setPage] = useRecoilState(pageState);
   const navigate = useNavigate();
 
   return (
@@ -103,7 +106,10 @@ function WarningModal(props) {
           className="yes"
           onClick={() => {
             setModal(false);
-            navigate(props.navigate);
+            /*setAnswer({
+              
+            });*/
+            setPage(0);
             if (props.onClickYes) {
               props.onClickYes();
             }

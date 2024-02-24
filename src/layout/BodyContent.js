@@ -4,7 +4,8 @@ import { useLocation } from "react-router-dom";
 
 function BodyContent() {
   const location = useLocation()
-  const showFooter = location.pathname !== '/testcode' && location.pathname !== '/home';
+  const showFooter = 
+  location.pathname !== '/testcode' && location.pathname !== '/home' && location.pathname !== '/answer';
   
   return (
     <div>

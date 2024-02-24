@@ -5,6 +5,7 @@ import Question from "./pages/question/Question";
 import TestCode2 from "./pages/testcode/TestCode2";
 import Mainpage from "./pages/main/Mainpage";
 import Homepage from "./pages/home/Homepage";
+import Answer from "./pages/answer/Answer";
 
 function Main() {
   return (
@@ -15,6 +16,7 @@ function Main() {
           <Route path="home" element={<Homepage />} />
           <Route path="about" element={<About />} />
           <Route path="testcode" element={<Question />} />
+          <Route path="answer" element={<Answer />} />
           <Route path="testcode2" element={<TestCode2 />} />
         </Route>
       </Routes>

@@ -1,12 +1,12 @@
 import { atom } from 'recoil';
 
 export const modalState = atom({
-    key: 'modalState',
+    key: 'questionModalState',
     default: false,
 });
 
 export const pageState = atom({
-    key: 'pageState',
+    key: 'questionPageState',
     default: 1,
 });
 
