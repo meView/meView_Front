@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { useLocation } from "react-router-dom";
 
 const StyledBox = styled.div`
   position: relative;
@@ -20,7 +21,6 @@ const StyledBox = styled.div`
     left: 0;
     letter-spacing: 0;
     line-height: 34px;
-
   }
   .text-wrapper {
     color: var(--Gray-02);
@@ -31,6 +31,13 @@ const StyledBox = styled.div`
 `;
 
 function BodyHeader() {
+  const location = useLocation();
+  const isStrengthActive = location.pathname === "/meview/capability/strength";
+
+  const headerText = isStrengthActive ? "강점" : "약점";
+  const emoji = isStrengthActive ? "💪🏻" : "✊🏻";
+  const ending = isStrengthActive ? "은!" : "은..!";
+
   return (
     <StyledBox>
       <div className="rectangle" />
@@ -40,9 +47,9 @@ function BodyHeader() {
           <br />
         </span>
         <span className="span">나의 </span>
-        <span className="text-wrapper">💪🏻</span>
-        <span className="span">강점</span>
-        <span className="text-wrapper">은!</span>
+        <span className="text-wrapper">{emoji}</span>
+        <span className="span">{headerText}</span>
+        <span className="text-wrapper">{ending}</span>
       </p>
     </StyledBox>
   );

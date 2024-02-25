@@ -10,7 +10,7 @@ const NotificationContainer = styled.div`
   background-color: var(--Gray-14);
   color: white;
   padding: 0 16px 16px;
-  border-radius: 8px;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -35,7 +35,6 @@ const MainMessage = styled.p`
 `;
 
 const SubMessage = styled.p`
-  
   color: var(--Gray-07);
 `;
 

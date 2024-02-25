@@ -6,8 +6,7 @@ import TestCode2 from "./pages/testcode/TestCode2";
 import Mainpage from "./pages/main/Mainpage";
 import Homepage from "./pages/home/Homepage";
 import Answer from "./pages/answer/Answer";
-import MeviewStrength from "./pages/meview/MeviewStrength";
-import MeviewWeakness from "./pages/meview/MeviewWeakness";
+import MeviewPage from "./pages/meview/MeviewPage";
 import MeviewProject from "./pages/meview/MeviewProject";
 
 function Main() {
@@ -22,8 +21,8 @@ function Main() {
           <Route path="answer" element={<Answer />} />
           <Route path="testcode2" element={<TestCode2 />} />
           <Route path="meview/capability" element={<Outlet />}>
-            <Route path="strength" element={<MeviewStrength />} />
-            <Route path="weakness" element={<MeviewWeakness/>} />
+            <Route path="strength" element={<MeviewPage />} />
+            <Route path="weakness" element={<MeviewPage />} />
           </Route>
           <Route path="meview/projects" element={<MeviewProject />} />
         </Route>
