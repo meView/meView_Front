@@ -1,11 +1,17 @@
+import MeviewContent from "../../components/meview/layout/MeviewContent";
+import styled from "styled-components";
 
+const Container = styled.div`
+  height: 100vh;
+`;
 
-function MeviewStrength() {
+function MeviewProject() {
   return (
-    <div>
-      <h1>MeviewProject</h1>
-    </div>
+    <Container>
+      <MeviewContent />
+      <h1>Project로 보기</h1>
+    </Container>
   );
 }
 
-export default MeviewStrength;
+export default MeviewProject;
