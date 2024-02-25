@@ -2,22 +2,25 @@ import styled from "styled-components";
 import strenght from "../../../api/meview_capability/strength";
 
 const Container = styled.div`
-  img {
+  .maincharacter {
     margin: 0 auto;
   }
 `;
 
 const Chips = styled.div`
-
+  display: fixed;
+  .communication {
+    padding: 10px;
+  }
 
 `;
 
 function BodyCharacter() {
   return (
     <Container>
-      <img src="/image/character_strength.svg" alt="character_strength" />
+      <img className="maincharacter" src="/image/character_strength.svg" alt="character_strength" />
       <Chips>
-        <img src="/image/communication-unselected.svg" alt="communication" />
+        <img className="communication" src="/image/communication-unselected.svg" alt="communication" />
         <img src="/image/execution-unselected.svg" alt="executive" />
         <img src="/image/friendliness-unselected.svg" alt="friendliness" />
         <img src="/image/judgment-unselected.svg" alt="judgment" />

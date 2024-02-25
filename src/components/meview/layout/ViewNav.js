@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import { useNavigate } from "react-router-dom";
 
@@ -48,13 +48,18 @@ const StyledP = styled.p`
 
 function ViewNav() {
   const navigate = useNavigate();
-  // "skills"를 기본값으로 설정
   const [activeMenu, setActiveMenu] = useState("skills");
 
   const handleNavigation = (path, menuName) => {
     navigate(path);
     setActiveMenu(menuName);
   };
+
+  useEffect(() => {
+    if (window.location.pathname.includes("projects")) {
+      setActiveMenu("projects");
+    }
+  }, []);
 
   return (
     <Container>

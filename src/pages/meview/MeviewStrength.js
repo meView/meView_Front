@@ -1,8 +1,9 @@
 import styled from "styled-components";
-import TopNav from "../../components/meview/TopNav";
-import ViewNav from "../../components/meview/ViewNav";
+import TopNav from "../../components/meview/layout/TopNav";
+import ViewNav from "../../components/meview/layout/ViewNav";
 import BodyHeader from "../../components/meview/bodycontent/BodyHeader";
 import BodyCharacter from "../../components/meview/bodycontent/BodyCharacter";
+import MeviewContent from "../../components/meview/layout/MeviewContent";
 
 const Container = styled.div`
   height: 100vh;
@@ -11,8 +12,7 @@ const Container = styled.div`
 function MeviewStrength() {
   return (
     <Container>
-      <TopNav />
-      <ViewNav />
+      <MeviewContent />
       <BodyHeader />
       <BodyCharacter />
     </Container>
