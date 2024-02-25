@@ -9,9 +9,6 @@ const Container = styled.div`
   .top-margin {
     margin-top: 40px;
   }
-  .bottom-margin {
-    margin-bottom: 10px;
-  }
 `;
 const NavBar = styled.div`
   display: flex;
@@ -81,7 +78,6 @@ function TopNav() {
           <img alt="mypage" src="/image/mypage-logo.svg" />
         </button>
       </NavBar>
-      <div className="bottom-margin"></div>
     </Container>
   );
 }
