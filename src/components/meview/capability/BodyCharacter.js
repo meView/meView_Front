@@ -1,6 +1,8 @@
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import { strengthState } from "../../../recoil/StrengthAtom";
+import { weaknessState } from "../../../recoil/WeaknessAtom";
+import { useLocation } from "react-router-dom";
 
 const Container = styled.div`
   display: flex;
@@ -18,7 +20,7 @@ const Chips = styled.div`
 `;
 
 const keyColors = {
-  소통능력: "#F291C6", 
+  소통능력: "#F291C6",
   실행력: "#85C940",
   친화력: "#F0485A",
   판단력: "#C190FF",
@@ -70,6 +72,11 @@ const ChipContainer = styled.div`
 `;
 function BodyCharacter() {
   const strength = useRecoilValue(strengthState);
+  const weakness = useRecoilValue(weaknessState);
+  const location = useLocation();
+  const isStrengthActive = location.pathname === "/meview/capability/strength";
+  const isstrength = isStrengthActive ? strength : weakness;
+
   const imagePaths = {
     소통능력: {
       unselected: "/image/communication-unselected.svg",
@@ -84,8 +91,8 @@ function BodyCharacter() {
       selected: "/image/friendliness-selected.svg",
     },
     판단력: {
-      unselected: "/image/judgment-unselected.svg",
-      selected: "/image/judgment-selected.svg",
+      unselected: "/image/judgement-unselected.svg",
+      selected: "/image/judgement-selected.svg",
     },
     경청능력: {
       unselected: "/image/listening-unselected.svg",
@@ -109,7 +116,7 @@ function BodyCharacter() {
         alt="character_strength"
       />
       <Chips>
-        {Object.entries(strength).map(([key, value]) => (
+        {Object.entries(isstrength).map(([key, value]) => (
           <ChipContainer key={key} className={key} keyType={key}>
             <img
               src={
@@ -128,4 +135,3 @@ function BodyCharacter() {
 }
 
 export default BodyCharacter;
-

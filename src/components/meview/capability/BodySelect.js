@@ -1,4 +1,4 @@
-import React from "react";
+
 import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
@@ -19,7 +19,7 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  padding: 0 4px; // Container 양쪽 끝에도 동일한 간격을 추가
+  padding: 0 4px; 
 `;
 const StyledButton = styled.button`
   flex: 1;
