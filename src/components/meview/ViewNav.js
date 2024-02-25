@@ -10,36 +10,38 @@ const Container = styled.div`
 
 const View = styled.div`
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   width: 100%;
+  max-width: 500px;
   margin-top: 24px;
+
   border-bottom: 2px solid var(--Gray-14);
 `;
 
 const StyledP = styled.p`
-  position: relative; 
+  position: relative;
   padding: 14px;
   font-size: 18px;
   font-weight: bold;
   color: var(--Gray-11);
   cursor: pointer;
+  margin: 0 37px;
 
-  // 조건부 스타일: active 상태일 때
-  ${(props) =>
-    props.active &&
+  ${({ $active }) =>
+    $active &&
     css`
-      color: white; 
-      margin-bottom: -2px; 
+      color: white;
+      margin-bottom: -2px;
       &::after {
         content: "";
         position: absolute;
-        bottom: 0; 
-        left: 50%; 
-        transform: translateX(-50%); 
-        width: 32px; 
-        height: 2px; 
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 32px;
+        height: 2px;
         background-color: var(--primary);
-        border-radius: 10px; 
+        border-radius: 10px;
       }
     `}
 `;
@@ -61,13 +63,13 @@ function ViewNav() {
           onClick={() =>
             handleNavigation("/meview/capability/strength", "skills")
           }
-          active={activeMenu === "skills"}
+          $active={activeMenu === "skills"}
         >
           역량으로 보기
         </StyledP>
         <StyledP
           onClick={() => handleNavigation("/meview/projects", "projects")}
-          active={activeMenu === "projects"}
+          $active={activeMenu === "projects"}
         >
           프로젝트로 보기
         </StyledP>
