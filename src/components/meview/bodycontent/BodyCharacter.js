@@ -33,7 +33,6 @@ const ChipContainer = styled.div`
    backdrop-filter: blur(4px);
     drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
   
-
   .chipValue {
     margin-left: -22px;
     color: ${({ keyType }) => keyColors[keyType]};
