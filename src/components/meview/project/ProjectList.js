@@ -41,8 +41,6 @@ function ProjectList(props) {
     <Container>
       <List>
         <img src="/image/reviewfoldericon.svg" alt="review folder icon" />
-        {/* <span className="pjname">프로젝트명</span>
-        <div className="countnum">+4</div> */}
         <span className="pjname">{props.projectname}</span>
         <div className="countnum">+{props.count}</div>
       </List>

@@ -1,7 +1,7 @@
 * {
   font-family: "Noto Sans KR", sans-serif;
   padding: 0;
-  margin: 0;
+  margin: 0;    
 }
 
 :root {
@@ -11,8 +11,8 @@
   --mainpg: #fef69b;
   --Gray-01: #fbfbfb;
   --Gray-02: #f7f7f7;
-  --Gray-07: #C1C1C1;
-  --Gray-10: #6F6F6F;
+  --Gray-07: #c1c1c1;
+  --Gray-10: #6f6f6f;
   --Gray-11: #555555;
   --Gray-12: #3d3d3d;
   --Gray-13: #333333;
@@ -36,8 +36,9 @@
   --chip-sub3: #f3d25d;
   --chip-sub4: #85c940;
   --chip-sub5: #62a9f5;
-  --chip-sub6: #F291C6;
-  --chip-sub7: #C190FF;
+  --chip-sub6: #f291c6;
+  --chip-sub7: #c190ff;
+  
 }
 
 /* ::-webkit-scrollbar {

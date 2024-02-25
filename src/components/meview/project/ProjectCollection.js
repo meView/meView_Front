@@ -6,7 +6,8 @@ import { useRecoilValue } from "recoil";
 import { projectListState } from "../../../recoil/ProjectListAtom";
 
 const Container = styled.div`
-  margin: 16px 0;
+  margin: 16px 0 0;
+  padding-bottom: 32px;
 `;
 
 const PJList = styled.div`
