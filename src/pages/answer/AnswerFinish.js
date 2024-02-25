@@ -1,6 +1,16 @@
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
+const Container = styled.div`
+  width: 100%;
+  max-width: 500px;
+  height: 100vh;
+  background-image: url('./image/answer-finish-background.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+`
+
 const Top = styled.div`
   .progress {
     height: 8px;
@@ -46,7 +56,7 @@ function AnswerFinish(props) {
   const navigate = useNavigate();
 
   return (
-    <>
+    <Container>
       <Top>
         <div className="progress-bar">
           <div
@@ -68,7 +78,7 @@ function AnswerFinish(props) {
           <img className='button' alt="answer finish" src="./image/answer-finish.svg"/>
         </button>
       </Bottom>
-    </>
+    </Container>
   )
 }
 
