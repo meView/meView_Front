@@ -177,7 +177,7 @@ function AnswerName(props) {
         {
           textState === "error" 
           ? <div className="warning">
-              <img alt="warning message" src="./image/warning-msg.svg"/>
+              <img alt="warning message" src="./image/warning-10msg.svg"/>
             </div>
           : null
         }

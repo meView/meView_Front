@@ -9,6 +9,7 @@ const Container = styled.div`
   background-image: url('./image/answer-background.svg');
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
 `
 const Top = styled.div`
 `
