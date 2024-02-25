@@ -14,6 +14,6 @@ export const pageState = atom({
 export const answerState = atom({
   key: 'otherAnswerState',
   default: {
-    answer: ''
+    answer1: '', /* 닉네임 */
   },
 });

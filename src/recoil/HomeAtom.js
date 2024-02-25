@@ -6,7 +6,7 @@ export const questionFormState = atom({
     default: [{
         question_id: 1,
         question_title: '스위프 프로젝트',
-        question_type: 'strength',
+        question_type: 'both',
         question_target: 'team',
     }, {
         question_id: 2,

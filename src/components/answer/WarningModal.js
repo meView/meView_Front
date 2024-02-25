@@ -1,7 +1,6 @@
 import { useRecoilState } from "recoil";
 import { answerState, pageState } from "../../recoil/AnswerAtom";
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
 
 const Modal = styled.div`
   background-color: var(--Gray-14);
@@ -74,7 +73,6 @@ function WarningModal(props) {
   const [modal, setModal] = useRecoilState(props.modalstate);
   const [answer, setAnswer] = useRecoilState(answerState);
   const [page, setPage] = useRecoilState(pageState);
-  const navigate = useNavigate();
 
   return (
     <Modal>
