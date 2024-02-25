@@ -18,6 +18,7 @@ const PcView = styled.div`
 
 const MobileView = styled.div`
   margin: 0 auto;
+  background-color: var(--Gray-15);
 `;
 
 function App() {
