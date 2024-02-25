@@ -8,6 +8,7 @@ import Homepage from "./pages/home/Homepage";
 import Answer from "./pages/answer/Answer";
 import MeviewStrength from "./pages/meview/MeviewStrength";
 import MeviewWeakness from "./pages/meview/MeviewWeakness";
+import MeviewProject from "./pages/meview/MeviewProject";
 
 function Main() {
   return (
@@ -24,6 +25,7 @@ function Main() {
             <Route path="strength" element={<MeviewStrength />} />
             <Route path="weakness" element={<MeviewWeakness/>} />
           </Route>
+          <Route path="meview/projects" element={<MeviewProject />} />
         </Route>
       </Routes>
     </BrowserRouter>
