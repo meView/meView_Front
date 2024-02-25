@@ -9,6 +9,12 @@ const QuestionWrapper = styled.div`
   height: 100vh;
   background-color: var(--Gray-15);
   position: relative;
+  width: 100%;
+  max-width: 500px;
+  background-image: url('./image/question-background.svg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
 `;
 const Top = styled.div`
   .progress {
