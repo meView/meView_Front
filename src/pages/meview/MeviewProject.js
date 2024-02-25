@@ -4,7 +4,7 @@ import ViewNav from "../../components/meview/capability/ViewNav";
 import ProjectCollection from "../../components/meview/project/ProjectCollection";
 
 const Container = styled.div`
-  height: 100vh;
+  
 `;
 
 function MeviewProject() {

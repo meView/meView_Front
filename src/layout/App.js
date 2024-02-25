@@ -5,20 +5,21 @@ import BodyContent from "./BodyContent";
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background-color: #222222;
+    background-color: #222222;   
   }
 `;
 
 const PcView = styled.div`
-  height: 100vh;
   width: 500px;
   margin: 0 auto;
   background-color: var(--Gray-15);
+  overflow-y: auto;
 `;
 
 const MobileView = styled.div`
   margin: 0 auto;
   background-color: var(--Gray-15);
+  overflow-y: auto;
 `;
 
 function App() {
