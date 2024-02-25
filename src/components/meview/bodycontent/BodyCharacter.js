@@ -1,5 +1,6 @@
 import styled from "styled-components";
-import strength from "../../../api/meview_capability/strength";
+import { useRecoilValue } from "recoil";
+import { strengthState } from "../../../recoil/StrengthAtom";
 
 const Container = styled.div`
   display: flex;
@@ -68,6 +69,7 @@ const ChipContainer = styled.div`
   }
 `;
 function BodyCharacter() {
+  const strength = useRecoilValue(strengthState);
   const imagePaths = {
     소통능력: {
       unselected: "/image/communication-unselected.svg",

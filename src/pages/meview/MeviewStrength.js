@@ -3,6 +3,7 @@ import BodyHeader from "../../components/meview/bodycontent/BodyHeader";
 import BodyCharacter from "../../components/meview/bodycontent/BodyCharacter";
 import MeviewContent from "../../components/meview/layout/MeviewContent";
 import BodySelect from "../../components/meview/layout/BodySelect";
+import InformCard from "../../components/meview/layout/InformCard";
 
 const Container = styled.div`
   height: 100vh;
@@ -15,6 +16,7 @@ function MeviewStrength() {
       <BodyHeader />
       <BodyCharacter />
       <BodySelect />
+      <InformCard />
     </Container>
   );
 }

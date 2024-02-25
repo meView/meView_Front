@@ -1,11 +1,14 @@
 import React from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
+import { useRecoilValue } from "recoil";
+import { totalStrengthSelector } from "../../../recoil/StrengthAtom";
+import { totalWeaknessSelector } from "../../../recoil/WeaknessAtom";
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  width: 254px;
+  width: 300px;
   margin: 0 auto;
   padding: 8px;
   border-radius: 200px;
@@ -43,6 +46,8 @@ const StyledButton = styled.button`
 function BodySelect() {
   const navigate = useNavigate();
   const location = useLocation();
+  const totalStrength = useRecoilValue(totalStrengthSelector);
+  const totalWeakness = useRecoilValue(totalWeaknessSelector);
 
   const isStrengthActive = location.pathname === "/meview/capability/strength";
   const isWeaknessActive = location.pathname === "/meview/capability/weakness";
@@ -55,14 +60,14 @@ function BodySelect() {
           onClick={() => navigate("/meview/capability/strength")}
         >
           <span className="button-text">내 강점</span>
-          <span className="button-text2"> +1</span>
+          <span className="button-text2"> +{totalStrength}</span>
         </StyledButton>
         <StyledButton
           $isActive={isWeaknessActive}
           onClick={() => navigate("/meview/capability/weakness")}
         >
           <span className="button-text">내 약점</span>
-          <span className="button-text2"> +1</span>
+          <span className="button-text2"> +{totalWeakness}</span>
         </StyledButton>
       </ButtonContainer>
     </Container>
