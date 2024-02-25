@@ -12,7 +12,7 @@
   --Gray-01: #fbfbfb;
   --Gray-02: #f7f7f7;
   --Gray-11: #555555;
-  --Gray-12: #3D3D3D;
+  --Gray-12: #3d3d3d;
   --Gray-13: #333333;
   --Gray-14: #212121;
   --Gray-15: #171717;
@@ -27,8 +27,15 @@
   --font-weight-regular: 400;
   --font-weight-bold: 700;
   --Error: #f5511d;
-  --Success: #6AB6F0;
+  --Success: #6ab6f0;
   --Medium-Emphasis: rgba(255, 255, 255, 0.6);
+  --chip-sub1: #f0485a;
+  --chip-sub2: #fc6644;
+  --chip-sub3: #f3d25d;
+  --chip-sub4: #85c940;
+  --chip-sub5: #62a9f5;
+  --chip-sub6: #F291C6;
+  --chip-sub7: #C190FF;
 }
 
 /* ::-webkit-scrollbar {
