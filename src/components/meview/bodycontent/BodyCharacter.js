@@ -1,57 +1,105 @@
 import styled from "styled-components";
-import strenght from "../../../api/meview_capability/strength";
+import strength from "../../../api/meview_capability/strength";
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
   overflow-x: hidden;
   position: relative;
-
   .maincharacter {
     margin: 0 auto;
   }
 `;
 
 const Chips = styled.div`
-  position: absolute; // Container 내에서 절대 위치 사용
+  position: absolute;
   width: 100%;
+`;
 
-  img {
-    position: absolute;
-    backdrop-filter: blur(4px);
+const keyColors = {
+  소통능력: "#F291C6", 
+  실행력: "#85C940",
+  친화력: "#F0485A",
+  판단력: "#C190FF",
+  경청능력: "#62A9F5",
+  관찰력: "#FC6644",
+  끈기력: "#F3D25D",
+};
+
+const ChipContainer = styled.div`
+  position: absolute;
+  display: flex;
+  align-items: center;
+   backdrop-filter: blur(4px);
     drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-    &.communication {
-      top: 236px;
-      left: 13.6%;
-      opacity: 1;
-    }
-    &.executive {
-      top: 228px;
-      left: 56%;
-    }
-    &.friendliness {
-      top: 296px;
-      left: 20%;
-    }
-    &.judgment {
-      top: 60px;
-      left: 48%;
-    }
-    &.listening {
-      top: 126px;
-      left: 58%;
-    }
-    &.observation {
-      top: 108px;
-      left: 12%;
-    }
-    &.perseverance {
-      top: 362px;
-      left: 52%;
-    }
+  
+
+  .chipValue {
+    margin-left: -22px;
+    color: ${({ keyType }) => keyColors[keyType]};
+  }
+
+  &.소통능력 {
+    top: 236px;
+    left: 13.6%;
+  }
+  &.실행력 {
+    top: 228px;
+    left: 56%;
+  }
+  &.친화력 {
+    top: 296px;
+    left: 20%;
+  }
+  &.판단력 {
+    top: 60px;
+    left: 48%;
+  }
+  &.경청능력 {
+    top: 126px;
+    left: 58%;
+  }
+  &.관찰력 {
+    top: 108px;
+    left: 12%;
+  }
+  &.끈기력 {
+    top: 362px;
+    left: 52%;
   }
 `;
 function BodyCharacter() {
+  const imagePaths = {
+    소통능력: {
+      unselected: "/image/communication-unselected.svg",
+      selected: "/image/communication-selected.svg",
+    },
+    실행력: {
+      unselected: "/image/execution-unselected.svg",
+      selected: "/image/execution-selected.svg",
+    },
+    친화력: {
+      unselected: "/image/friendliness-unselected.svg",
+      selected: "/image/friendliness-selected.svg",
+    },
+    판단력: {
+      unselected: "/image/judgment-unselected.svg",
+      selected: "/image/judgment-selected.svg",
+    },
+    경청능력: {
+      unselected: "/image/listening-unselected.svg",
+      selected: "/image/listening-selected.svg",
+    },
+    관찰력: {
+      unselected: "/image/observation-unselected.svg",
+      selected: "/image/observation-selected.svg",
+    },
+    끈기력: {
+      unselected: "/image/perseverance-unselected.svg",
+      selected: "/image/perseverance-selected.svg",
+    },
+  };
+
   return (
     <Container>
       <img
@@ -60,41 +108,19 @@ function BodyCharacter() {
         alt="character_strength"
       />
       <Chips>
-        <img
-          className="communication"
-          src="/image/communication-unselected.svg"
-          alt="communication"
-        />
-        <img
-          className="executive"
-          src="/image/execution-unselected.svg"
-          alt="executive"
-        />
-        <img
-          className="friendliness"
-          src="/image/friendliness-unselected.svg"
-          alt="friendliness"
-        />
-        <img
-          className="judgment"
-          src="/image/judgment-unselected.svg"
-          alt="judgment"
-        />
-        <img
-          className="listening"
-          src="/image/listening-unselected.svg"
-          alt="listening"
-        />
-        <img
-          className="observation"
-          src="/image/observation-unselected.svg"
-          alt="observation"
-        />
-        <img
-          className="perseverance"
-          src="/image/perseverance-unselected.svg"
-          alt="perseverance"
-        />
+        {Object.entries(strength).map(([key, value]) => (
+          <ChipContainer key={key} className={key} keyType={key}>
+            <img
+              src={
+                value === 0
+                  ? imagePaths[key].unselected
+                  : imagePaths[key].selected
+              }
+              alt={key}
+            />
+            {value > 0 && <div className="chipValue">{value}</div>}
+          </ChipContainer>
+        ))}
       </Chips>
     </Container>
   );
@@ -102,21 +128,3 @@ function BodyCharacter() {
 
 export default BodyCharacter;
 
-// {
-//   "판단력": 0,
-//   "관찰력": 3,
-//   "경청능력": 0,
-//   "소통능력": 0,
-//   "친화력": 3,
-//   "실행력": 0,
-//   "끈기력": 0
-// }
-{
-  /* <p>판단력: {strenght.판단력}</p>
-<p>관찰력: {strenght.관찰력}</p>
-<p>경청능력: {strenght.경청능력}</p>
-<p>소통능력: {strenght.소통능력}</p>
-<p>친화력: {strenght.친화력}</p>
-<p>실행력: {strenght.실행력}</p>
-<p>끈기력: {strenght.끈기력}</p> */
-}
