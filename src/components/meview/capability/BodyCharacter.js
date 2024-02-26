@@ -92,7 +92,6 @@ function BodyCharacter() {
     : "character_weakness";
 
   const handleChipClick = (chipName) => {
-    
     const ChipInfo = {
       name: chipName,
       strength: character_strength,

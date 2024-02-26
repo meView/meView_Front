@@ -2,6 +2,7 @@ import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import { linkToastState } from "../../recoil/HomeAtom";
 import Toast from "../../util/Toast";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   position: fixed; /* 화면에 고정 */
@@ -14,11 +15,13 @@ const Content = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-top: 20px;
-  background: linear-gradient(180deg, rgba(23, 23, 23, 0) 0%, var(--Gray-15) 80%);
+  padding: 32px 20px 24px;
+  background: linear-gradient(
+    180deg,
+    rgba(23, 23, 23, 0) 0%,
+    var(--Gray-15) 80%
+  );
 
-  .leftside {
-  }
   .rightside {
     background: none;
     border: none;
@@ -27,20 +30,46 @@ const Content = styled.div`
   }
 `;
 
-function Bottombar() {
+const RightSideButton = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  background-color: var(--primary);
+  border-radius: 200px;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  width: 230px;
+  height: 64px;
 
+  &:hover {
+    background-color: #fff594;
+  }
+`;
+
+function Bottombar() {
   const [showToast, setShowToast] = useRecoilState(linkToastState);
+  const navigate = useNavigate();
+
+  const handleCreateQ = () => {
+    navigate("/question");
+  };
 
   return (
     <Container>
-      {showToast && <Toast text="설문지 링크가 복사되었어요!" onClick={()=>{ 
-        setShowToast(false);
-      }}/>}
+      {showToast && (
+        <Toast
+          text="설문지 링크가 복사되었어요!"
+          onClick={() => {
+            setShowToast(false);
+          }}
+        />
+      )}
       <Content>
         <div className="leftside"></div>
-        <button className="rightside">
-          <img alt="createQ" src="/image/create-q-button.svg" />
-        </button>
+        <RightSideButton onClick={handleCreateQ}>
+          <div className="text">+질문지 생성</div>
+        </RightSideButton>
       </Content>
     </Container>
   );

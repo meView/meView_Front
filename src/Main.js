@@ -9,6 +9,7 @@ import MeviewProject from "./pages/meview/MeviewProject";
 import MeviewChipReview from "./pages/meview/MeviewChipReview";
 import MeviewProjectReview from "./pages/meview/MeviewProjectReview";
 import MeviewNicknameReview from "./pages/meview/MeviewNicknameReview";
+import Mypage from "pages/home/Mypage";
 
 function Main() {
   return (
@@ -17,7 +18,9 @@ function Main() {
         <Route path="/" element={<App />}>
           <Route path="" element={<Mainpage />} />
           <Route path="home" element={<Homepage />} />
-          <Route path="testcode" element={<Question />} />
+          <Route path="mypage" element={<Mypage />} />
+          {/* testcode->question으로 바꿧어용! */}
+          <Route path="question" element={<Question />} /> 
           <Route path="answer" element={<Answer />} />
           <Route path="meview/capability" element={<Outlet />}>
             <Route path="strength" element={<MeviewPage />} />

@@ -1,11 +1,11 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   align-items: flex-start;
   display: flex;
   flex-direction: column;
   padding: 0px 20px;
- 
 
   .top-margin {
     margin-top: 40px;
@@ -15,10 +15,10 @@ const Container = styled.div`
   }
 `;
 const NavBar = styled.div`
-  display: flex; 
-  justify-content: space-between; 
-  align-items: center; 
-  width: 100%; 
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 
   .button-nav {
     background: none;
@@ -66,24 +66,35 @@ const NavBar = styled.div`
 `;
 
 function TopNav() {
+  const navigate = useNavigate();
+
+  const handleHome = () => {
+    navigate("/home");
+  };
+  const handleMeview = () => {
+    navigate("/meview/capability/strength");
+  };
+  const handleMypage = () => {
+    navigate("/mypage");
+  }
+
   return (
     <Container>
       <div className="top-margin"></div>
       <NavBar>
         <div>
-          <button className="button-nav">
+          <button className="button-nav" onClick={handleHome}>
             <p className="button-text">홈</p>
           </button>
-          <button className="button-nav">
+          <button className="button-nav" onClick={handleMeview}>
             <p className="button-text2">미뷰</p>
           </button>
         </div>
 
-        <button className="button-icon">
+        <button className="button-icon" onClick={handleMypage}>
           <img alt="mypage" src="/image/mypage-logo.svg" />
         </button>
       </NavBar>
-      <div className="bottom-margin"></div>
     </Container>
   );
 }

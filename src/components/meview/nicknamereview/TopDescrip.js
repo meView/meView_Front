@@ -1,6 +1,5 @@
 import styled from "styled-components";
 
-
 const StyledBox = styled.div`
   position: relative;
   margin: 0 20px;
@@ -22,7 +21,7 @@ const StyledBox = styled.div`
   }
 `;
 
-function TopDescrip({strength, nickname}) {
+function TopDescrip({ strength, nickname }) {
   return (
     <StyledBox>
       <p className="title">
@@ -38,5 +37,3 @@ function TopDescrip({strength, nickname}) {
 }
 
 export default TopDescrip;
-
-

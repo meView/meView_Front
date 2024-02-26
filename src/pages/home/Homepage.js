@@ -11,7 +11,6 @@ function Homepage() {
     <Container>
       <Myhome />
     </Container>
-    // page 설정해서 Myhome or Mypage로 이동하도록 설정할 예정
   );
 }
 

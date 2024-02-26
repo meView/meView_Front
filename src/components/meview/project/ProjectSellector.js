@@ -1,4 +1,3 @@
-import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { useRecoilState } from "recoil";
 import { selectedStrengthState } from "../../../recoil/ProjectListAtom";

@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import ProjectIDCard from "./ProjectIDCard";
 import { useRecoilValue } from "recoil";
 import {
