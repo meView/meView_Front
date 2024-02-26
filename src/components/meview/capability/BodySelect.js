@@ -1,9 +1,8 @@
-
 import { useNavigate, useLocation } from "react-router-dom";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import { totalStrengthSelector } from "../../../recoil/StrengthAtom";
-import { totalWeaknessSelector } from "../../../recoil/WeaknessAtom";
+import { totalWeaknessSelector } from "../../../recoil/StrengthAtom";
 
 const Container = styled.div`
   display: flex;
@@ -31,6 +30,9 @@ const StyledButton = styled.button`
   cursor: pointer;
   padding: 12px 16px;
   border-radius: 200px;
+  
+  display: flex;
+  align-items: center;
 
   margin: 0 4px;
   .button-text {
@@ -40,6 +42,7 @@ const StyledButton = styled.button`
   .button-text2 {
     font-size: 14px;
     font-weight: bold;
+    margin-left: 4px;
   }
 `;
 

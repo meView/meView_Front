@@ -7,11 +7,17 @@ import InformCard from "../../components/meview/capability/InformCard";
 import TopNav from "../../components/meview/capability/TopNav";
 import ViewNav from "../../components/meview/capability/ViewNav";
 
+
+
+
+
 const Container = styled.div`
   height: 100vh;
 `;
 
 function MeviewStrength() {
+
+
   return (
     <Container>
       <TopNav />
@@ -23,5 +29,4 @@ function MeviewStrength() {
     </Container>
   );
 }
-
 export default MeviewStrength;

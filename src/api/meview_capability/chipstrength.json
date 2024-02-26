@@ -1,0 +1,18 @@
+{
+  "reviews": [
+    {
+      "review_id": 1,
+      "response_title": "response_title 강점",
+      "response_responder": "response_responder 강점이",
+      "review_description": "desciption 설명설명",
+      "chip_name": "observation"
+    },
+    {
+      "review_id": 2,
+      "response_title": "response_title 강점2",
+      "response_responder": "response_responder 강점이2",
+      "review_description": "desciption 설명설명설명설명",
+      "chip_name": "observation"
+    }
+  ]
+}
