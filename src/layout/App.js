@@ -16,7 +16,6 @@ const PcView = styled.div`
   background-color: var(--Gray-15);
   overflow-y: auto;
   min-height: 100vh;
-
 `;
 
 const MobileView = styled.div`

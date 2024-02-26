@@ -1,20 +1,53 @@
 {
   "reviews": [
     {
+      "review_id": 0,
+      "response_title": "스위프",
+      "response_responder": "태건",
+      "review_description": "닉민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 :)민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 :)",
+      "chip_name": "observation"
+    },
+    {
       "review_id": 1,
-      "response_title": "response_title 강점",
-      "response_responder": "response_responder 강점이",
+      "response_title": "제목-강점1",
+      "response_responder": "이름-강점이",
       "review_description": "desciption 설명설명",
       "chip_name": "observation"
     },
     {
       "review_id": 2,
-      "response_title": "response_title 강점2",
-      "response_responder": "response_responder 강점이2",
+      "response_title": "제목-강점2",
+      "response_responder": "이름-강점이2",
       "review_description": "desciption 설명설명설명설명",
+      "chip_name": "observation"
+    },
+    {
+      "review_id": 4,
+      "response_title": "스위프2",
+      "response_responder": "태건2",
+      "review_description": "닉민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 :)민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 :)",
+      "chip_name": "observation"
+    },
+    {
+      "review_id": 5,
+      "response_title": "스위프3",
+      "response_responder": "태건3",
+      "review_description": "닉민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 :)민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 :)",
+      "chip_name": "observation"
+    },
+    {
+      "review_id": 6,
+      "response_title": "스위프4",
+      "response_responder": "태건4",
+      "review_description": "닉민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 :)민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 :)",
+      "chip_name": "observation"
+    },
+    {
+      "review_id": 7,
+      "response_title": "스위프5",
+      "response_responder": "태건5",
+      "review_description": "닉민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 :)민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 :)",
       "chip_name": "observation"
     }
   ]
 }
-
-
