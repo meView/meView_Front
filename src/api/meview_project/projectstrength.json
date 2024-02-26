@@ -1,15 +1,35 @@
 {
-  "닉네임1": [
+  "태건쓰 리뷰~": [
     {
       "chip_name": "observation",
       "review_description": "닉민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 :)민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 :)"
     },
     {
       "chip_name": "listening",
-      "review_description": "review_description닉넴2"
+      "review_description": "review_description 경청능력"
+    },
+    {
+      "chip_name": "judgement",
+      "review_description": "review_description 판단력"
+    },
+    {
+      "chip_name": "communication",
+      "review_description": "review_description 소통능력"
+    },
+    {
+      "chip_name": "friendliness",
+      "review_description": "review_description 친화력"
+    },
+    {
+      "chip_name": "execution",
+      "review_description": "review_description 실행력"
+    },
+    {
+      "chip_name": "perseverance",
+      "review_description": "review_description 끈기력"
     }
   ],
-  "닉네임2": [
+  "Test 닉네임2": [
     {
       "chip_name": "observation",
       "review_description": "review_description닉넴3"

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   background-color: var(--Gray-14);
@@ -9,6 +10,11 @@ const Container = styled.div`
   display: flex;
   border-right: solid 8px var(--Gray-13);
   position: relative;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--Hover);
+  }
 `;
 const List = styled.div`
   display: flex;
@@ -35,10 +41,15 @@ const List = styled.div`
   }
 `;
 
-
 function ProjectList(props) {
+  const navigate = useNavigate();
+
+  const handleProjectClick = () => {
+    navigate("/meview/projectreview");
+  };
+
   return (
-    <Container>
+    <Container onClick={handleProjectClick}>
       <List>
         <img src="/image/reviewfoldericon.svg" alt="review folder icon" />
         <span className="pjname">{props.projectname}</span>

@@ -17,6 +17,8 @@ const Container = styled.div`
   }
   .Chip {
     padding: 0 0 16px;
+  }
+  .divider {
     border-bottom: 2px solid var(--Gray-13);
   }
   .discription {
@@ -25,9 +27,21 @@ const Container = styled.div`
 `;
 
 function ProjectReviewCard({ chipName, reviewDescription }) {
+
+  const imagePaths = {
+    communication: "/image/communication-project.svg",
+    execution: "/image/execution-project.svg",
+    friendliness: "/image/friendliness-project.svg",
+    judgement: "/image/judgement-project.svg",
+    listening: "/image/listening-project.svg",
+    observation: "/image/observation-project.svg",
+    perseverance: "/image/perseverance-project.svg",
+  };
+
   return (
     <Container>
-      <div className="Chip"> {chipName} </div>
+      <img className="Chip" src={imagePaths[chipName]} alt={chipName} />
+      <div className="divider"> </div>
       <div className="discription"> {reviewDescription}</div>
     </Container>
   );
