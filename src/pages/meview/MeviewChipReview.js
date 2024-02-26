@@ -9,7 +9,6 @@ function MeviewChipReview() {
       <TopArrowback />
       <TopDescription />
       <DetailReview />
-      <h1>MeviewPage</h1>
     </div>
   );
 }
