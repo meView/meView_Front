@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
   body {
     background-color: #222222;   
   }
+  
 `;
 
 const PcView = styled.div`
@@ -14,11 +15,14 @@ const PcView = styled.div`
   margin: 0 auto;
   background-color: var(--Gray-15);
   overflow-y: auto;
+  min-height: 100vh;
+
 `;
 
 const MobileView = styled.div`
   margin: 0 auto;
   background-color: var(--Gray-15);
+  min-height: 100vh;
   overflow-y: auto;
 `;
 

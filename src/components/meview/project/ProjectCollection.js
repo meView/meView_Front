@@ -1,6 +1,4 @@
-import React from "react";
 import styled from "styled-components";
-
 import ProjectList from "./ProjectList";
 import { useRecoilValue } from "recoil";
 import { projectListState } from "../../../recoil/ProjectListAtom";
@@ -20,9 +18,8 @@ function ProjectCollection() {
   return (
     <Container>
       {projectData.map((project) => (
-        <PJList>
+        <PJList key={project.question_id}>
           <ProjectList
-            key={project.question_id}
             projectname={project.question_title}
             count={project.count}
           />

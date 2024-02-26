@@ -6,6 +6,7 @@ import Homepage from "./pages/home/Homepage";
 import Answer from "./pages/answer/Answer";
 import MeviewPage from "./pages/meview/MeviewPage";
 import MeviewProject from "./pages/meview/MeviewProject";
+import MeviewChipReview from "./pages/meview/MeviewChipReview";
 
 function Main() {
   return (
@@ -19,6 +20,7 @@ function Main() {
           <Route path="meview/capability" element={<Outlet />}>
             <Route path="strength" element={<MeviewPage />} />
             <Route path="weakness" element={<MeviewPage />} />
+            <Route path="chipreview" element={<MeviewChipReview />} />
           </Route>
           <Route path="meview/projects" element={<MeviewProject />} />
         </Route>

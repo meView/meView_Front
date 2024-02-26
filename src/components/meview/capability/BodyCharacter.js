@@ -1,8 +1,13 @@
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
-import { strengthState } from "../../../recoil/StrengthAtom";
-import { weaknessState } from "../../../recoil/WeaknessAtom";
-import { useLocation } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
+import { useLocation, useNavigate } from "react-router-dom";
+
+import {
+  strengthState,
+  weaknessState,
+  selectedChipInfoState,
+} from "../../../recoil/StrengthAtom";
 
 const Container = styled.div`
   display: flex;
@@ -33,8 +38,9 @@ const ChipContainer = styled.div`
   position: absolute;
   display: flex;
   align-items: center;
-   backdrop-filter: blur(4px);
-    drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  backdrop-filter: blur(4px);
+  drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  cursor: pointer;
   
   .chipValue {
     margin-left: -22px;
@@ -74,8 +80,26 @@ function BodyCharacter() {
   const strength = useRecoilValue(strengthState);
   const weakness = useRecoilValue(weaknessState);
   const location = useLocation();
+  const navigate = useNavigate();
+
+  // 칩 정보 전달을 위한 state
+  const setChipInfo = useSetRecoilState(selectedChipInfoState);
+
   const isStrengthActive = location.pathname === "/meview/capability/strength";
   const isstrength = isStrengthActive ? strength : weakness;
+  const character_strength = isStrengthActive
+    ? "character_strength"
+    : "character_weakness";
+
+  const handleChipClick = (chipName) => {
+    const ChipInfo = {
+      name: chipName,
+      strength: character_strength,
+    };
+
+    setChipInfo(ChipInfo);
+    navigate("../chipreview");
+  };
 
   const imagePaths = {
     소통능력: {
@@ -112,12 +136,17 @@ function BodyCharacter() {
     <Container>
       <img
         className="maincharacter"
-        src="/image/character_strength.svg"
+        src={`/image/${character_strength}.svg`}
         alt="character_strength"
       />
       <Chips>
         {Object.entries(isstrength).map(([key, value]) => (
-          <ChipContainer key={key} className={key} keyType={key}>
+          <ChipContainer
+            key={key}
+            className={key}
+            keyType={key}
+            onClick={() => handleChipClick(key)}
+          >
             <img
               src={
                 value === 0
