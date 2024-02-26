@@ -5,7 +5,7 @@ import BodyContent from "./BodyContent";
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background-color: #222222;   
+    background-color: #434343;   
   }
   
 `;

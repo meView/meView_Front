@@ -7,6 +7,7 @@ import Answer from "./pages/answer/Answer";
 import MeviewPage from "./pages/meview/MeviewPage";
 import MeviewProject from "./pages/meview/MeviewProject";
 import MeviewChipReview from "./pages/meview/MeviewChipReview";
+import MeviewProjectReview from "./pages/meview/MeviewProjectReview";
 
 function Main() {
   return (
@@ -23,6 +24,7 @@ function Main() {
             <Route path="chipreview" element={<MeviewChipReview />} />
           </Route>
           <Route path="meview/projects" element={<MeviewProject />} />
+          <Route path="meview/projectreview" element={<MeviewProjectReview />} />
         </Route>
       </Routes>
     </BrowserRouter>

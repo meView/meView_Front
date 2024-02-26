@@ -5,7 +5,7 @@ import { useRecoilValue } from "recoil";
 import {
   selectedChipInfoState,
   totalStrengthReviewSelector,
-  //totalWeaknessReviewSelector,
+  totalWeaknessReviewSelector,
 } from "../../../recoil/StrengthAtom";
 
 
@@ -33,20 +33,29 @@ const StyledBox = styled.div`
 function TopDescription() {
   const selectedChipInfo = useRecoilValue(selectedChipInfoState);
   const totalStrengthReviews = useRecoilValue(totalStrengthReviewSelector);
-  // const totalWeaknessReviews = useRecoilValue(totalWeaknessReviewSelector);
+  const totalWeaknessReviews = useRecoilValue(totalWeaknessReviewSelector);
+
+  
+  const totalReviews = selectedChipInfo.strength === "character_weakness" ? totalWeaknessReviews : totalStrengthReviews;
+  const ment =
+    selectedChipInfo.strength === "character_weakness"
+      ? "이런 부분에 대해 아쉽다고 대답했어요"
+      : "훌륭하다고 대답했어요"; 
+ 
+
 
   return (
     <StyledBox>
       <p className="title">
         <span className="span">
-          총 {totalStrengthReviews}명
+          총 {totalReviews}명
           <span className="rectangle" />
         </span>
         <span className="text-wrapper">이 민지님의 </span>
         <span className="span">{selectedChipInfo.name}</span>
         <span className="text-wrapper">이</span>
         <br />
-        <span className="text-wrapper">훌륭하다고 대답했어요</span>
+        <span className="text-wrapper"> {ment}</span>
       </p>
     </StyledBox>
   );
