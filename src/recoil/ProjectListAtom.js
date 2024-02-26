@@ -2,12 +2,12 @@ import { atom } from "recoil";
 import ProjectItem from "../api/meview_project/projectlist";
 import ProjectStrength from "../api/meview_project/projectstrength";
 import ProjectWeakness from "../api/meview_project/projectweakness";
+import NicknameReview from "../api/meview_project/nicknamereview";
 
 export const projectListState = atom({
   key: "projectListState",
   default: ProjectItem.projects,
 });
-
 
 export const projectStrengthState = atom({
   key: "projectStrengthState",
@@ -24,3 +24,10 @@ export const selectedStrengthState = atom({
   key: "selectedStrengthState",
   default: "Strength",
 });
+
+// 닉네임별 자세한 리뷰
+export const nicknameReviewState = atom({
+  key: "nicknameReviewState",
+  default: NicknameReview.data,
+});
+

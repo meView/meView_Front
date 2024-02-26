@@ -8,7 +8,6 @@ import {
   totalWeaknessReviewSelector,
 } from "../../../recoil/StrengthAtom";
 
-
 const StyledBox = styled.div`
   position: relative;
   margin: 0 20px;
@@ -35,14 +34,14 @@ function TopDescription() {
   const totalStrengthReviews = useRecoilValue(totalStrengthReviewSelector);
   const totalWeaknessReviews = useRecoilValue(totalWeaknessReviewSelector);
 
-  
-  const totalReviews = selectedChipInfo.strength === "character_weakness" ? totalWeaknessReviews : totalStrengthReviews;
+  const totalReviews =
+    selectedChipInfo.strength === "character_weakness"
+      ? totalWeaknessReviews
+      : totalStrengthReviews;
   const ment =
     selectedChipInfo.strength === "character_weakness"
-      ? "이런 부분에 대해 아쉽다고 대답했어요"
-      : "훌륭하다고 대답했어요"; 
- 
-
+      ? "아쉽다고 대답했어요"
+      : "훌륭하다고 대답했어요";
 
   return (
     <StyledBox>

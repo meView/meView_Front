@@ -40,7 +40,7 @@ const ChipContainer = styled.div`
   align-items: center;
   backdrop-filter: blur(4px);
   drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
-  cursor: pointer;
+  cursor: ${({ value }) => (value > 0 ? "pointer" : "default")};
   
   .chipValue {
     margin-left: -22px;
@@ -92,6 +92,7 @@ function BodyCharacter() {
     : "character_weakness";
 
   const handleChipClick = (chipName) => {
+    
     const ChipInfo = {
       name: chipName,
       strength: character_strength,
@@ -145,7 +146,8 @@ function BodyCharacter() {
             key={key}
             className={key}
             keyType={key}
-            onClick={() => handleChipClick(key)}
+            value={value}
+            onClick={() => value > 0 && handleChipClick(key)}
           >
             <img
               src={
