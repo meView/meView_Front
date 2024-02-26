@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   align-items: flex-start;
@@ -61,20 +62,32 @@ const NavBar = styled.div`
 `;
 
 function TopNav() {
+  const navigate = useNavigate();
+
+  const handleHome = () => {
+    navigate("/home");
+  };
+  const handleMeview = () => {
+    navigate("/meview/capability/strength");
+  }
+  const handleMypage = () => {
+    navigate("/mypage");
+  };
+
   return (
     <Container>
       <div className="top-margin"></div>
       <NavBar>
         <div>
-          <button className="button-nav">
+          <button className="button-nav" onClick={handleHome}>
             <p className="button-text">홈</p>
           </button>
-          <button className="button-nav">
+          <button className="button-nav" onClick={handleMeview}>
             <p className="button-text2">미뷰</p>
           </button>
         </div>
 
-        <button className="button-icon">
+        <button className="button-icon" onClick={handleMypage}>
           <img alt="mypage" src="/image/mypage-logo.svg" />
         </button>
       </NavBar>

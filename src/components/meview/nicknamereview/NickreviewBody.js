@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import { nicknameReviewState } from "../../../recoil/ProjectListAtom";
 import ProjectReviewCard from "../project/ProjectReviewCard";
+// eslint-disable-next-line no-unused-vars
 import TopDescrip from "./TopDescrip";
 
 const Container = styled.div`
@@ -31,6 +32,7 @@ function NickreviewBody() {
         ))}
       </Container>
       <Divider />
+
       <TopDescrip nickname={nickname} strength={"약점"} />
       <Container>
         {weaknessReviews.map((review, index) => (

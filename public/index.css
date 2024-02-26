@@ -1,7 +1,7 @@
 * {
   font-family: "Noto Sans KR", sans-serif;
   padding: 0;
-  margin: 0;    
+  margin: 0;
 }
 
 :root {
@@ -11,9 +11,9 @@
   --mainpg: #fef69b;
   --Gray-01: #fbfbfb;
   --Gray-02: #f7f7f7;
-  --Gray-05: #ECECEC;
+  --Gray-05: #ececec;
   --Gray-07: #c1c1c1;
-  --Gray-08: #A5A5A5;
+  --Gray-08: #a5a5a5;
   --Gray-10: #6f6f6f;
   --Gray-11: #555555;
   --Gray-12: #3d3d3d;
@@ -31,7 +31,7 @@
   --font-weight-regular: 400;
   --font-weight-bold: 700;
   --Error: #f5511d;
-  --Hover: #2A291E
+  --Hover: #2a291e;
   --Success: #6ab6f0;
   --Medium-Emphasis: rgba(255, 255, 255, 0.6);
   --chip-sub1: #f0485a;
@@ -41,7 +41,6 @@
   --chip-sub5: #62a9f5;
   --chip-sub6: #f291c6;
   --chip-sub7: #c190ff;
-  
 }
 
 /* ::-webkit-scrollbar {
