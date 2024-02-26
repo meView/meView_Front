@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const StyledBox = styled.div`
   background-color: var(--Gray-14);
@@ -22,6 +23,7 @@ const Header = styled.div`
   border-bottom: 2px solid var(--Gray-13);
   position: relative;
   align-items: center;
+  cursor: pointer;
   .nickname {
     font-size: 20px;
     font-weight: bold;
@@ -41,9 +43,15 @@ const Header = styled.div`
 `;
 
 function ReviewCard(props) {
+  const navigate = useNavigate();
+
+  const handleNickNameClick = () => {
+    navigate("/meview/nicknamereview");
+  };
+
   return (
     <StyledBox>
-      <Header>
+      <Header onClick={handleNickNameClick}>
         <p className="nickname">{props.title}</p>
         <p className="projectname">•</p>
         <p className="projectname">{props.responder}</p>

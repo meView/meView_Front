@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import ProjectReviewCard from "./ProjectReviewCard";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   padding: 32px 20px;
@@ -14,19 +15,35 @@ const NickName = styled.div`
   position: relative;
   align-items: center;
   padding: 0 0 6px 0;
+  .nickname {
+    cursor: pointer;
+  }
 
   .arrow {
     position: absolute;
     right: 0;
+    cursor: pointer;
   }
 `;
 
 function ProjectIDCard({ nickname, reviews }) {
+  const navigate = useNavigate();
+  const handleNickNameClick = () => {
+    navigate("/meview/nicknamereview");
+  };
+
   return (
     <Container>
       <NickName>
-        <span>{nickname}</span>
-        <img className="arrow" src="/image/rightarrow.svg" alt="arrow" />
+        <span className="nickname" onClick={handleNickNameClick}>
+          {nickname}
+        </span>
+        <img
+          className="arrow"
+          src="/image/rightarrow.svg"
+          alt="arrow"
+          onClick={handleNickNameClick}
+        />
       </NickName>
       {reviews.map((review) => (
         <ProjectReviewCard
@@ -41,4 +58,4 @@ function ProjectIDCard({ nickname, reviews }) {
 
 export default ProjectIDCard;
 
-const Underline = styled.div``;
+

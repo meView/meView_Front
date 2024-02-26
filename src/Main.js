@@ -8,6 +8,7 @@ import MeviewPage from "./pages/meview/MeviewPage";
 import MeviewProject from "./pages/meview/MeviewProject";
 import MeviewChipReview from "./pages/meview/MeviewChipReview";
 import MeviewProjectReview from "./pages/meview/MeviewProjectReview";
+import MeviewNicknameReview from "./pages/meview/MeviewNicknameReview";
 
 function Main() {
   return (
@@ -24,7 +25,14 @@ function Main() {
             <Route path="chipreview" element={<MeviewChipReview />} />
           </Route>
           <Route path="meview/projects" element={<MeviewProject />} />
-          <Route path="meview/projectreview" element={<MeviewProjectReview />} />
+          <Route
+            path="meview/projectreview"
+            element={<MeviewProjectReview />}
+          />
+          <Route
+            path="meview/nicknamereview"
+            element={<MeviewNicknameReview />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>
