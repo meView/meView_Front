@@ -2,16 +2,23 @@
   "reviews": [
     {
       "review_id": 1,
-      "response_title": "response_title 약점",
-      "response_responder": "response_responder 약점이",
+      "response_title": "약점 프로젝트 이름",
+      "response_responder": "약점이",
       "review_description": "desciption 약점설명설명",
       "chip_name": "observation"
     },
     {
       "review_id": 2,
-      "response_title": "response_title 약점2",
-      "response_responder": "response_responder 약점이2",
+      "response_title": "약점2 프로젝트 이름",
+      "response_responder": "약점이2",
       "review_description": "desciption 약점설명설명설명설명",
+      "chip_name": "observation"
+    },
+    {
+      "review_id": 3,
+      "response_title": "일이삼사오륙칠팔구십일이삼사오륙칠팔구십",
+      "response_responder": "일이삼사오륙칠팔구십",
+      "review_description": "desciption 약점설명설명설명설명설명",
       "chip_name": "observation"
     }
   ]

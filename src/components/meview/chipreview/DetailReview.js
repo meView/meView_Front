@@ -19,10 +19,16 @@ const CardContainer = styled.div`
 function DetailReview() {
   const selectedChipInfo = useRecoilValue(selectedChipInfoState);
   const strengthReviews = useRecoilValue(strengthChipDetailState);
+  const weaknessReviews = useRecoilValue(weaknessChipDetailState);
+
+  const reviewChip =
+    selectedChipInfo.strength === "character_weakness"
+      ? weaknessReviews
+      : strengthReviews;
 
   return (
     <Container>
-      {strengthReviews.map((review) => (
+      {reviewChip.map((review) => (
         <CardContainer key={review.review_id}>
           <ReviewCard
             responder={review.response_responder}
