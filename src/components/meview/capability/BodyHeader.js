@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 
 const StyledBox = styled.div`
   position: relative;
-  margin: 32px 22px 68px;
+  margin: 32px 20px 68px;
 
   .rectangle {
     background-color: #fff37429;
