@@ -4,17 +4,16 @@ import styled, { createGlobalStyle } from "styled-components";
 import BodyContent from "./BodyContent";
 
 const GlobalStyle = createGlobalStyle`
+  overflow-y: auto;
   body {
     background-color: #434343;   
   }
-  
 `;
 
 const PcView = styled.div`
   width: 500px;
   margin: 0 auto;
   background-color: var(--Gray-15);
-  overflow-y: auto;
   min-height: 100vh;
 `;
 
