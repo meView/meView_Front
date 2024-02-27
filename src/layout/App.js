@@ -20,7 +20,6 @@ const MobileView = styled.div`
   margin: 0 auto;
   background-color: var(--Gray-15);
   min-height: 100vh;
-  overflow-y: auto;
 `;
 
 function App() {

@@ -11,6 +11,7 @@ const ButtonGroup = styled.div`
   .back-button {
     width: 50%;
     padding-right: 2%;
+    cursor: pointer;
   }
 `;
 const StyledButton = styled.button`
@@ -26,7 +27,7 @@ const StyledButton = styled.button`
   font-weight: bold;
   text-align: center;
   line-height: 56px;
-  border: none; // 버튼 테두리 제거
+  border: none; 
   cursor: ${({ $isDisabled }) => ($isDisabled ? "not-allowed" : "pointer")};
 `;
 

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Container = styled.div`
   padding: 0 20px;
   .toppadding {
-    margin-top: 40px;
+    padding-top: 40px;
   }
 `;
 const ArrowContainer = styled.div`

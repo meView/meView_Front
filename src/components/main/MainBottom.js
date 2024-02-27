@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router-dom";
 
 const Container = styled.div`
   display: inline-flex;
@@ -7,6 +8,7 @@ const Container = styled.div`
   flex-direction: column;
   width: 100%;
   height: 50%;
+  cursor: pointer;
 
   .tooltip {
     margin: 0 0 6px 20px;
@@ -31,8 +33,13 @@ const Container = styled.div`
 `;
 
 function MainBottom() {
+
+  const navigate = useNavigate();
+  const handleHomeClick = () => {
+    navigate("/home");
+  };
   return (
-    <Container>
+    <Container onClick={handleHomeClick}>
       <img className="tooltip" alt="tool_tip" src="/image/tooltip.svg" />
       <button className="button-img">
         <img className="imglogin" alt="kakao" src="/image/kakao-button.svg" />

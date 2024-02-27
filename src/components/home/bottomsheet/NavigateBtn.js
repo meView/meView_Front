@@ -16,6 +16,7 @@ const ButtonGroup = styled.div`
   .back-button {
     width: 50%;
     padding-right: 2%;
+    cursor: pointer;
   }
 `;
 const StyledButton = styled.button`
@@ -36,7 +37,6 @@ const StyledButton = styled.button`
 `;
 
 function NavigateBtn({ isModifiedDisabled, onClickButton, onClickBackButton }) {
-
   /* const [questionForm, setQuestionForm] = useRecoilState(questionFormState); */
 
   return (

@@ -45,6 +45,7 @@ const Top = styled.div`
     flex-direction: row;
     align-items: center;
     position: relative;
+    cursor: pointer;
   }
   .answer-box2 {
     margin-left: 20px;
@@ -54,6 +55,7 @@ const Top = styled.div`
     flex-direction: row;
     align-items: center;
     position: relative;
+    cursor: pointer;
   }
   .answer-text {
     margin-left: 3%;

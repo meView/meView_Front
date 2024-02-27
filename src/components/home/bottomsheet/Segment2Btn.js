@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import styled from 'styled-components'
+import { useEffect, useState } from "react";
+import styled from "styled-components";
 
 const Container = styled.div`
   background-color: var(--Gray-14);
@@ -22,6 +22,7 @@ const Container = styled.div`
     text-align: center;
     line-height: 50px;
     color: var(--Gray-12);
+    cursor: pointer;
   }
   .team {
     width: 50%;
@@ -43,34 +44,44 @@ const Container = styled.div`
     background-color: var(--primary);
     color: var(--Gray-15);
   }
-`
+`;
 
 function Segment2Btn(props) {
-  const [team, setTeam] = useState('');
-  const [friend, setFriend] = useState('');
-  
-  useEffect(()=>{
-    if (props.target === 'team') {
-      setTeam('selected')
-      setFriend('')
-    } else if (props.target === 'friend') {
-      setTeam('')
-      setFriend('selected')
+  const [team, setTeam] = useState("");
+  const [friend, setFriend] = useState("");
+
+  useEffect(() => {
+    if (props.target === "team") {
+      setTeam("selected");
+      setFriend("");
+    } else if (props.target === "friend") {
+      setTeam("");
+      setFriend("selected");
     }
-  }, [props.target])
+  }, [props.target]);
 
   return (
     <Container>
-      <div className='inner-box'>
-        <div className={`team ${team}`} onClick={()=>{
-          props.onClickTeam();
-        }}>프로젝트 팀원</div>
-        <div className={`friend ${friend}`} onClick={()=>{
-          props.onClickFriend();
-        }}>주변 지인</div>
+      <div className="inner-box">
+        <div
+          className={`team ${team}`}
+          onClick={() => {
+            props.onClickTeam();
+          }}
+        >
+          프로젝트 팀원
+        </div>
+        <div
+          className={`friend ${friend}`}
+          onClick={() => {
+            props.onClickFriend();
+          }}
+        >
+          주변 지인
+        </div>
       </div>
     </Container>
-  )
+  );
 }
 
 export default Segment2Btn;
