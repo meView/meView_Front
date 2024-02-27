@@ -39,9 +39,9 @@ function ProjectIDCard({ nickname, reviews }) {
           alt="arrow"
         />
       </NickName>
-      {reviews.map((review) => (
+      {reviews.map((review, index) => (
         <ProjectReviewCard
-          key={review.id}
+          key={index}
           chipName={review.chip_name}
           reviewDescription={review.review_description}
         />

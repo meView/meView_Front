@@ -3,7 +3,7 @@
   "code": "OK",
   "data": [
     {
-      "response_responder": "response_responder1",
+      "response_responder": "내 이름은 강점이",
       "strengths": [
         {
           "chip_name": "OBSERVATION",

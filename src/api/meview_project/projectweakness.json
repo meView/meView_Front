@@ -3,7 +3,7 @@
   "code": "OK",
   "data": [
     {
-      "response_responder": "response_responder 약점1",
+      "response_responder": "내이름은 약점이",
       "weaknesses": [
         {
           "chip_name": "OBSERVATION",
@@ -16,11 +16,19 @@
       ]
     },
     {
-      "response_responder": "response_responder 약점2",
+      "response_responder": "태건",
       "weaknesses": [
         {
           "chip_name": "FRIENDLINESS",
           "review_description": "약점 2 description"
+        },
+        {
+          "chip_name": "JUDGMENT",
+          "review_description": "약점 3 description"
+        },
+        {
+          "chip_name": "EXECUTION",
+          "review_description": "닉민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을"
         }
       ]
     }
