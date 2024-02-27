@@ -1,40 +1,16 @@
 import { atom } from 'recoil';
+import questionList from '../api/home/questions'
+import questionDetail from '../api/home/questiondetail'
+/* home/질문지 리스트 */
+export const questionFormListState = atom({
+    key: 'questionFormListState',
+    default: questionList.data,
+});
 
-/* 생성한 질문지들의 상태 저장 - 더미 데이터 테스트용으로 추가 */
+/* home/질문지 수정/삭제 */
 export const questionFormState = atom({
     key: 'questionFormState',
-    default: [{
-        question_id: 1,
-        question_title: '스위프 프로젝트',
-        question_type: 'both',
-        question_target: 'team',
-    }, {
-        question_id: 2,
-        question_title: '개발자로서 내 장점은?',
-        question_type: 'strength',
-        question_target: 'friend',
-    }, {
-        question_id: 3,
-        question_title: '개발자로서 내 단점은?',
-        question_type: 'weakness',
-        question_target: 'friend',
-    }, {
-        question_id: 4,
-        question_title: '평상 시 내 장점',
-        question_type: 'strength',
-        question_target: 'friend',
-    }, {
-        question_id: 5,
-        question_title: '인간관계에서의 내 장점은?',
-        question_type: 'strength',
-        question_target: 'friend',
-    }, {
-        question_id: 6,
-        question_title: '면접 때 어필할만한 내 장점은?',
-        question_type: 'strength',
-        question_target: 'friend',
-    }
-    ,]
+    default: questionDetail.data,
 });
 
 export const linkToastState = atom({

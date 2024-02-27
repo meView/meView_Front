@@ -1,6 +1,6 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { bottomSheetState, linkToastState, questionFormState, questionIdState } from "../../recoil/HomeAtom";
+import { bottomSheetState, linkToastState, questionFormListState, questionIdState } from "../../recoil/HomeAtom";
 import ListItem from "./ListItem";
 
 const Container = styled.div`
@@ -29,7 +29,7 @@ const Container = styled.div`
 
 function ReviewList() {
 
-  const reviewList = useRecoilValue(questionFormState);
+  const reviewList = useRecoilValue(questionFormListState);
   const [showToast, setShowToast] = useRecoilState(linkToastState);
   const [showBottom, setShowBottom] = useRecoilState(bottomSheetState);
   const [questionId, setQuestionId] = useRecoilState(questionIdState);

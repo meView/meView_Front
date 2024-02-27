@@ -1,0 +1,24 @@
+{
+  "success": true,
+  "code": "OK",
+  "data": [{
+      "question_id": 1,
+      "question_title": "스위프 프로젝트"
+    }, {
+      "question_id": 2,
+      "question_title": "개발자로서 내 장점은?"
+    }, {
+      "question_id": 3,
+      "question_title": "개발자로서 내 단점은?"
+    }, {
+      "question_id": 4,
+      "question_title": "평상 시 내 장점"
+    }, {
+      "question_id": 5,
+      "question_title": "인간관계에서의 내 장점은?"
+    }, {
+      "question_id": 6,
+      "question_title": "면접 때 어필할만한 내 장점은?"
+  }],
+  "statusCode": 200
+}

@@ -1,6 +1,6 @@
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { pageState } from "../../recoil/AnswerAtom";
+import { pageState, questionState } from "../../recoil/AnswerAtom";
 
 const Container = styled.div`
   width: 100%;
@@ -52,21 +52,24 @@ const Bottom = styled.div`
 `;
 
 function Start() {
+  const question = useRecoilValue(questionState);
   const [page, setPage] = useRecoilState(pageState);
+  const text2 = question.question_type === 'strength' ? "본인의 강점에 대한 리뷰를 원해요"
+  : question.question_type === 'weakness' ? "본인의 약점에 대한 리뷰를 원해요"
+  : "본인의 강점과 약점에 대한 리뷰를 원해요"
+
   return (
     <Container>
       <Top>
-        <span className="highlight">닉네임누구님</span>
+        <span className="highlight">{question.user_id}님</span>
         <span className="text">
           이<br></br>
         </span>
-        <span className="highlight">프로젝트어디</span>
+        <span className="highlight">{question.question_title}</span>
         <span className="text">
           에서<br></br>
         </span>
-        <span className="text2">
-          본인의 강점, 약점 or 강점+약점에 대한 리뷰를 원해요
-        </span>
+        <span className="text2">{text2}</span>
         <span className="subtitle">모든 답변은 익명으로 전달돼요</span>
       </Top>
 

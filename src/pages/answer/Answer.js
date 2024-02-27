@@ -1,5 +1,5 @@
 import { useRecoilValue } from "recoil";
-import { pageState } from "../../recoil/AnswerAtom";
+import { pageState, questionState } from "../../recoil/AnswerAtom";
 import { questionFormState } from "../../recoil/HomeAtom";
 import AnswerFinish from "./AnswerFinish";
 import AnswerName from "./AnswerName";
@@ -10,12 +10,13 @@ import AnswerWeakness2 from "./AnswerWeakness2";
 import Start from "./Start";
 
 function Answer() {
-  const id = 1; /* 테스트용 더미 id, 질문지 id가 1인 것의 답변 폼 */
-  const questions = useRecoilValue(questionFormState);
-  /* 질문지 id에 해당하는 질문지의 type 가져오기 */
-  const data = questions.find(question => question.question_id === id);
-  const type = data.question_type === 'strength' ? 'strength' : data.question_type === 'weakness' ? 'weakness' : 'both';
-
+  const id = 1; 
+  const question = useRecoilValue(questionState);
+  /* 
+    질문지 id에 해당하는 질문지의 type 가져오기 - 질문지 불러오기 api 요청 -> 해당 내용 전역 상태 저장
+    답변 모두 저장 후 -> 답변 작성 api 요청
+  */
+  const type = question.question_type === 'strength' ? 'strength' : question.question_type === 'weakness' ? 'weakness' : 'both';
   const page = useRecoilValue(pageState);
 
   return (

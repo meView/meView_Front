@@ -117,7 +117,6 @@ const Modal = styled.div`
 `
 
 function AnswerName(props) {
-
   const [answer, setAnswer] = useRecoilState(answerState);
   const [inputText, setInputText] = useState(answer.name || "");
 
@@ -140,7 +139,6 @@ function AnswerName(props) {
     setIsFocused(false);
   };
   
-
   const getTextState = (length) => {
     if (length >= 10) return "error";
     if (length > 0 && length < 10) return "writing";
@@ -148,7 +146,6 @@ function AnswerName(props) {
   };
 
   const textState = getTextState(inputText.length);
-
   const [modal, setModal] = useRecoilState(modalState);
 
   return (
