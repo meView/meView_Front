@@ -34,6 +34,11 @@ function TopDescription() {
   const totalStrengthReviews = useRecoilValue(totalStrengthReviewSelector);
   const totalWeaknessReviews = useRecoilValue(totalWeaknessReviewSelector);
 
+
+  if (!selectedChipInfo) {
+    return null;
+  }
+
   const totalReviews =
     selectedChipInfo.strength === "character_weakness"
       ? totalWeaknessReviews
@@ -62,4 +67,3 @@ function TopDescription() {
 
 export default TopDescription;
 
-// 판단력 character_strength;

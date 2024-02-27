@@ -25,22 +25,23 @@ const Chips = styled.div`
 `;
 
 const keyColors = {
-  소통능력: "#F291C6",
-  실행력: "#85C940",
-  친화력: "#F0485A",
-  판단력: "#C190FF",
-  경청능력: "#62A9F5",
-  관찰력: "#FC6644",
-  끈기력: "#F3D25D",
+  COMMUNICATION: "#F291C6",
+  EXECUTION: "#85C940",
+  FRIENDLINESS: "#F0485A",
+  JUDGMENT: "#C190FF",
+  LISTENING: "#62A9F5",
+  OBSERVATION: "#FC6644",
+  PERSEVERANCE: "#F3D25D",
 };
+
 const BackgroundColors = {
-  소통능력: "rgba(38, 32, 35, 0.85)",
-  실행력: "rgba(35, 38, 32, 0.85)",
-  친화력: "rgba(38, 33, 33, 0.85)",
-  판단력: "rgba(36, 33, 39, 0.85)",
-  경청능력: "rgba(32, 35, 38, 0.85)",
-  관찰력: "rgba(40, 34, 32, 0.85)",
-  끈기력: "rgba(38, 37, 32, 0.85)",
+  COMMUNICATION: "rgba(38, 32, 35, 0.85)",
+  EXECUTION: "rgba(35, 38, 32, 0.85)",
+  FRIENDLINESS: "rgba(38, 33, 33, 0.85)",
+  JUDGMENT: "rgba(36, 33, 39, 0.85)",
+  LISTENING: "rgba(32, 35, 38, 0.85)",
+  OBSERVATION: "rgba(40, 34, 32, 0.85)",
+  PERSEVERANCE: "rgba(38, 37, 32, 0.85)",
 };
 
 const ChipContainer = styled.div`
@@ -82,31 +83,31 @@ const ChipContainer = styled.div`
   }
 
 
-  &.소통능력 {
-    top: 236px;
-    left: 13.6%;
+  &.COMMUNICATION {
+  top: 236px;
+  left: 13.6%;
   }
-  &.실행력 {
+  &.EXECUTION {
     top: 228px;
     left: 56%;
   }
-  &.친화력 {
+  &.FRIENDLINESS {
     top: 296px;
     left: 20%;
   }
-  &.판단력 {
+  &.JUDGMENT {
     top: 60px;
     left: 48%;
   }
-  &.경청능력 {
+  &.LISTENING {
     top: 126px;
     left: 58%;
   }
-  &.관찰력 {
+  &.OBSERVATION {
     top: 108px;
     left: 12%;
   }
-  &.끈기력 {
+  &.PERSEVERANCE {
     top: 362px;
     left: 52%;
   }
@@ -137,34 +138,44 @@ function BodyCharacter() {
   };
 
   const imagePaths = {
-    소통능력: {
+    COMMUNICATION: {
       unselected: "/image/communication-unselected.svg",
       selected: "/image/communication-selected.svg",
     },
-    실행력: {
+    EXECUTION: {
       unselected: "/image/execution-unselected.svg",
       selected: "/image/execution-selected.svg",
     },
-    친화력: {
+    FRIENDLINESS: {
       unselected: "/image/friendliness-unselected.svg",
       selected: "/image/friendliness-selected.svg",
     },
-    판단력: {
+    JUDGMENT: {
       unselected: "/image/judgement-unselected.svg",
       selected: "/image/judgement-selected.svg",
     },
-    경청능력: {
+    LISTENING: {
       unselected: "/image/listening-unselected.svg",
       selected: "/image/listening-selected.svg",
     },
-    관찰력: {
+    OBSERVATION: {
       unselected: "/image/observation-unselected.svg",
       selected: "/image/observation-selected.svg",
     },
-    끈기력: {
+    PERSEVERANCE: {
       unselected: "/image/perseverance-unselected.svg",
       selected: "/image/perseverance-selected.svg",
     },
+  };
+
+  const keyMapping = {
+    COMMUNICATION: "소통능력",
+    EXECUTION: "실행력",
+    FRIENDLINESS: "친화력",
+    JUDGMENT: "판단력",
+    LISTENING: "경청능력",
+    OBSERVATION: "관찰력",
+    PERSEVERANCE: "끈기력",
   };
 
   return (
@@ -175,30 +186,33 @@ function BodyCharacter() {
         alt="character_strength"
       />
       <Chips>
-        {Object.entries(isstrength).map(([key, value]) => (
-          <ChipContainer
-            key={key}
-            className={key}
-            keyType={key}
-            value={value}
-            onClick={() => value > 0 && handleChipClick(key)}
-          >
-            {value > 0 ? (
-              <>
-                <img
-                  className="chipimg"
-                  src={imagePaths[key].selected}
-                  alt={`${key} icon`}
-                />
-                <div className="chipValue">
-                  {key} <span className="valueStyle">+{value}</span>
-                </div>
-              </>
-            ) : (
-              <img src={imagePaths[key].unselected} alt={`${key} icon`} />
-            )}
-          </ChipContainer>
-        ))}
+        {Object.entries(isstrength).map(([key, value]) => {
+          const koreanKey = keyMapping[key];
+          return (
+            <ChipContainer
+              key={key}
+              className={key}
+              keyType={key}
+              value={value}
+              onClick={() => value > 0 && handleChipClick(koreanKey)}
+            >
+              {value > 0 ? (
+                <>
+                  <img
+                    className="chipimg"
+                    src={imagePaths[key].selected}
+                    alt={`${key} icon`}
+                  />
+                  <div className="chipValue">
+                    {koreanKey} <span className="valueStyle">+{value}</span>
+                  </div>
+                </>
+              ) : (
+                <img src={imagePaths[key].unselected} alt={`${key} icon`} />
+              )}
+            </ChipContainer>
+          );
+        })}
       </Chips>
     </Container>
   );

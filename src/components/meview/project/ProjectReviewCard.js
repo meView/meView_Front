@@ -27,15 +27,14 @@ const Container = styled.div`
 `;
 
 function ProjectReviewCard({ chipName, reviewDescription }) {
-
   const imagePaths = {
-    communication: "/image/communication-project.svg",
-    execution: "/image/execution-project.svg",
-    friendliness: "/image/friendliness-project.svg",
-    judgement: "/image/judgement-project.svg",
-    listening: "/image/listening-project.svg",
-    observation: "/image/observation-project.svg",
-    perseverance: "/image/perseverance-project.svg",
+    COMMUNICATION: "/image/communication-project.svg",
+    EXECUTION: "/image/execution-project.svg",
+    FRIENDLINESS: "/image/friendliness-project.svg",
+    JUDGMENT: "/image/judgement-project.svg",
+    LISTENING: "/image/listening-project.svg",
+    OBSERVATION: "/image/observation-project.svg",
+    PERSEVERANCE: "/image/perseverance-project.svg",
   };
 
   return (
