@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
-import styled from 'styled-components'
-import NavigateBtn from '../../components/answer/navigateBtn';
-import { answerState } from '../../recoil/AnswerAtom';
+import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
+import styled from "styled-components";
+import NavigateBtn from "../../components/answer/navigateBtn";
+import { answerState } from "../../recoil/AnswerAtom";
 
 const Container = styled.div`
   height: 100vh;
   background-color: var(--Gray-15);
-`
+`;
 
 const Top = styled.div`
   .progress {
@@ -34,7 +34,7 @@ const Top = styled.div`
     font-weight: var(--font-weight-regular);
     line-height: 28px;
   }
-`
+`;
 
 const Body = styled.div`
   width: 100%;
@@ -50,16 +50,17 @@ const Body = styled.div`
     justify-content: center;
     overflow-x: hidden;
     position: relative;
-  
+
     .maincharacter {
       margin: 0 auto;
     }
   }
-`
+`;
 
 const Chips = styled.div`
   position: absolute; // Container 내에서 절대 위치 사용
   width: 100%;
+  cursor: pointer;
 
   img {
     position: absolute;
@@ -103,41 +104,58 @@ const Bottom = styled.div`
   bottom: 0;
   width: 100%;
   max-width: 500px;
-`
+`;
 
 function AnswerWeakness(props) {
   const [answer, setAnswer] = useRecoilState(answerState);
 
   /* 칩 선택 상태 확인 */
-  const [comm, setComm] = useState(answer.weakness.includes('communication') ? '' : 'un');
-  const [ob, setOb] = useState(answer.weakness.includes('observation') ? '' : 'un');
-  const [fr, setFr] = useState(answer.weakness.includes('friendliness') ? '' : 'un');
-  const [lis, setLis] = useState(answer.weakness.includes('listening') ? '' : 'un');
-  const [exe, setExe] = useState(answer.weakness.includes('execution') ? '' : 'un');
-  const [jud, setJud] = useState(answer.weakness.includes('judgement') ? '' : 'un');
-  const [per, setPer] = useState(answer.weakness.includes('perseverance') ? '' : 'un');
+  const [comm, setComm] = useState(
+    answer.weakness.includes("communication") ? "" : "un"
+  );
+  const [ob, setOb] = useState(
+    answer.weakness.includes("observation") ? "" : "un"
+  );
+  const [fr, setFr] = useState(
+    answer.weakness.includes("friendliness") ? "" : "un"
+  );
+  const [lis, setLis] = useState(
+    answer.weakness.includes("listening") ? "" : "un"
+  );
+  const [exe, setExe] = useState(
+    answer.weakness.includes("execution") ? "" : "un"
+  );
+  const [jud, setJud] = useState(
+    answer.weakness.includes("judgement") ? "" : "un"
+  );
+  const [per, setPer] = useState(
+    answer.weakness.includes("perseverance") ? "" : "un"
+  );
   /* 선택 칩 개수 확인 */
   let count = 0;
-  useEffect(()=>{
+  useEffect(() => {
     count = answer.weakness.length;
-  }, [comm, ob, fr, lis, exe, jud, per])
+  }, [comm, ob, fr, lis, exe, jud, per]);
 
   /* 칩 선택 or 취소 */
   const clickChip = (chip) => {
-    let update = [...answer.weakness]
-    if (update.includes(chip)) { // 칩 선택 취소
+    let update = [...answer.weakness];
+    if (update.includes(chip)) {
+      // 칩 선택 취소
       setAnswer({
-        ...answer, weakness: [...update.filter(item => item !== chip)]
-      })
+        ...answer,
+        weakness: [...update.filter((item) => item !== chip)],
+      });
     } else if (update.includes(chip) === false) {
       if (answer.weakness.length < 3) {
         update.push(chip);
         setAnswer({
-          ...answer, weakness: update
-        })
+          ...answer,
+          weakness: update,
+        });
       }
     }
-  }
+  };
 
   return (
     <Container>
@@ -148,90 +166,90 @@ function AnswerWeakness(props) {
             style={{ width: `${props.progress}%` }}
           ></div>
         </div>
-        <div className='title'>
-          <p className='title-text'>민지님의 아쉬운 점이 있으신가요?</p>
-          <p className='title-description'>3개까지 선택할 수 있어요</p>
+        <div className="title">
+          <p className="title-text">민지님의 아쉬운 점이 있으신가요?</p>
+          <p className="title-description">3개까지 선택할 수 있어요</p>
         </div>
       </Top>
       <Body>
-        <div className='image-box'>
+        <div className="image-box">
           <img
-          className="maincharacter"
-          src="/image/character_weakness.svg"
-          alt="character_weakness"
-        />
-        <Chips>
-          <img
-            className="communication"
-            src={`/image/communication-${comm}clicked.svg`}
-            alt="communication"
-            onClick={()=>{
-              clickChip('communication');
-              setComm(comm === 'un' && count < 3 ? '' : 'un');
-            }}
+            className="maincharacter"
+            src="/image/character_weakness.svg"
+            alt="character_weakness"
           />
-          <img
-            className="executive"
-            src={`/image/execution-${exe}clicked.svg`}
-            alt="executive"
-            onClick={()=>{
-              clickChip('execution');
-              setExe(exe === 'un' && count < 3 ? '' : 'un');
-            }}
-          />
-          <img
-            className="friendliness"
-            src={`/image/friendliness-${fr}clicked.svg`}
-            alt="friendliness"
-            onClick={()=>{
-              clickChip('friendliness');
-              setFr(fr === 'un' && count < 3 ? '' : 'un');
-            }}
-          />
-          <img
-            className="judgement"
-            src={`/image/judgement-${jud}clicked.svg`}
-            alt="judgement"
-            onClick={()=>{
-              clickChip('judgement');
-              setJud(jud === 'un' && count < 3 ? '' : 'un');
-            }}
-          />
-          <img
-            className="listening"
-            src={`/image/listening-${lis}clicked.svg`}
-            alt="listening"
-            onClick={()=>{
-              clickChip('listening');
-              setLis(lis === 'un' && count < 3 ? '' : 'un');
-            }}
-          />
-          <img
-            className="observation"
-            src={`/image/observation-${ob}clicked.svg`}
-            alt="observation"
-            onClick={()=>{
-              clickChip('observation');
-              setOb(ob === 'un' && count < 3 ? '' : 'un');
-            }}
-          />
-          <img
-            className="perseverance"
-            src={`/image/perseverance-${per}clicked.svg`}
-            alt="perseverance"
-            onClick={()=>{
-              clickChip('perseverance');
-              setPer(per === 'un' && count < 3 ? '' : 'un');
-            }}
-          />
-        </Chips>
+          <Chips>
+            <img
+              className="communication"
+              src={`/image/communication-${comm}clicked.svg`}
+              alt="communication"
+              onClick={() => {
+                clickChip("communication");
+                setComm(comm === "un" && count < 3 ? "" : "un");
+              }}
+            />
+            <img
+              className="executive"
+              src={`/image/execution-${exe}clicked.svg`}
+              alt="executive"
+              onClick={() => {
+                clickChip("execution");
+                setExe(exe === "un" && count < 3 ? "" : "un");
+              }}
+            />
+            <img
+              className="friendliness"
+              src={`/image/friendliness-${fr}clicked.svg`}
+              alt="friendliness"
+              onClick={() => {
+                clickChip("friendliness");
+                setFr(fr === "un" && count < 3 ? "" : "un");
+              }}
+            />
+            <img
+              className="judgement"
+              src={`/image/judgement-${jud}clicked.svg`}
+              alt="judgement"
+              onClick={() => {
+                clickChip("judgement");
+                setJud(jud === "un" && count < 3 ? "" : "un");
+              }}
+            />
+            <img
+              className="listening"
+              src={`/image/listening-${lis}clicked.svg`}
+              alt="listening"
+              onClick={() => {
+                clickChip("listening");
+                setLis(lis === "un" && count < 3 ? "" : "un");
+              }}
+            />
+            <img
+              className="observation"
+              src={`/image/observation-${ob}clicked.svg`}
+              alt="observation"
+              onClick={() => {
+                clickChip("observation");
+                setOb(ob === "un" && count < 3 ? "" : "un");
+              }}
+            />
+            <img
+              className="perseverance"
+              src={`/image/perseverance-${per}clicked.svg`}
+              alt="perseverance"
+              onClick={() => {
+                clickChip("perseverance");
+                setPer(per === "un" && count < 3 ? "" : "un");
+              }}
+            />
+          </Chips>
         </div>
       </Body>
       <Bottom>
-        <NavigateBtn isNextDisabled={answer.weakness.length === 0}/>
+        <NavigateBtn isNextDisabled={answer.weakness.length === 0} />
       </Bottom>
     </Container>
-  )
+  );
 }
 
 export default AnswerWeakness;

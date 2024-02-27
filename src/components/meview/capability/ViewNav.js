@@ -66,7 +66,7 @@ function ViewNav() {
       <View>
         <StyledP
           onClick={() =>
-            handleNavigation("/meview/capability/strength", "skills")
+            handleNavigation("/meview/strength", "skills")
           }
           $active={activeMenu === "skills"}
         >

@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 const Container = styled.div`
   padding: 0 20px;
   .toppadding {
-    margin-top: 40px;
+    padding-top: 40px;
   }
 `;
 const ArrowContainer = styled.div`
@@ -26,12 +26,16 @@ function TopArrowback() {
     navigate(-1);
   };
 
-
   return (
     <Container>
       <div className="toppadding"></div>
       <ArrowContainer>
-        <img className="arrow" src="/image/toparrowback.svg" alt="arrowback" onClick={handleBackClick} />
+        <img
+          className="arrow"
+          src="/image/arrowback-project.svg"
+          alt="arrowback"
+          onClick={handleBackClick}
+        />
       </ArrowContainer>
     </Container>
   );
