@@ -4,7 +4,7 @@ import styled from "styled-components";
 import NoReview from "../../components/home/NoReview";
 import ReviewList from "../../components/home/ReviewList";
 import { useRecoilValue } from "recoil";
-import { bottomSheetState, questionFormState } from "../../recoil/HomeAtom";
+import { bottomSheetState, questionFormListState } from "../../recoil/HomeAtom";
 import BottomSheet from "../../components/home/bottomsheet/BottomSheet";
 import { useEffect } from "react";
 
@@ -30,7 +30,7 @@ const BlurContainer = styled.div`
 function Myhome() {
 
   /* 전역 상태에 저장해둔 생성 질문지 가져오기 */
-  const reviewList = useRecoilValue(questionFormState);
+  const reviewList = useRecoilValue(questionFormListState);
   const showBottomSheet = useRecoilValue(bottomSheetState);
 
   useEffect(() => {

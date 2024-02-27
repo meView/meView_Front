@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled, {keyframes} from 'styled-components'
-import { backModalState, bottomSheetState, deleteModalState, modifiedToastState, questionFormState, questionIdState } from '../../../recoil/HomeAtom';
+import { backModalState, bottomSheetState, deleteModalState, modifiedToastState, questionFormListState, questionFormState, questionIdState } from '../../../recoil/HomeAtom';
 import Toast from '../../../util/Toast';
 import WarningModal from '../../../util/WarningModal';
 import NavigateBtn from './NavigateBtn';
@@ -152,7 +152,6 @@ const Modal = styled.div`
   max-width: 500px; 
 `
 
-/* 배경 블러 처리 */
 const BlurContainer = styled.div`
   height: 100vh;
   position: fixed;
@@ -167,21 +166,8 @@ const BlurContainer = styled.div`
 `
 
 function BottomSheet() {
-
   const [bottomsheet, setBottomsheet] = useRecoilState(bottomSheetState);
   const [isOpen, setIsOpen] = useState(bottomsheet);
-  /* question_id와 일치하는 데이터 가져오기 */
-  const id = useRecoilValue(questionIdState);
-  const [questions, setQuestions] = useRecoilState(questionFormState);
-  const data = questions.find(question => question.question_id === id);
-
-  /* 리뷰 명 수정 */
-  const [inputText, setInputText] = useState(data.question_title);
-  const handleChange = (e) => {
-    if (e.target.value.length <= 20) {
-      setInputText(e.target.value);
-    }
-  };
 
   /* textarea focus 상태 아닐 경우 */
   const [isFocused, setIsFocused] = useState(false);
@@ -192,17 +178,33 @@ function BottomSheet() {
     setIsFocused(false);
   };
   
-
   const getTextState = (length) => {
     if (length >= 20) return "error";
     if (length > 0 && length < 20) return "writing";
     return "default";
   };
 
-  const textState = getTextState(inputText.length);
+  /* question_id와 일치하는 데이터 가져오기 */
+  const id = useRecoilValue(questionIdState);
+  /*
+    api에 해당 id 데이터 요청 후 전역 상태 저장 -> 전역 상태에서 불러와서 데이터 보여주기
+    수정 - 수정 버튼 누르면 전역 상태 데이터로 수정 api 요청
+    삭제 - 전역 상태 questionList에서 제거, 삭제 api 요청
+  */
+  const [question, setQuestion] = useRecoilState(questionFormState);
+  const [questionList, setQuestionList] = useRecoilState(questionFormListState);
 
+  /* 리뷰 명 수정 */
+  const [inputText, setInputText] = useState(question.question_title);
+  const handleChange = (e) => {
+    if (e.target.value.length <= 20) {
+      setInputText(e.target.value);
+    }
+  };
+  const textState = getTextState(inputText.length);
+  
   /* 리뷰 대상 수정 */
-  const [target, setTarget] = useState(data.question_target);
+  const [target, setTarget] = useState(question.question_target);
   const changeTarget = (target) => {
     if (target === 'team') {
       setTarget('team');
@@ -212,7 +214,7 @@ function BottomSheet() {
   }
 
   /* 리뷰 종류 수정 */
-  const [type, setType] = useState(data.question_type);
+  const [type, setType] = useState(question.question_type);
   const changeType = (type) => {
     if (type === 'strength') {
       setType('strength');
@@ -226,7 +228,7 @@ function BottomSheet() {
   /* 수정사항이 있는지 확인 */
   const [isModifiedDisabled, setIsModifiedDisabled] = useState(true);
   useEffect(()=>{
-    if (data.question_target === target && data.question_title === inputText && data.question_type === type) {
+    if (question.question_target === target && question.question_title === inputText && question.question_type === type) {
       setIsModifiedDisabled(true);
     } else if (inputText.length === 0) {
       setIsModifiedDisabled(true);
@@ -237,22 +239,15 @@ function BottomSheet() {
 
   /* 수정하기 버튼 눌렀을 때 내용 변경 */
   const handleUpdate = () => {
-    setQuestions(questions.map(question =>
-      question.question_id === id
-      ? {...question, question_target: target, question_title: inputText, question_type: type}
-      : question
-    ));
+    setQuestion({...question, question_target: target, question_title: inputText, question_type: type});
   }
 
   /* 삭제하기 눌렀을 때 삭제 */
   const handleDelete = () => {
-    setQuestions((questions) => questions.filter((question) => question.question_id !== id));
+    setQuestionList((questions) => questions.filter((question) => question.question_id !== id));
   }
 
-  /* 토스트 팝업 - 수정하기 버튼 눌렸을 때 */
   const [showToast, setShowToast] = useRecoilState(modifiedToastState);
-
-  /* 모달 */
   const [backModal, setBackModal] = useRecoilState(backModalState);
   const [deleteModal, setDeleteModal] = useRecoilState(deleteModalState);
 
