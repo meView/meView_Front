@@ -19,11 +19,14 @@ function ProjectBody() {
 
   return (
     <div>
-      {Object.entries(projectReviews).map(([nickname, reviews]) => (
-        <ProjectIDCard key={nickname} nickname={nickname} reviews={reviews} />
+      {projectReviews.map((review) => (
+        <ProjectIDCard
+          key={review.response_responder}
+          nickname={review.response_responder}
+          reviews={review.strengths} // strengths 배열 전체를 reviews prop으로 전달
+        />
       ))}
     </div>
   );
 }
-
 export default ProjectBody;

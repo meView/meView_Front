@@ -6,17 +6,17 @@ import NicknameReview from "../api/meview_project/nicknamereview";
 
 export const projectListState = atom({
   key: "projectListState",
-  default: ProjectItem.projects,
+  default: ProjectItem.data,
 });
 
 export const projectStrengthState = atom({
   key: "projectStrengthState",
-  default: ProjectStrength,
+  default: ProjectStrength.data,
 });
 
 export const projectWeaknessState = atom({
   key: "projectWeaknessState",
-  default: ProjectWeakness,
+  default: ProjectWeakness.data,
 });
 
 // 강점인지 약점인지 구분
