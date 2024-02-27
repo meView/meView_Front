@@ -185,7 +185,11 @@ function BodyCharacter() {
           >
             {value > 0 ? (
               <>
-                <img className="chipimg" src={imagePaths[key].selected} alt={`${key} icon`} />
+                <img
+                  className="chipimg"
+                  src={imagePaths[key].selected}
+                  alt={`${key} icon`}
+                />
                 <div className="chipValue">
                   {key} <span className="valueStyle">+{value}</span>
                 </div>
