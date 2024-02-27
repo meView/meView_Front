@@ -5,6 +5,11 @@ import { answerState, modalState } from '../../recoil/AnswerAtom';
 import WarningModal from '../../components/answer/WarningModal';
 import { useState } from 'react';
 
+const Container = styled.div`
+  height: 100vh;
+  background-color: var(--Gray-15);
+`
+
 const Top = styled.div`
   .progress {
     height: 8px;
@@ -114,14 +119,14 @@ const Modal = styled.div`
 function AnswerName(props) {
 
   const [answer, setAnswer] = useRecoilState(answerState);
-  const [inputText, setInputText] = useState(answer.answer1 || "");
+  const [inputText, setInputText] = useState(answer.name || "");
 
   const handleChange = (e) => {
     if (e.target.value.length <= 10) {
       setInputText(e.target.value);
       setAnswer({
         ...answer,
-        answer1: e.target.value,
+        name: e.target.value,
       });
     }
   };
@@ -148,43 +153,46 @@ function AnswerName(props) {
 
   return (
     <>
-      <Top>
-        <div className="progress-bar">
-          <div
-            className="progress"
-            style={{ width: `${props.progress}%` }}
-          ></div>
-        </div>
-        <div className='title'>
-          <p className='title-text'>간단한 자기소개 부탁해요!</p>
-          <p className='title-text'>본인을 나타낼 닉네임을 적어주세요</p>
-        </div>
-        <div className="answer">
-          <TextArea
-            maxLength="10"
-            value={inputText}
-            placeholder="김땡땡"
-            onChange={handleChange}
-            $textState={textState}
-            onFocus={handleFocus}
-            onBlur={handleBlur}
-          />
-          <div className="count">
-            <TextLength $textState={textState} $isFocused={isFocused}>{inputText.length}/</TextLength>
-            10자
+      <Container>
+        <Top>
+          <div className="progress-bar">
+            <div
+              className="progress"
+              style={{ width: `${props.progress}%` }}
+            ></div>
           </div>
-        </div>
-        {
-          textState === "error" 
-          ? <div className="warning">
-              <img alt="warning message" src="./image/warning-10msg.svg"/>
+          <div className='title'>
+            <p className='title-text'>간단한 자기소개 부탁해요!</p>
+            <p className='title-text'>본인을 나타낼 닉네임을 적어주세요</p>
+          </div>
+          <div className="answer">
+            <TextArea
+              name="nickname"
+              maxLength="10"
+              value={inputText}
+              placeholder="김땡땡"
+              onChange={handleChange}
+              $textState={textState}
+              onFocus={handleFocus}
+              onBlur={handleBlur}
+            />
+            <div className="count">
+              <TextLength $textState={textState} $isFocused={isFocused}>{inputText.length}/</TextLength>
+              10자
             </div>
-          : null
-        }
-      </Top>
-      <Bottom>
-        <NavigateBtn isNextDisabled={!inputText.trim()}/>
-      </Bottom>
+          </div>
+          {
+            textState === "error" 
+            ? <div className="warning">
+                <img alt="warning message" src="./image/warning-10msg.svg"/>
+              </div>
+            : null
+          }
+        </Top>
+        <Bottom>
+          <NavigateBtn isNextDisabled={!inputText.trim()}/>
+        </Bottom>
+      </Container>
       <BlurContainer $show={modal.toString()}/>
       {
         modal && 
