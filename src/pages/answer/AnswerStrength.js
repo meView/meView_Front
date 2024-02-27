@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
 import NavigateBtn from "../../components/answer/navigateBtn";
-import { answerState } from "../../recoil/AnswerAtom";
+import { answerState, questionState } from "../../recoil/AnswerAtom";
 
 const Container = styled.div`
   height: 100vh;
@@ -108,6 +108,7 @@ const Bottom = styled.div`
 
 function AnswerStrength(props) {
   const [answer, setAnswer] = useRecoilState(answerState);
+  const question = useRecoilValue(questionState);
 
   /* 칩 선택 상태 확인 */
   const [comm, setComm] = useState(
@@ -167,7 +168,7 @@ function AnswerStrength(props) {
           ></div>
         </div>
         <div className="title">
-          <p className="title-text">민지님을 대표하는 강점을 선택해주세요</p>
+          <p className="title-text">{question.user_id}님을 대표하는 강점을 선택해주세요</p>
           <p className="title-description">3개까지 선택할 수 있어요</p>
         </div>
       </Top>
