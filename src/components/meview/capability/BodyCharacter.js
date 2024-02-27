@@ -33,19 +33,54 @@ const keyColors = {
   관찰력: "#FC6644",
   끈기력: "#F3D25D",
 };
+const BackgroundColors = {
+  소통능력: "rgba(38, 32, 35, 0.85)",
+  실행력: "rgba(35, 38, 32, 0.85)",
+  친화력: "rgba(38, 33, 33, 0.85)",
+  판단력: "rgba(36, 33, 39, 0.85)",
+  경청능력: "rgba(32, 35, 38, 0.85)",
+  관찰력: "rgba(40, 34, 32, 0.85)",
+  끈기력: "rgba(38, 37, 32, 0.85)",
+};
 
 const ChipContainer = styled.div`
   position: absolute;
   display: flex;
   align-items: center;
-  backdrop-filter: blur(4px);
-  drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+  justify-content: center;
+  
+  backdrop-filter: blur(5px);
+  border-radius: 4px; // 둥근 모서리
+  drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.25));
   cursor: ${({ value }) => (value > 0 ? "pointer" : "default")};
+
+  ${({ value, keyType }) =>
+    value > 0
+      ? `
+        padding: 8px 14px;
+        font-size: 18px;
+        background-color: ${BackgroundColors[keyType]};
+        border-right: 4px solid ${keyColors[keyType]};
+      `
+      : ""}
+
+  .chipimg {
+    padding-right: 4px;
+  }
   
   .chipValue {
-    margin-left: -22px;
+     display: flex; 
+    align-items: center;
+    justify-content: center;
     color: ${({ keyType }) => keyColors[keyType]};
+    font-weight: bold;
   }
+
+  .valueStyle {
+    padding-left: 4px;
+    font-size: 14px;
+  }
+
 
   &.소통능력 {
     top: 236px;
@@ -148,15 +183,20 @@ function BodyCharacter() {
             value={value}
             onClick={() => value > 0 && handleChipClick(key)}
           >
-            <img
-              src={
-                value === 0
-                  ? imagePaths[key].unselected
-                  : imagePaths[key].selected
-              }
-              alt={key}
-            />
-            {value > 0 && <div className="chipValue">{value}</div>}
+            {value > 0 ? (
+              <>
+                <img
+                  className="chipimg"
+                  src={imagePaths[key].selected}
+                  alt={`${key} icon`}
+                />
+                <div className="chipValue">
+                  {key} <span className="valueStyle">+{value}</span>
+                </div>
+              </>
+            ) : (
+              <img src={imagePaths[key].unselected} alt={`${key} icon`} />
+            )}
           </ChipContainer>
         ))}
       </Chips>
