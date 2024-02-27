@@ -8,6 +8,7 @@ const Container = styled.div`
   border-radius: 8px;
   display: flex;
   border-right: solid 8px var(--Gray-13);
+  cursor: pointer;
 
   .question-title {
     margin: 0px;
@@ -44,32 +45,47 @@ const Container = styled.div`
   }
 
   &:hover {
-    background-color: #2A291E;
+    background-color: #2a291e;
   }
-`
+`;
 
 function ListItem(props) {
-
   return (
     <Container>
-      <img className="question-icon" alt="question icon" src="./image/question-icon.svg"/>
+      <img
+        className="question-icon"
+        alt="question icon"
+        src="./image/question-icon.svg"
+      />
       <div>
-        <div className="question-title" onClick={()=>{
-          /* 질문지 이동 */
-          props.onQuestionClick();
-        }}> 
+        <div
+          className="question-title"
+          onClick={() => {
+            /* 질문지 이동 */
+            props.onQuestionClick();
+          }}
+        >
           <p className="question-text">{props.question_title}</p>
-          <img className="arrow-icon" alt="arrow icon" src="./image/arrow-icon.svg"/>
+          <img
+            className="arrow-icon"
+            alt="arrow icon"
+            src="./image/arrow-icon.svg"
+          />
         </div>
         <div className="copy">
-          <img className="copy-button" alt="copy button" src="./image/link-copy-button.svg" onClick={()=>{
-            /* 링크 복사 */
-            props.onLinkClick();
-          }}/>
+          <img
+            className="copy-button"
+            alt="copy button"
+            src="./image/link-copy-button.svg"
+            onClick={() => {
+              /* 링크 복사 */
+              props.onLinkClick();
+            }}
+          />
         </div>
       </div>
     </Container>
-  )
+  );
 }
 
 export default ListItem;

@@ -50,6 +50,8 @@ const Bottom = styled.div`
   flex-direction: row;
   height: 56px;
   font-weight: bold;
+  cursor: pointer;
+
   .no {
     background-color: var(--Gray-13);
     color: var(--Gray-01);

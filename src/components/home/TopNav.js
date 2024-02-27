@@ -72,7 +72,7 @@ function TopNav() {
     navigate("/home");
   };
   const handleMeview = () => {
-    navigate("/meview/capability/strength");
+    navigate("/meview/strength");
   };
   const handleMypage = () => {
     navigate("/mypage");

@@ -67,6 +67,7 @@ const BodyContent = styled.div`
     line-height: 34px;
     font-weight: var(--font-weight-bold);
     white-space: nowrap;
+    cursor: pointer;
   }
   .question-title {
     font-size: var(--headline-06);

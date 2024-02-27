@@ -22,7 +22,7 @@ function Main() {
           {/* testcode->question으로 바꿧어용! */}
           <Route path="question" element={<Question />} /> 
           <Route path="answer" element={<Answer />} />
-          <Route path="meview/capability" element={<Outlet />}>
+          <Route path="meview" element={<Outlet />}>
             <Route path="strength" element={<MeviewPage />} />
             <Route path="weakness" element={<MeviewPage />} />
             <Route path="chipreview" element={<MeviewChipReview />} />

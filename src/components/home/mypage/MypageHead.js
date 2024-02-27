@@ -4,13 +4,12 @@ import { useNavigate } from "react-router-dom";
 const Container = styled.div`
   padding: 0 20px;
   .toppadding {
-    // margin-top: 40px;
+    padding-top: 47px;
   }
 `;
 const ArrowContainer = styled.div`
   display: flex;
   height: 50px;
-  margin: 47px 0 0 0;
   justify-content: flex-start;
   align-items: center;
 
@@ -46,7 +45,6 @@ function MypageHead() {
         />
         <p className="proojectname">마이페이지</p>
       </ArrowContainer>
-     
     </Container>
   );
 }

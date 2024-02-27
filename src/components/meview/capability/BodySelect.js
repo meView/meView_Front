@@ -52,22 +52,22 @@ function BodySelect() {
   const totalStrength = useRecoilValue(totalStrengthSelector);
   const totalWeakness = useRecoilValue(totalWeaknessSelector);
 
-  const isStrengthActive = location.pathname === "/meview/capability/strength";
-  const isWeaknessActive = location.pathname === "/meview/capability/weakness";
+  const isStrengthActive = location.pathname === "/meview/strength";
+  const isWeaknessActive = location.pathname === "/meview/weakness";
 
   return (
     <Container>
       <ButtonContainer>
         <StyledButton
           $isActive={isStrengthActive}
-          onClick={() => navigate("/meview/capability/strength")}
+          onClick={() => navigate("/meview/strength")}
         >
           <span className="button-text">내 강점</span>
           <span className="button-text2"> +{totalStrength}</span>
         </StyledButton>
         <StyledButton
           $isActive={isWeaknessActive}
-          onClick={() => navigate("/meview/capability/weakness")}
+          onClick={() => navigate("/meview/weakness")}
         >
           <span className="button-text">내 약점</span>
           <span className="button-text2"> +{totalWeakness}</span>

@@ -15,10 +15,7 @@ const NickName = styled.div`
   position: relative;
   align-items: center;
   padding: 0 0 6px 0;
-  .nickname {
-    cursor: pointer;
-  }
-
+  cursor: pointer;
   .arrow {
     position: absolute;
     right: 0;
@@ -34,15 +31,12 @@ function ProjectIDCard({ nickname, reviews }) {
 
   return (
     <Container>
-      <NickName>
-        <span className="nickname" onClick={handleNickNameClick}>
-          {nickname}
-        </span>
+      <NickName onClick={handleNickNameClick}>
+        <span className="nickname">{nickname}</span>
         <img
           className="arrow"
           src="/image/rightarrow.svg"
           alt="arrow"
-          onClick={handleNickNameClick}
         />
       </NickName>
       {reviews.map((review) => (
