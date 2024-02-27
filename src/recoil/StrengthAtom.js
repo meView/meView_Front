@@ -5,6 +5,8 @@ import chipstrength from "../api/meview_capability/chipstrength";
 import chipweakness from "../api/meview_capability/chipweakness";
 
 
+
+
 // 강점 + 약점
 export const selectedChipInfoState = atom({
   key: "selectedChipInfoState",
@@ -15,11 +17,28 @@ export const strengthState = atom({
   key: "strengthState",
   default: strengthData.data, // 초기 상태 -> strength.json
 });
+// export const strengthState = selector({
+//   key:"strengthState",
+//   get: async () => {
+//     try {
+//       const data = await fetchStrengths();
+//       return data; // API 호출을 통해 받아온 데이터 반환
+//     } catch (error) {
+//       throw error;
+//     }
+//   },
+// });
 
 // 강점 in chipreview
 export const strengthChipDetailState = atom({
   key: "strengthChipDetailState",
   default: chipstrength.data, // 초기 상태 -> chipstrength.json
+});
+
+//약점 in chipreview
+export const weaknessChipDetailState = atom({
+  key: "weaknessChipDetailState",
+  default: chipweakness.data, // 초기 상태 -> chipweakness.json
 });
 
 export const totalStrengthReviewSelector = selector({
@@ -31,11 +50,7 @@ export const totalStrengthReviewSelector = selector({
   },
 });
 
-// 약점 in chipreview
-export const weaknessChipDetailState = atom({
-  key: "weaknessChipDetailState",
-  default: chipweakness.data, // 초기 상태 -> chipweakness.json
-});
+
 
 
 export const totalWeaknessReviewSelector = selector({
@@ -73,7 +88,17 @@ export const weaknessState = atom({
   key: "weaknessState",
   default: weaknessData.data, // 초기 상태 -> weakness.json
 });
-
+// export const weaknessState = selector({
+//   key:"weaknessState",
+//   get: async () => {
+//     try {
+//       const data = await fetchWeaknesses();
+//       return data; // API 호출을 통해 받아온 데이터 반환
+//     } catch (error) {
+//       throw error;
+//     }
+//   },  
+// });
 
 export const totalWeaknessSelector = selector({
   // 총 약점 개수 return 선택자
