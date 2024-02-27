@@ -11,7 +11,7 @@ const QuestionWrapper = styled.div`
   position: relative;
   width: 100%;
   max-width: 500px;
-  background-image: url('./image/question-background.svg');
+  background-image: url("./image/question-background.svg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -38,6 +38,7 @@ const Top = styled.div`
     position: absolute;
     right: 20px;
     margin-bottom: 8px;
+    cursor: pointer;
   }
 `;
 const Bottom = styled.div`
@@ -46,6 +47,7 @@ const Bottom = styled.div`
   bottom: 0;
   width: 100%;
   max-width: 500px;
+  cursor: pointer;
 `;
 
 function QuestionFourth(props) {

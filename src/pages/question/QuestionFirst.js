@@ -33,15 +33,7 @@ const Top = styled.div`
     margin-bottom: 48px;
   }
 
-  .answer-box1 {
-    margin-left: 20px;
-    margin-right: 20px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    position: relative;
-    margin-bottom: 12px;
-  }
+  .answer-box1,
   .answer-box2 {
     margin-left: 20px;
     margin-right: 20px;
@@ -49,7 +41,13 @@ const Top = styled.div`
     flex-direction: row;
     align-items: center;
     position: relative;
+    cursor: pointer;
   }
+
+  .answer-box1 {
+    margin-bottom: 12px;
+  }
+
   .answer-text {
     margin-left: 3%;
   }
@@ -115,8 +113,12 @@ function QuestionFirst(props) {
   /* 다른 페이지 이동 시에도 답변 그대로 유지 */
   const choice = useRecoilValue(answerState);
   /* 답변 선택 */
-  const [checkedTeam, setCheckedTeam] = useState(choice.answer1 === "team" ? "checked" : "unchecked");
-  const [checkedFriend, setCheckedFriend] = useState(choice.answer1 === "friend" ? "checked" : "unchecked");
+  const [checkedTeam, setCheckedTeam] = useState(
+    choice.answer1 === "team" ? "checked" : "unchecked"
+  );
+  const [checkedFriend, setCheckedFriend] = useState(
+    choice.answer1 === "friend" ? "checked" : "unchecked"
+  );
   /* 뒤로가기 버튼 - 모달 */
   const [modal, setModal] = useRecoilState(modalState);
 

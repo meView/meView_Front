@@ -32,7 +32,7 @@ const StyledBox = styled.div`
 
 function BodyHeader() {
   const location = useLocation();
-  const isStrengthActive = location.pathname === "/meview/capability/strength";
+  const isStrengthActive = location.pathname === "/meview/strength";
 
   const headerText = isStrengthActive ? "강점" : "약점";
   const emoji = isStrengthActive ? "💪🏻" : "✊🏻";

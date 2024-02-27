@@ -11,6 +11,7 @@ const ButtonGroup = styled.div`
   .back-button {
     width: 50%;
     padding-right: 2%;
+    cursor: pointer;
   }
 `;
 const StyledButton = styled.button`

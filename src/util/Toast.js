@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 const Container = styled.div`
   background-color: var(--Gray-02);
@@ -37,18 +37,24 @@ const Container = styled.div`
   }
   .button-text {
     float: right;
+    cursor: pointer;
   }
-`
+`;
 
 function Toast(props) {
   return (
     <Container>
-      <div className='div-box'>
-        <div className='text'>{props.text}</div>
-        <div className='button'>
-          <span className='button-text' onClick={()=>{
-            props.onClick()
-          }}>확인</span>
+      <div className="div-box">
+        <div className="text">{props.text}</div>
+        <div className="button">
+          <span
+            className="button-text"
+            onClick={() => {
+              props.onClick();
+            }}
+          >
+            확인
+          </span>
         </div>
       </div>
     </Container>

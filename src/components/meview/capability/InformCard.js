@@ -15,8 +15,8 @@ function InformCard() {
   const totalStrength = useRecoilValue(totalStrengthSelector);
   const totalWeakness = useRecoilValue(totalWeaknessSelector);
 
-  const isStrengthActive = location.pathname === "/meview/capability/strength";
-  const isWeaknessActive = location.pathname === "/meview/capability/weakness";
+  const isStrengthActive = location.pathname === "/meview/strength";
+  const isWeaknessActive = location.pathname === "/meview/weakness";
 
   const noReviewMessage = "질문지를 생성하고 리뷰를 받아봐요 :)";
   const subReviewMessage = "질문지 결과에 따라서 강약점을 모아서 보여드려요";

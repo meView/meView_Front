@@ -120,7 +120,7 @@ function BodyCharacter() {
   // 칩 정보 전달을 위한 state
   const setChipInfo = useSetRecoilState(selectedChipInfoState);
 
-  const isStrengthActive = location.pathname === "/meview/capability/strength";
+  const isStrengthActive = location.pathname === "/meview/strength";
   const isstrength = isStrengthActive ? strength : weakness;
   const character_strength = isStrengthActive
     ? "character_strength"
