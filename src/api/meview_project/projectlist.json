@@ -1,8 +1,10 @@
 {
-  "projects": [
+  "success": true,
+  "code": "OK",
+  "data": [
     {
       "question_id": 1,
-      "question_title": "question_title 예시1 ",
+      "question_title": "question_title 예시 1번째 ",
       "count": 4
     },
     {
@@ -60,5 +62,6 @@
       "question_title": "01",
       "count": 23
     }
-  ]
+  ],
+  "statusCode": 200
 }

@@ -13,6 +13,10 @@ const Divider = styled.div`
   margin: 0px 0 48px;
 `;
 
+const BottomPadding = styled.div`
+  padding-bottom: 40px;
+`;
+
 function NickreviewBody() {
   const nicknameReviews = useRecoilValue(nicknameReviewState);
   const strengthReviews = nicknameReviews.STRENGTH;
@@ -43,6 +47,7 @@ function NickreviewBody() {
           />
         ))}
       </Container>
+      <BottomPadding />
     </>
   );
 }

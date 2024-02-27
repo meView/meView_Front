@@ -6,34 +6,30 @@
       {
         "question_id": 7,
         "review_description": "닉민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 :)민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 :)",
-        "response_responder": "hi",
-        "chip": "judgement"
+        "chip": "JUDGMENT"
       },
       {
         "question_id": 7,
         "review_description": "닉민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을",
-        "response_responder": "답변자1",
-        "chip": "observation"
+        "chip": "OBSERVATION"
       }
     ],
     "WEAKNESS": [
       {
         "question_id": 7,
         "review_description": "이건 약점 ㅜㅜ 약점 답변답변 + 이건 경청능력이야",
-        "response_responder": "답변자1",
-        "chip": "listening"
+        "chip": "LISTENING"
       },
       {
         "question_id": 7,
         "review_description": "Test2",
-        "response_responder": "답변자1",
-        "chip": "execution"
+        "chip": "EXECUTION"
       },
       {
         "question_id": 7,
         "review_description": "Test3",
         "response_responder": "답변자1",
-        "chip": "friendliness"
+        "chip": "FRIENDLINESS"
       }
     ]
   },

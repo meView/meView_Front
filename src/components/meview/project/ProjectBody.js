@@ -19,11 +19,18 @@ function ProjectBody() {
 
   return (
     <div>
-      {Object.entries(projectReviews).map(([nickname, reviews]) => (
-        <ProjectIDCard key={nickname} nickname={nickname} reviews={reviews} />
+      {projectReviews.map((review, index) => (
+        <ProjectIDCard
+          key={index}
+          nickname={review.response_responder}
+          reviews={
+            selectedStrength === "Strength"
+              ? review.strengths
+              : review.weaknesses
+          }
+        />
       ))}
     </div>
   );
 }
-
 export default ProjectBody;

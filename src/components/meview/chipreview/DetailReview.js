@@ -9,7 +9,7 @@ import {
 import ReviewCard from "./ReviewCard";
 
 const Container = styled.div`
-  padding: 24px 20px;
+  padding: 24px 20px 50px;
 `;
 
 const CardContainer = styled.div`
@@ -21,6 +21,10 @@ function DetailReview() {
   const strengthReviews = useRecoilValue(strengthChipDetailState);
   const weaknessReviews = useRecoilValue(weaknessChipDetailState);
 
+  if (!selectedChipInfo) {
+    return null;
+  }
+
   const reviewChip =
     selectedChipInfo.strength === "character_weakness"
       ? weaknessReviews
@@ -29,7 +33,7 @@ function DetailReview() {
   return (
     <Container>
       {reviewChip.map((review) => (
-        <CardContainer key={review.review_id}>
+        <CardContainer key={review.question_id}>
           <ReviewCard
             responder={review.response_responder}
             title={review.response_title}
