@@ -19,11 +19,15 @@ function ProjectBody() {
 
   return (
     <div>
-      {projectReviews.map((review) => (
+      {projectReviews.map((review, index) => (
         <ProjectIDCard
-          key={review.response_responder}
+          key={index}
           nickname={review.response_responder}
-          reviews={review.strengths} // strengths 배열 전체를 reviews prop으로 전달
+          reviews={
+            selectedStrength === "Strength"
+              ? review.strengths
+              : review.weaknesses
+          }
         />
       ))}
     </div>
