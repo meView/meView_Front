@@ -40,17 +40,19 @@ const Top = styled.div`
   .divider {
     margin-top: 20px;
     margin-bottom: 40px;
+    width: 100%;
   }
 `
 
 const Body = styled.div`
   background-color: var(--Gray-15);
-  padding-bottom: 90px;
+  padding-bottom: 48px;
 `
 
 const Bottom = styled.div`
   height: 88px;
-  position: fixed;
+  background-color: var(--Gray-15);
+  position: relative;
   bottom: 0px;
   width: 100%;
   max-width: 500px;
