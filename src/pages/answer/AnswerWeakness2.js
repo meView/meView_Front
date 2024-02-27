@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
 import NavigateBtn from "../../components/answer/navigateBtn";
-import { answerState } from "../../recoil/AnswerAtom";
+import { answerState, questionState } from "../../recoil/AnswerAtom";
 import WeaknessAnswerBox from "../../components/answer/WeaknessAnswerBox";
 
 const Container = styled.div`
@@ -61,6 +61,7 @@ const Bottom = styled.div`
 
 function AnswerWeakness2(props) {
   const [answer, setAnswer] = useRecoilState(answerState);
+  const question = useRecoilValue(questionState);
 
   /* 답변 입력 X -> 다음 버튼 비활성화 */
   const [isDisabled, setIsDisabled] = useState(true);
@@ -103,7 +104,7 @@ function AnswerWeakness2(props) {
           ></div>
         </div>
         <div className="weakness-box">
-          <p className="name">내가 고른 민지님의 아쉬운 점</p>
+          <p className="name">내가 고른 {question.user_id}님의 아쉬운 점</p>
           <div className="select-chips">
             {answer.weakness.map((chip, i) => {
               return (

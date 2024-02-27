@@ -70,7 +70,7 @@ function QuestionFourth(props) {
             src="/image/close.svg"
             onClick={() => {
               /* 답변 데이터베이스 저장 */
-
+              
               /* 질문지 생성 -> answer 상태 초기화 */
               setAnswer({
                 answer1: "",
