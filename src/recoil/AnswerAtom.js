@@ -14,6 +14,16 @@ export const pageState = atom({
 export const answerState = atom({
   key: 'otherAnswerState',
   default: {
-    answer1: '', /* 닉네임 */
+    name: '', // 닉네임
+    strength: [],
+    strengthReview: {
+      /* 
+        chip_id: review_description
+      */
+    },
+    weakness: [],
+    weaknessReview: {
+
+    },
   },
 });
