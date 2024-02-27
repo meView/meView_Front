@@ -4,7 +4,6 @@ import styled, { createGlobalStyle } from "styled-components";
 import BodyContent from "./BodyContent";
 
 const GlobalStyle = createGlobalStyle`
-  overflow-y: auto;
   body {
     background-color: #434343;   
   }
