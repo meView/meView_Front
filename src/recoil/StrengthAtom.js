@@ -13,13 +13,13 @@ export const selectedChipInfoState = atom({
 
 export const strengthState = atom({
   key: "strengthState",
-  default: strengthData, // 초기 상태 -> strength.json
+  default: strengthData.data, // 초기 상태 -> strength.json
 });
 
 // 강점 in chipreview
 export const strengthChipDetailState = atom({
   key: "strengthChipDetailState",
-  default: chipstrength.reviews, // 초기 상태 -> chipstrength.json
+  default: chipstrength.data, // 초기 상태 -> chipstrength.json
 });
 
 export const totalStrengthReviewSelector = selector({
@@ -34,7 +34,7 @@ export const totalStrengthReviewSelector = selector({
 // 약점 in chipreview
 export const weaknessChipDetailState = atom({
   key: "weaknessChipDetailState",
-  default: chipweakness.reviews, // 초기 상태 -> chipweakness.json
+  default: chipweakness.data, // 초기 상태 -> chipweakness.json
 });
 
 
@@ -71,7 +71,7 @@ export const totalStrengthSelector = selector({
 // 약점 in 미뷰페이지
 export const weaknessState = atom({
   key: "weaknessState",
-  default: weaknessData, // 초기 상태 -> weakness.json
+  default: weaknessData.data, // 초기 상태 -> weakness.json
 });
 
 

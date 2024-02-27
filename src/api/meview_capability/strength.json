@@ -1,9 +1,14 @@
 {
-  "판단력": 12,
-  "관찰력": 3,
-  "경청능력": 3,
-  "소통능력": 1,
-  "친화력": 4,
-  "실행력": 0,
-  "끈기력": 1
+  "success": true,
+  "code": "OK",
+  "data": {
+    "JUDGMENT": 2,
+    "OBSERVATION": 1,
+    "LISTENING": 3,
+    "COMMUNICATION": 1,
+    "FRIENDLINESS": 1,
+    "EXECUTION": 1,
+    "PERSEVERANCE": 0
+  },
+  "statusCode": 200
 }
