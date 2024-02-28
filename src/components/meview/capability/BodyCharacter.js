@@ -7,6 +7,7 @@ import { getStrength, getWeakness } from "../../../api/Meview_API";
 import { selectedChipInfoState } from "../../../recoil/StrengthAtom";
 import { useEffect } from "react";
 import { imageLoadingState } from "../../../recoil/StrengthAtom";
+import { keyboard } from "@testing-library/user-event/dist/keyboard";
 
 const Container = styled.div`
   display: flex;
@@ -247,7 +248,7 @@ function BodyCharacter() {
                 className={key}
                 keyType={key}
                 value={value}
-                onClick={() => value > 0 && handleChipClick(koreanKey)}
+                onClick={() => value > 0 && handleChipClick(key)}
               >
                 {value > 0 ? (
                   <>
