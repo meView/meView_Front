@@ -1,7 +1,5 @@
 import axios from "axios";
 
-const url = "http://localhost:3001/create";
-
 // export const postQuestion = async (data, accessToken) => {
 //   const response = await axios.post(url, data, {
 //     headers: {
@@ -11,8 +9,11 @@ const url = "http://localhost:3001/create";
 //   return response.data;
 // };
 
-// 토큰 제거
+
+
+// 질문지 생성 Post API 토큰 x
+const url_postQuestion = "http://localhost:3001/create";
 export const postQuestion = async (data) => {
-  const response = await axios.post(url, data);
+  const response = await axios.post(url_postQuestion, data);
   return response.data;
-}
+};

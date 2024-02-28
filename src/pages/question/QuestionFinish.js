@@ -1,10 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
+import { useEffect } from "react";
 import styled from "styled-components";
 import QuestionText from "../../components/question/QuestionText";
 import { answerState, pageState } from "../../recoil/QuestionAtom";
 import WideButton from "../../util/WideButton";
 import { postQuestion } from "api/question/Question_API";
+import { useMutation } from "react-query";
 
 const QuestionWrapper = styled.div`
   height: 100vh;
@@ -55,6 +57,27 @@ function QuestionFourth(props) {
   const navigate = useNavigate();
   const [answer, setAnswer] = useRecoilState(answerState);
   const [page, setPage] = useRecoilState(pageState);
+
+  // react-query 사용
+  const questionData = {
+    question_target: answer.answer1, // ["team" or "friend"]
+    question_title: answer.answer2, // 질문지 제목
+    question_type: answer.answer3, // ["strength" or "weakness" or "both"]
+  };
+
+  const mutation = useMutation(() => postQuestion(questionData), {
+    onSuccess: (data) => {
+      console.log(data);
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
+  // 페이지 로드 시 POST 요청 수행
+  useEffect(() => {
+    mutation.mutate();
+  }, []);
+
   return (
     <QuestionWrapper>
       <Top>
@@ -71,7 +94,7 @@ function QuestionFourth(props) {
             src="/image/close.svg"
             onClick={() => {
               /* 답변 데이터베이스 저장 */
-              
+
               /* 질문지 생성 -> answer 상태 초기화 */
               setAnswer({
                 answer1: "",
