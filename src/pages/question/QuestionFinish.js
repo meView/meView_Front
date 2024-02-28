@@ -4,6 +4,7 @@ import styled from "styled-components";
 import QuestionText from "../../components/question/QuestionText";
 import { answerState, pageState } from "../../recoil/QuestionAtom";
 import WideButton from "../../util/WideButton";
+import { postQuestion } from "api/question/Question_API";
 
 const QuestionWrapper = styled.div`
   height: 100vh;
