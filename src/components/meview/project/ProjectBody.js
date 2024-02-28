@@ -20,14 +20,19 @@ function ProjectBody() {
   return (
     <div>
       {projectReviews.map((review, index) => (
+        // <ProjectIDCard
+        //   key={index}
+        //   nickname={review.response_responder}
+        //   reviews={
+        //     selectedStrength === "Strength"
+        //       ? review.strengths
+        //       : review.weaknesses
+        //   }
+        // />
         <ProjectIDCard
           key={index}
           nickname={review.response_responder}
-          reviews={
-            selectedStrength === "Strength"
-              ? review.strengths
-              : review.weaknesses
-          }
+          reviews={review.reviews}
         />
       ))}
     </div>
