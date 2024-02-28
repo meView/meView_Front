@@ -1,5 +1,10 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import {
+  question_idState,
+  nicknameState,
+} from "../../../recoil/ProjectListAtom";
 
 const StyledBox = styled.div`
   background-color: var(--Gray-14);
@@ -25,15 +30,15 @@ const Header = styled.div`
   align-items: center;
   cursor: pointer;
   .nickname {
-    font-size: 20px;
-    font-weight: bold;
-    color: var(--Gray-01);
-    padding-right: 8px;
-  }
-  .projectname {
     font-size: 18px;
     font-weight: 700;
     color: var(--Gray-08);
+    padding-right: 8px;
+  }
+  .projectname {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--Gray-01);
     padding-right: 8px;
   }
   .arrow {
@@ -44,17 +49,21 @@ const Header = styled.div`
 
 function ReviewCard(props) {
   const navigate = useNavigate();
+  const [, setQuestionId] = useRecoilState(question_idState);
+  const [, setNickName] = useRecoilState(nicknameState);
 
   const handleNickNameClick = () => {
+    setQuestionId(props.question_id);
+    setNickName(props.responder);
     navigate("/meview/nicknamereview");
   };
 
   return (
     <StyledBox>
       <Header onClick={handleNickNameClick}>
-        <p className="nickname">{props.title}</p>
-        <p className="projectname">•</p>
-        <p className="projectname">{props.responder}</p>
+        <p className="projectname">{props.title}</p>
+        <p className="nickname">•</p>
+        <p className="nickname">{props.responder}</p>
         <img className="arrow" src="/image/rightarrow.svg" alt="arrow" />
       </Header>
       <p className="bodycontent">{props.description}</p>

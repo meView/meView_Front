@@ -1,8 +1,12 @@
 import styled from "styled-components";
+import { useQuery } from "react-query";
 import { useRecoilValue } from "recoil";
-import { nicknameReviewState } from "../../../recoil/ProjectListAtom";
+import { getNicknameReview } from "../../../api/Meview_API";
 import ProjectReviewCard from "../project/ProjectReviewCard";
-// eslint-disable-next-line no-unused-vars
+import {
+  question_idState,
+  nicknameState,
+} from "../../../recoil/ProjectListAtom";
 import TopDescrip from "./TopDescrip";
 
 const Container = styled.div`
@@ -14,10 +18,26 @@ const Divider = styled.div`
 `;
 
 function NickreviewBody() {
-  const nicknameReviews = useRecoilValue(nicknameReviewState);
-  const strengthReviews = nicknameReviews.STRENGTH;
-  const weaknessReviews = nicknameReviews.WEAKNESS;
-  const nickname = nicknameReviews.STRENGTH[0].response_responder;
+  const question_id = useRecoilValue(question_idState);
+  const nickname = useRecoilValue(nicknameState);
+
+  const {
+    data: nicknameReviews,
+    isLoading,
+    isError,
+  } = useQuery(
+    ["nicknameReviews", question_id, nickname],
+    () => getNicknameReview(question_id, nickname),
+    {
+      enabled: !!question_id && !!nickname,
+    }
+  );
+
+  if (isLoading) return <div></div>;
+  if (isError) return <div>Error occurred</div>;
+
+  const strengthReviews = nicknameReviews?.STRENGTH ?? [];
+  const weaknessReviews = nicknameReviews?.WEAKNESS ?? [];
 
   return (
     <>

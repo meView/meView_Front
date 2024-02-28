@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
-import { selectedChipInfoState } from "../../../recoil/StrengthAtom";
+import { selectedChipInfoState } from "../../../recoil/ProjectListAtom";
 
 const StyledBox = styled.div`
   position: relative;

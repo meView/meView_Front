@@ -25,7 +25,7 @@ function TopDescrip({ strength, nickname }) {
   return (
     <StyledBox>
       <p className="title">
-        <span className="text-wrapper">{nickname}(상대)님이 생각하는 </span>
+        <span className="text-wrapper">{nickname}님이 생각하는 </span>
         <span className="span">
           태건(나)님의 {strength}
           <span className="rectangle" />

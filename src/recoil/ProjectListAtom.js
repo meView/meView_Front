@@ -1,8 +1,40 @@
-import { atom, selector } from "recoil";
+import { atom } from "recoil";
 import ProjectItem from "../api/meview_project/projectlist";
 import ProjectStrength from "../api/meview_project/projectstrength";
 import ProjectWeakness from "../api/meview_project/projectweakness";
-import NicknameReview from "../api/meview_project/nicknamereview";
+import { recoilPersist } from "recoil-persist";
+
+// 새로 고침 방지 -> localStorage에 저장
+const { persistAtom } = recoilPersist({
+  key: "localStorage", //원하는 key 값 입력
+  storage: localStorage,
+});
+// 강점 + 약점 칩 선택 정보 저장
+export const selectedChipInfoState = atom({
+  key: "selectedChipInfoState",
+  default: null,
+  effects_UNSTABLE: [persistAtom],
+});
+
+// 이미지 로딩 처리
+export const imageLoadingState = atom({
+  key: "imageLoadingState",
+  default: false,
+});
+
+//question_id 저장 -> localStorage에 저장
+export const question_idState = atom({
+  key: "question_idState",
+  default: null,
+  effects_UNSTABLE: [persistAtom],
+});
+
+//nickname 저장 -> localStorage에 저장
+export const nicknameState = atom({
+  key: "nicknameState",
+  default: null,
+  effects_UNSTABLE: [persistAtom],
+});
 
 export const projectListState = atom({
   key: "projectListState",
@@ -25,8 +57,3 @@ export const selectedStrengthState = atom({
   default: "Strength",
 });
 
-// 닉네임별 자세한 리뷰
-export const nicknameReviewState = atom({
-  key: "nicknameReviewState",
-  default: NicknameReview.data,
-});
