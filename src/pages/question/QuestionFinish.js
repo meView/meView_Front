@@ -56,7 +56,7 @@ const Bottom = styled.div`
 function QuestionFourth(props) {
   const navigate = useNavigate();
   const [answer, setAnswer] = useRecoilState(answerState);
-  const [page, setPage] = useRecoilState(pageState);
+  const [, setPage] = useRecoilState(pageState);
 
   // react-query 사용
   const questionData = {
@@ -76,6 +76,7 @@ function QuestionFourth(props) {
   // 페이지 로드 시 POST 요청 수행
   useEffect(() => {
     mutation.mutate();
+    //eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
