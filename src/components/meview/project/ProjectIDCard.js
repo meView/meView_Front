@@ -1,6 +1,8 @@
 import styled from "styled-components";
-import ProjectReviewCard from "./ProjectReviewCard";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState } from "recoil";
+import { nicknameState } from "recoil/ProjectListAtom";
+import ProjectReviewCard from "./ProjectReviewCard";
 
 const Container = styled.div`
   padding: 32px 20px;
@@ -24,8 +26,12 @@ const NickName = styled.div`
 `;
 
 function ProjectIDCard({ nickname, reviews }) {
+  const [, setNicknameState] = useRecoilState(nicknameState);
+
   const navigate = useNavigate();
   const handleNickNameClick = () => {
+    setNicknameState(nickname);
+    console.log("nickname:", nickname);
     navigate("/meview/nicknamereview");
   };
 
@@ -33,11 +39,7 @@ function ProjectIDCard({ nickname, reviews }) {
     <Container>
       <NickName onClick={handleNickNameClick}>
         <span className="nickname">{nickname}</span>
-        <img
-          className="arrow"
-          src="/image/rightarrow.svg"
-          alt="arrow"
-        />
+        <img className="arrow" src="/image/rightarrow.svg" alt="arrow" />
       </NickName>
       {reviews.map((review, index) => (
         <ProjectReviewCard
@@ -51,5 +53,3 @@ function ProjectIDCard({ nickname, reviews }) {
 }
 
 export default ProjectIDCard;
-
-

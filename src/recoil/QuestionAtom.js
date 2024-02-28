@@ -20,8 +20,3 @@ export const answerState = atom({
   },
 });
 
-// const data = {
-//   question_target: "리뷰 대상 정보", // ["team" or "friend"]
-//   question_title: "질문지 제목",
-//   question_type: "리뷰 종류", // ["strength" or "weakness" or "both"]
-// };

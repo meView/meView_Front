@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import ProjectList from "./ProjectList";
-import { useRecoilValue } from "recoil";
-import { projectListState } from "../../../recoil/ProjectListAtom";
 import NoReview from "components/home/NoReview";
 import Bottombar from "components/home/Bottombar";
+import { useQuery } from "react-query";
+import { getProjects } from "api/Meview_API";
 
 const Container = styled.div`
   margin: 16px 0 0;
@@ -14,9 +14,15 @@ const PJList = styled.div`
   padding: 16px 0 0;
 `;
 
-
 function ProjectCollection() {
-  const projectData = useRecoilValue(projectListState);
+  const {
+    data: projectData,
+    isLoading,
+    isError,
+  } = useQuery(["nicknameReviews"], () => getProjects());
+
+  if (isLoading) return <div></div>;
+  if (isError) return <div>Error occurred</div>;
 
   if (!projectData || projectData.length === 0) {
     return (
@@ -34,6 +40,7 @@ function ProjectCollection() {
           <ProjectList
             projectname={project.question_title}
             count={project.count}
+            question_id={project.question_id}
           />
         </PJList>
       ))}
