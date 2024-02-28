@@ -53,7 +53,7 @@ export const getWeaknessChipDetail = async (chipName) => {
 };
 
 // meview/capability 닉네임별 자세한 리뷰
-const url_getNicknameReview= "http://localhost:3001";
+const url_getNicknameReview = "http://localhost:3001";
 export const getNicknameReview = async (question_id, response_responder) => {
   try {
     const response = await axios.get(
@@ -68,8 +68,37 @@ export const getNicknameReview = async (question_id, response_responder) => {
 };
 
 // 미뷰/project 프로젝트로 보기
-const url_getProject = "http://localhost:3001/project";
-export const getProject = async () => {
-  const response = await axios.get(url_getProject);
+const url_getProjects = "http://localhost:3001/projects";
+export const getProjects = async () => {
+  const response = await axios.get(url_getProjects);
   return response.data.data;
 };
+
+// 미뷰/project 내 강점 
+const url_getProjectStrength = "http://localhost:3001";
+export const getProjectStrength = async (question_id) => {
+  try {
+    const response = await axios.get(
+      `${url_getProjectStrength}/${question_id}`
+      );
+      return response.data.data;
+    } catch (error) {
+      console.error("Failed to fetch project strength:", error);
+    throw error;
+  }
+};
+
+// 미뷰/project 내 약점
+const url_getProjectWeakness = "http://localhost:3001";
+export const getProjectWeakness = async (question_id) => {
+  try {
+    const response = await axios.get(
+      `${url_getProjectWeakness}/${question_id}`
+    );
+    return response.data.data;
+  } catch (error) {
+    console.error("Failed to fetch project weakness:", error);
+    throw error;
+  }
+};
+

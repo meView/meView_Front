@@ -1,7 +1,4 @@
 import { atom } from "recoil";
-import ProjectItem from "../api/meview_project/projectlist";
-import ProjectStrength from "../api/meview_project/projectstrength";
-import ProjectWeakness from "../api/meview_project/projectweakness";
 import { recoilPersist } from "recoil-persist";
 
 // 새로 고침 방지 -> localStorage에 저장
@@ -36,24 +33,8 @@ export const nicknameState = atom({
   effects_UNSTABLE: [persistAtom],
 });
 
-export const projectListState = atom({
-  key: "projectListState",
-  default: ProjectItem.data,
-});
-
-export const projectStrengthState = atom({
-  key: "projectStrengthState",
-  default: ProjectStrength.data,
-});
-
-export const projectWeaknessState = atom({
-  key: "projectWeaknessState",
-  default: ProjectWeakness.data,
-});
-
 // 강점인지 약점인지 구분
 export const selectedStrengthState = atom({
   key: "selectedStrengthState",
   default: "Strength",
 });
-
