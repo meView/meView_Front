@@ -2,6 +2,8 @@ import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import { useSetRecoilState } from "recoil";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useQuery } from "react-query";
+import { getStrength, getWeakness } from "../../../api/Meview_API";
 
 import {
   strengthState,
@@ -113,13 +115,29 @@ const ChipContainer = styled.div`
   }
 `;
 function BodyCharacter() {
-  const strength = useRecoilValue(strengthState);
-  const weakness = useRecoilValue(weaknessState);
+  // const strength = useRecoilValue(strengthState);
+  // const weakness = useRecoilValue(weaknessState);
+  // 칩 정보 전달을 위한 state
+  const setChipInfo = useSetRecoilState(selectedChipInfoState);
   const location = useLocation();
   const navigate = useNavigate();
 
-  // 칩 정보 전달을 위한 state
-  const setChipInfo = useSetRecoilState(selectedChipInfoState);
+  // api 연동
+  const { data: strength, isLoading: isLoadingStrength } = useQuery(
+    "strength",
+    getStrength
+  );
+  const { data: weakness, isLoading: isLoadingWeakness } = useQuery(
+    "weakness",
+    getWeakness
+  );
+
+  if (isLoadingStrength || isLoadingWeakness) {
+    return <div>Loading...</div>;
+  }
+
+  // `strength`와 `weakness`
+  console.log(strength, weakness);
 
   const isStrengthActive = location.pathname === "/meview/strength";
   const isstrength = isStrengthActive ? strength : weakness;
@@ -188,6 +206,7 @@ function BodyCharacter() {
       <Chips>
         {Object.entries(isstrength).map(([key, value]) => {
           const koreanKey = keyMapping[key];
+
           return (
             <ChipContainer
               key={key}

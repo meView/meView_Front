@@ -3,24 +3,34 @@
   "code": "OK",
   "data": [
     {
-      "response_responder": "내 이름은 강점이",
-      "strengths": [
+      "response_responder": "강점이",
+      "review_type": "STRENGTH",
+      "reviews": [
         {
-          "chip_name": "OBSERVATION",
-          "review_description": "description"
+          "chip_id": 1,
+          "chip_name": "JUDGMENT",
+          "review_description": "강점강점4"
         },
         {
-          "chip_name": "JUDGMENT",
-          "review_description": "description"
+          "chip_id": 2,
+          "chip_name": "OBSERVATION",
+          "review_description": "닉민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 :)민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 :)"
         }
       ]
     },
     {
-      "response_responder": "response_responder2",
-      "strengths": [
+      "response_responder": "강점이 - 2번",
+      "review_type": "STRENGTH",
+      "reviews": [
         {
-          "chip_name": "FRIENDLINESS",
-          "review_description": "description"
+          "chip_id": 1,
+          "chip_name": "JUDGMENT",
+          "review_description": "설명"
+        },
+        {
+          "chip_id": 2,
+          "chip_name": "OBSERVATION",
+          "review_description": "닉민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 :)민지님과 OO 프로젝트를 진행할 때 oo아이디어에 관해 팀원의 의견을 수렴하는 과정에서 이야기를 경청하는 모습이 인상 깊었어요 :)"
         }
       ]
     }

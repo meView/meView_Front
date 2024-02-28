@@ -5,7 +5,7 @@ import styled from "styled-components";
 import QuestionText from "../../components/question/QuestionText";
 import { answerState, pageState } from "../../recoil/QuestionAtom";
 import WideButton from "../../util/WideButton";
-import { postQuestion } from "api/question/Question_API";
+import { postQuestion } from "api/Question_API";
 import { useMutation } from "react-query";
 
 const QuestionWrapper = styled.div`
