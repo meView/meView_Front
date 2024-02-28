@@ -20,3 +20,31 @@ export const getWeakness = async () => {
   const response = await axios.get(url_getWeakness);
   return response.data.data;
 };
+
+const url_getStrengthChipDetail = "http://localhost:3001";
+
+export const getStrengthChipDetail = async (chipName) => {
+  try {
+    const response = await axios.get(
+      `${url_getStrengthChipDetail}/${chipName}`
+    );
+    return response.data.data;
+  } catch (error) {
+    console.error("Failed to fetch chip detail:", error);
+    throw error;
+  }
+};
+
+const url_getWeaknessChipDetail = "http://localhost:3001";
+export const getWeaknessChipDetail = async (chipName) => {
+  try {
+    const response = await axios.get(
+      `${url_getWeaknessChipDetail}/${chipName}`
+    );
+    return response.data.data;
+  } catch (error) {
+    console.error("Failed to fetch chip detail:", error);
+    throw error;
+  }
+};
+

@@ -52,7 +52,6 @@ function BodySelect({ totalStrength, totalWeakness }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [imagesLoaded] = useRecoilState(imageLoadingState);
-  console.log(imagesLoaded);
 
   const handleNavigate = (path) => {
     if (imagesLoaded) {

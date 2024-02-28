@@ -6,7 +6,6 @@ function MeviewChipReview() {
   return (
     <div>
       <TopArrowback />
-      <TopDescription />
       <DetailReview />
     </div>
   );
