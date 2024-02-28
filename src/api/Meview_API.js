@@ -9,20 +9,23 @@ import axios from "axios";
 //   });
 //   return response.data;
 // }
+
+// meview/capability 내 강점
 const url_getStrength = "http://localhost:3001/strength";
 export const getStrength = async () => {
   const response = await axios.get(url_getStrength);
   return response.data.data;
 };
 
+// meview/capability 내 약점
 const url_getWeakness = "http://localhost:3001/weakness";
 export const getWeakness = async () => {
   const response = await axios.get(url_getWeakness);
   return response.data.data;
 };
 
+// meview/capability 내 강점-칩선택
 const url_getStrengthChipDetail = "http://localhost:3001";
-
 export const getStrengthChipDetail = async (chipName) => {
   try {
     const response = await axios.get(
@@ -35,6 +38,7 @@ export const getStrengthChipDetail = async (chipName) => {
   }
 };
 
+// meview/capability 내 약점-칩선택
 const url_getWeaknessChipDetail = "http://localhost:3001";
 export const getWeaknessChipDetail = async (chipName) => {
   try {
@@ -48,3 +52,24 @@ export const getWeaknessChipDetail = async (chipName) => {
   }
 };
 
+// meview/capability 닉네임별 자세한 리뷰
+const url_getNicknameReview= "http://localhost:3001";
+export const getNicknameReview = async (question_id, response_responder) => {
+  try {
+    const response = await axios.get(
+      // `${url_getNicknameReview}/${question_id}/${response_responder}`
+      `${url_getNicknameReview}/${response_responder}`
+    );
+    return response.data.data;
+  } catch (error) {
+    console.error("Failed to fetch nickname review:", error);
+    throw error;
+  }
+};
+
+// 미뷰/project 프로젝트로 보기
+const url_getProject = "http://localhost:3001/project";
+export const getProject = async () => {
+  const response = await axios.get(url_getProject);
+  return response.data.data;
+};

@@ -4,10 +4,10 @@ import { useSetRecoilState, useRecoilState } from "recoil";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getStrength, getWeakness } from "../../../api/Meview_API";
-import { selectedChipInfoState } from "../../../recoil/StrengthAtom";
+import { selectedChipInfoState } from "../../../recoil/ProjectListAtom";
 import { useEffect } from "react";
-import { imageLoadingState } from "../../../recoil/StrengthAtom";
-import { keyboard } from "@testing-library/user-event/dist/keyboard";
+import { imageLoadingState } from "../../../recoil/ProjectListAtom";
+
 
 const Container = styled.div`
   display: flex;

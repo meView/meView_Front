@@ -6,7 +6,7 @@ import {
   getStrengthChipDetail,
   getWeaknessChipDetail,
 } from "../../../api/Meview_API";
-import { selectedChipInfoState } from "../../../recoil/StrengthAtom";
+import { selectedChipInfoState } from "../../../recoil/ProjectListAtom";
 import ReviewCard from "./ReviewCard";
 import TopDescription from "./TopDescription";
 
@@ -21,7 +21,7 @@ const CardContainer = styled.div`
 function DetailReview() {
   const selectedChipInfo = useRecoilValue(selectedChipInfoState);
 
-  // 강점 리뷰 데이터 가져오기
+  // 강점 리뷰 데이터 가져오기 (비동기 처리)
   const {
     data: strengthReviews,
     isLoading: isLoadingStrength,
@@ -36,7 +36,7 @@ function DetailReview() {
     }
   );
 
-  // 약점 리뷰 데이터 가져오기
+  // 약점 리뷰 데이터 가져오기 (비동기 처리)
   const {
     data: weaknessReviews,
     isLoading: isLoadingWeakness,
@@ -51,7 +51,7 @@ function DetailReview() {
     }
   );
 
-  if (isLoadingStrength || isLoadingWeakness) return <div>Loading...</div>;
+  if (isLoadingStrength || isLoadingWeakness) return <div></div>;
   if (isErrorStrength || isErrorWeakness) return <div>Error occurred</div>;
 
   // 현재 선택된 칩의 리뷰 데이터 결정
@@ -70,6 +70,7 @@ function DetailReview() {
               responder={review.response_responder}
               title={review.response_title}
               description={review.review_description}
+              question_id={review.question_id}
             />
           </CardContainer>
         ))}
