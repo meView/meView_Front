@@ -6,14 +6,33 @@ const Container = styled.div`
   width: 100%;
   max-width: 500px;
   height: 100vh;
-  background-image: url("./image/answer-background.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
   color: var(--Gray-15);
   font-weight: bold;
+  position: relative;
 `;
+
+const Background = styled.div`
+  width: 100%;
+  max-width: 500px;
+  height: 100vh;
+  position: relative; 
+  overflow: hidden;
+
+  .background {
+    position: absolute; 
+    min-width: 100%;
+    min-height: 100vh;
+    z-index: 0;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    object-fit: cover;
+  }
+`
+
 const Top = styled.div`
+  position: absolute;
+  top: 0;
   padding: 56px 20px;
   .highlight {
     font-size: 36px;
@@ -60,6 +79,9 @@ function Start() {
 
   return (
     <Container>
+      <Background>
+        <object className="background" data="./image/answer-background.svg"/>
+      </Background>
       <Top>
         <span className="highlight">{question.user_id}님</span>
         <span className="text">
@@ -72,7 +94,6 @@ function Start() {
         <span className="text2">{text2}</span>
         <span className="subtitle">모든 답변은 익명으로 전달돼요</span>
       </Top>
-
       <Bottom>
         <button
           className="button-img"

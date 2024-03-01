@@ -8,8 +8,11 @@ import StrengthAnswerBox from "../../components/answer/StrengthAnswerBox";
 const Container = styled.div`
   height: 100vh;
   background-color: var(--Gray-15);
+  position: relative;
 `;
 const Top = styled.div`
+  width: 100%;
+  max-width: 500px;
   .progress {
     height: 8px;
     background-color: var(--primary);
@@ -52,16 +55,17 @@ const Body = styled.div`
 
 const Bottom = styled.div`
   height: 88px;
-  background-color: var(--Gray-15);
-  position: relative;
-  bottom: 0px;
   width: 100%;
   max-width: 500px;
+  background-color: var(--Gray-15);
+  position: ${({$count}) => ($count === 1 ? 'absolute' : 'relative')};
+  bottom: 0;
 `;
 
 function AnswerStrength2(props) {
   const [answer, setAnswer] = useRecoilState(answerState);
   const question = useRecoilValue(questionState);
+  const [count, setCount] = useState(answer.strength.length);
 
   /* 답변 입력 X -> 다음 버튼 비활성화 */
   const [isDisabled, setIsDisabled] = useState(true);
@@ -78,6 +82,7 @@ function AnswerStrength2(props) {
         setIsDisabled(false);
       }
     }
+    setCount(answer.strength.length);
   }, [answer.strengthReview, answer.strength]);
 
   /* 칩 삭제 */
@@ -133,7 +138,7 @@ function AnswerStrength2(props) {
           return <StrengthAnswerBox key={i} chip={chip} />;
         })}
       </Body>
-      <Bottom>
+      <Bottom $count={count}>
         <NavigateBtn isNextDisabled={isDisabled} />
       </Bottom>
     </Container>

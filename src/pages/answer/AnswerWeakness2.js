@@ -10,6 +10,8 @@ const Container = styled.div`
   background-color: var(--Gray-15);
 `;
 const Top = styled.div`
+  width: 100%;
+  max-width: 500px;
   .progress {
     height: 8px;
     background-color: var(--primary);
@@ -53,7 +55,7 @@ const Body = styled.div`
 const Bottom = styled.div`
   height: 88px;
   background-color: var(--Gray-15);
-  position: relative;
+  position: ${({$count}) => ($count === 1 ? 'absolute' : 'relative')};
   bottom: 0px;
   width: 100%;
   max-width: 500px;
@@ -62,6 +64,7 @@ const Bottom = styled.div`
 function AnswerWeakness2(props) {
   const [answer, setAnswer] = useRecoilState(answerState);
   const question = useRecoilValue(questionState);
+  const [count, setCount] = useState(answer.weakness.length);
 
   /* 답변 입력 X -> 다음 버튼 비활성화 */
   const [isDisabled, setIsDisabled] = useState(true);
@@ -78,6 +81,7 @@ function AnswerWeakness2(props) {
         setIsDisabled(false);
       }
     }
+    setCount(answer.weakness.length);
   }, [answer.weaknessReview, answer.weakness]);
 
   /* 칩 삭제 */
@@ -133,7 +137,7 @@ function AnswerWeakness2(props) {
           return <WeaknessAnswerBox key={i} chip={chip} />;
         })}
       </Body>
-      <Bottom>
+      <Bottom $count={count}>
         <NavigateBtn isNextDisabled={isDisabled} />
       </Bottom>
     </Container>

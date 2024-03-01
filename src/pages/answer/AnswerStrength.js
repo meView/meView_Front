@@ -10,6 +10,8 @@ const Container = styled.div`
 `;
 
 const Top = styled.div`
+  width: 100%;
+  max-width: 500px;
   .progress {
     height: 8px;
     background-color: var(--primary);
@@ -174,9 +176,9 @@ function AnswerStrength(props) {
       </Top>
       <Body>
         <div className="image-box">
-          <img
+          <object
             className="maincharacter"
-            src="/image/character_strength.svg"
+            data="/image/character_strength.svg"
             alt="character_strength"
           />
           <Chips>
@@ -247,7 +249,7 @@ function AnswerStrength(props) {
         </div>
       </Body>
       <Bottom>
-        <NavigateBtn isNextDisabled={answer.strength.length === 0} />
+        <NavigateBtn count={count} isNextDisabled={answer.strength.length === 0} />
       </Bottom>
     </Container>
   );

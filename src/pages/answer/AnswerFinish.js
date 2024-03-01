@@ -5,13 +5,32 @@ const Container = styled.div`
   width: 100%;
   max-width: 500px;
   height: 100vh;
-  background-image: url('./image/answer-finish-background.svg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+`
+
+const Background = styled.div`
+  width: 100%;
+  max-width: 500px;
+  height: 100vh;
+  position: relative; 
+  overflow: hidden;
+
+  .background {
+    position: absolute; 
+    min-width: 100%;
+    min-height: 100vh;
+    z-index: 0;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    object-fit: cover;
+  }
 `
 
 const Top = styled.div`
+  position: absolute;
+  width: 100%;
+  max-width: 500px;
+  top: 0;
   .progress {
     height: 8px;
     background-color: var(--primary);
@@ -57,6 +76,9 @@ function AnswerFinish(props) {
 
   return (
     <Container>
+      <Background>
+        <object className="background" data="./image/answer-finish-background.svg"/>
+      </Background>
       <Top>
         <div className="progress-bar">
           <div
