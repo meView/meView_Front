@@ -10,6 +10,8 @@ const Container = styled.div`
 `;
 
 const Top = styled.div`
+  width: 100%;
+  max-width: 500px;
   .progress {
     height: 8px;
     background-color: var(--primary);
@@ -174,9 +176,9 @@ function AnswerWeakness(props) {
       </Top>
       <Body>
         <div className="image-box">
-          <img
+          <object
             className="maincharacter"
-            src="/image/character_weakness.svg"
+            data="/image/character_weakness.svg"
             alt="character_weakness"
           />
           <Chips>

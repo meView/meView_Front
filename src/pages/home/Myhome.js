@@ -3,10 +3,12 @@ import TopNav from "../../components/home/TopNav";
 import styled from "styled-components";
 import NoReview from "../../components/home/NoReview";
 import ReviewList from "../../components/home/ReviewList";
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { bottomSheetState, questionFormListState } from "../../recoil/HomeAtom";
 import BottomSheet from "../../components/home/bottomsheet/BottomSheet";
 import { useEffect } from "react";
+import { useQuery } from "react-query";
+import { getQuestions } from "../../api/Home_API"
 
 const Container = styled.div`
   height: 100vh;
@@ -28,9 +30,8 @@ const BlurContainer = styled.div`
 `
 
 function Myhome() {
-
   /* 전역 상태에 저장해둔 생성 질문지 가져오기 */
-  const reviewList = useRecoilValue(questionFormListState);
+  const [reviewList, setReviewList] = useRecoilState(questionFormListState);
   const showBottomSheet = useRecoilValue(bottomSheetState);
 
   useEffect(() => {
@@ -40,6 +41,25 @@ function Myhome() {
       document.body.style.overflow = 'auto';
     }
   }, [showBottomSheet]);
+
+  // 질문지 리스트 가져오기
+  const {
+    data: questions,
+    isLoading: isLoadingQuestions,
+    isError: isErrorQuestions,
+  } = useQuery(
+    ["questions"],
+    () => getQuestions(),
+  );
+
+  useEffect(() => {
+    if (questions !== undefined) {
+      setReviewList(questions);
+    }
+  }, [questions])
+
+  if (isLoadingQuestions) return <div></div>;
+  if (isErrorQuestions) return <div>Error occurred</div>;
 
   return (
     <>
