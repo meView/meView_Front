@@ -4,13 +4,18 @@ import questionDetail from '../api/home/questiondetail'
 /* home/질문지 리스트 */
 export const questionFormListState = atom({
     key: 'questionFormListState',
-    default: questionList.data,
+    default: [],
 });
 
 /* home/질문지 수정/삭제 */
 export const questionFormState = atom({
     key: 'questionFormState',
-    default: questionDetail.data,
+    default: {
+        qustion_id: -1,
+        question_title: "",
+        question_type: "",
+        question_target: "",
+    },
 });
 
 export const linkToastState = atom({
