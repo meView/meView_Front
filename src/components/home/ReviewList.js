@@ -28,12 +28,11 @@ const Container = styled.div`
 `
 
 function ReviewList() {
-
   const reviewList = useRecoilValue(questionFormListState);
-  const [showToast, setShowToast] = useRecoilState(linkToastState);
-  const [showBottom, setShowBottom] = useRecoilState(bottomSheetState);
-  const [questionId, setQuestionId] = useRecoilState(questionIdState);
-
+  const [, setShowToast] = useRecoilState(linkToastState);
+  const [, setShowBottom] = useRecoilState(bottomSheetState);
+  const [, setQuestionId] = useRecoilState(questionIdState);
+  
   return (
     <Container>
       <div className="title">

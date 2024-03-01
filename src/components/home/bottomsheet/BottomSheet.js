@@ -7,6 +7,8 @@ import WarningModal from '../../../util/WarningModal';
 import NavigateBtn from './NavigateBtn';
 import Segment2Btn from './Segment2Btn';
 import Segment3Btn from './Segment3Btn';
+import { useQuery, useMutation } from "react-query";
+import { getQuestionDetail, getQuestionUpdate } from "../../../api/Home_API";
 
 const slideUp = keyframes`
   0% { transform: translateY(100%); }
@@ -168,43 +170,51 @@ const BlurContainer = styled.div`
 function BottomSheet() {
   const [bottomsheet, setBottomsheet] = useRecoilState(bottomSheetState);
   const [isOpen, setIsOpen] = useState(bottomsheet);
+  const [question, setQuestion] = useRecoilState(questionFormState);
+  const [, setQuestionList] = useRecoilState(questionFormListState);
+  const [isFocused, setIsFocused] = useState(false);
+  const question_id = useRecoilValue(questionIdState);
+  const [inputText, setInputText] = useState(question.question_title);
+  const [target, setTarget] = useState(question.question_target);
+  const [type, setType] = useState(question.question_type);
+  const [isModifiedDisabled, setIsModifiedDisabled] = useState(true);
+
+  /* 질문지 상세보기 */  
+  const {
+    data: questionDetail,
+    isLoading: isLoadingDetail,
+    isError: isErrorDetail,
+  } = useQuery(
+    ["questionDetail"],
+    () => getQuestionDetail(question_id),
+  );
+  useEffect(() => {
+    if (questionDetail !== undefined) {
+      setQuestion(questionDetail);
+    }
+  }, [questionDetail])
+  useEffect(() => {
+    setInputText(question.question_title);
+    setTarget(question.question_target);
+    setType(question.question_type);
+  }, [question])
 
   /* textarea focus 상태 아닐 경우 */
-  const [isFocused, setIsFocused] = useState(false);
-  const handleFocus = () => {
-    setIsFocused(true);
-  };
-  const handleBlur = () => {
-    setIsFocused(false);
-  };
-  
+  const handleFocus = () => { setIsFocused(true); };
+  const handleBlur = () => { setIsFocused(false); };
   const getTextState = (length) => {
     if (length >= 20) return "error";
     if (length > 0 && length < 20) return "writing";
     return "default";
   };
 
-  /* question_id와 일치하는 데이터 가져오기 */
-  const id = useRecoilValue(questionIdState);
-  /*
-    api에 해당 id 데이터 요청 후 전역 상태 저장 -> 전역 상태에서 불러와서 데이터 보여주기
-    수정 - 수정 버튼 누르면 전역 상태 데이터로 수정 api 요청
-    삭제 - 전역 상태 questionList에서 제거, 삭제 api 요청
-  */
-  const [question, setQuestion] = useRecoilState(questionFormState);
-  const [questionList, setQuestionList] = useRecoilState(questionFormListState);
-
-  /* 리뷰 명 수정 */
-  const [inputText, setInputText] = useState(question.question_title);
+  /* 수정 */
   const handleChange = (e) => {
     if (e.target.value.length <= 20) {
       setInputText(e.target.value);
     }
   };
-  const textState = getTextState(inputText.length);
-  
-  /* 리뷰 대상 수정 */
-  const [target, setTarget] = useState(question.question_target);
+  const textState = getTextState(inputText !== undefined? inputText.length: 0);
   const changeTarget = (target) => {
     if (target === 'team') {
       setTarget('team');
@@ -212,9 +222,6 @@ function BottomSheet() {
       setTarget('friend');
     }
   }
-
-  /* 리뷰 종류 수정 */
-  const [type, setType] = useState(question.question_type);
   const changeType = (type) => {
     if (type === 'strength') {
       setType('strength');
@@ -226,7 +233,6 @@ function BottomSheet() {
   }
 
   /* 수정사항이 있는지 확인 */
-  const [isModifiedDisabled, setIsModifiedDisabled] = useState(true);
   useEffect(()=>{
     if (question.question_target === target && question.question_title === inputText && question.question_type === type) {
       setIsModifiedDisabled(true);
@@ -238,18 +244,31 @@ function BottomSheet() {
   }, [target, inputText, type])
 
   /* 수정하기 버튼 눌렀을 때 내용 변경 */
+  const mutation = useMutation(newData => getQuestionUpdate(newData), {
+    onSuccess: data => {
+      setQuestion(data);
+    },
+  });
   const handleUpdate = () => {
-    setQuestion({...question, question_target: target, question_title: inputText, question_type: type});
-  }
+    mutation.mutate({
+      id: question_id,
+      target: target,
+      type: type,
+      title: inputText,
+    });
+  };
 
   /* 삭제하기 눌렀을 때 삭제 */
   const handleDelete = () => {
-    setQuestionList((questions) => questions.filter((question) => question.question_id !== id));
+    setQuestionList((questions) => questions.filter((question) => question.question_id !== question_id));
   }
 
   const [showToast, setShowToast] = useRecoilState(modifiedToastState);
   const [backModal, setBackModal] = useRecoilState(backModalState);
   const [deleteModal, setDeleteModal] = useRecoilState(deleteModalState);
+
+  if (isLoadingDetail) return <div></div>;
+  if (isErrorDetail) return <div>Error occurred</div>;
 
   return (
     <>
@@ -272,7 +291,7 @@ function BottomSheet() {
           <div className='content'>
             <div className='question-content'>
               <p className='subtitle'>리뷰 대상</p>
-              <Segment2Btn id={id} onClickTeam={()=>{
+              <Segment2Btn id={question_id} onClickTeam={()=>{
                 changeTarget('team');
               }} onClickFriend={()=>{
                 changeTarget('friend');
@@ -297,7 +316,9 @@ function BottomSheet() {
                   onBlur={handleBlur}
                 />
                 <div className="count">
-                  <TextLength $textState={textState} $isFocused={isFocused}>{inputText.length}/</TextLength>
+                  <TextLength $textState={textState} $isFocused={isFocused}>{
+                    inputText?.length || 0
+                  }/</TextLength>
                   20자
                 </div>
               </div>
@@ -311,7 +332,7 @@ function BottomSheet() {
             </div>
             <div className='question-content'>
               <p className='subtitle'>리뷰 종류</p>
-              <Segment3Btn id={id} onClickStrength={()=>{
+              <Segment3Btn id={question_id} onClickStrength={()=>{
                 changeType('strength')
               }} onClickWeakness={()=>{
                 changeType('weakness')
