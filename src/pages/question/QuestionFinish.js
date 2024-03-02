@@ -14,12 +14,32 @@ const QuestionWrapper = styled.div`
   position: relative;
   width: 100%;
   max-width: 500px;
-  background-image: url("./image/question-background.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
 `;
+
+const Background = styled.div`
+  width: 100%;
+  max-width: 500px;
+  height: 100vh;
+  position: relative; 
+  overflow: hidden;
+
+  .background {
+    position: absolute; 
+    min-width: 100%;
+    min-height: 100vh;
+    z-index: 0;
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    object-fit: cover;
+  }
+`
+
 const Top = styled.div`
+  position: absolute;
+  top: 0;
+  width: 100%;
+  max-width: 500px;
   .progress {
     height: 8px;
     background-color: var(--primary);
@@ -81,6 +101,9 @@ function QuestionFourth(props) {
 
   return (
     <QuestionWrapper>
+      <Background>
+        <object className="background" data="./image/question-background.svg"/>
+      </Background>
       <Top>
         <div className="progress-bar">
           <div
