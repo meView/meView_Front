@@ -23,6 +23,8 @@ const QuestionWrapper = styled.div`
 `;
 
 const Top = styled.div`
+  width: 100%;
+  max-width: 500px;
   .progress {
     height: 8px;
     background-color: var(--primary);
