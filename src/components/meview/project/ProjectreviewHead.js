@@ -4,13 +4,13 @@ import { useNavigate } from "react-router-dom";
 const Container = styled.div`
   padding: 0 20px;
   .toppadding {
-    padding-top: 40px;
+    padding-top: 45px;
   }
 `;
 const ArrowContainer = styled.div`
   display: flex;
   height: 48px;
-  
+
   justify-content: flex-start;
   align-items: center;
 

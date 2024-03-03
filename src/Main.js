@@ -19,8 +19,7 @@ function Main() {
           <Route path="" element={<Mainpage />} />
           <Route path="home" element={<Homepage />} />
           <Route path="mypage" element={<Mypage />} />
-          {/* testcode->question으로 바꿧어용! */}
-          <Route path="question" element={<Question />} /> 
+          <Route path="question" element={<Question />} />
           <Route path="answer" element={<Answer />} />
           <Route path="meview" element={<Outlet />}>
             <Route path="strength" element={<MeviewPage />} />
