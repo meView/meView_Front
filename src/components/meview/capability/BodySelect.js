@@ -46,6 +46,13 @@ const StyledButton = styled.button`
     font-weight: bold;
     margin-left: 4px;
   }
+
+  // active가 아닐때 hover
+  &:hover {
+    background-color: ${({ $isActive }) =>
+      $isActive ? "var(--primary)" : "var(--Hover)"};
+  }
+  transition: background-color 0.3s ease;
 `;
 
 function BodySelect({ totalStrength, totalWeakness }) {
