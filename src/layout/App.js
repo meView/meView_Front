@@ -16,10 +16,17 @@ const PcView = styled.div`
   min-height: 100vh;
 `;
 
+const setVh = () => {
+  document.documentElement.style.setProperty("--vh", `${window.innerHeight}px`);
+};
+window.addEventListener("resize", setVh);
+setVh();
+
 const MobileView = styled.div`
-  margin: 0 auto;
   background-color: var(--Gray-15);
+  margin: 0 auto;
   min-height: 100vh;
+  min-height: var(--vh);
 `;
 
 function App() {
