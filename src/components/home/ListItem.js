@@ -31,6 +31,8 @@ const Container = styled.div`
     padding-top: 16px;
   }
   .copy {
+    max-width: 372px;
+    width: calc(100vw - 124px);
     height: 48px;
     padding-top: 0px;
   }
@@ -52,6 +54,8 @@ function ListItem(props) {
         className="question-icon"
         alt="question icon"
         src="./image/question-icon.svg"
+        onMouseEnter={() => setIsHovered("true")}
+        onMouseLeave={() => setIsHovered("false")}
       />
       <div>
         <div
@@ -70,13 +74,13 @@ function ListItem(props) {
             src="./image/arrow-icon.svg"
           />
         </div>
-        <div className="copy">
+        <div className="copy"
+            onMouseEnter={() => setIsHoveredLink("hover")}
+            onMouseLeave={() => setIsHoveredLink("button")}>
           <img
             className="copy-button"
             alt="copy button"
             src={`./image/link-copy-${isHoveredLink}.svg`}
-            onMouseEnter={() => setIsHoveredLink("hover")}
-            onMouseLeave={() => setIsHoveredLink("button")}
             onClick={() => {
               /* 링크 복사 */
               props.onLinkClick();

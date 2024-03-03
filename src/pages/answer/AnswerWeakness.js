@@ -66,8 +66,8 @@ const Chips = styled.div`
 
   img {
     position: absolute;
-    backdrop-filter: blur(4px);
-    drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    backdrop-filter: blur(6px);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
     &.communication {
       top: 236px;
       left: 13.6%;
