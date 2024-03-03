@@ -10,6 +10,7 @@ import MeviewChipReview from "./pages/meview/MeviewChipReview";
 import MeviewProjectReview from "./pages/meview/MeviewProjectReview";
 import MeviewNicknameReview from "./pages/meview/MeviewNicknameReview";
 import Mypage from "pages/home/Mypage";
+import Redirection from "components/main/AuthHandler";
 
 function Main() {
   return (
@@ -17,6 +18,7 @@ function Main() {
       <Routes>
         <Route path="/" element={<App />}>
           <Route path="" element={<Mainpage />} />
+          <Route path="auth/kakao_login" element={<Redirection />} />
           <Route path="home" element={<Homepage />} />
           <Route path="mypage" element={<Mypage />} />
           <Route path="question" element={<Question />} />
