@@ -1,5 +1,5 @@
 import Bottombar from "../../components/home/Bottombar";
-import TopNav from "../../components/home/TopNav";
+import TopNav from "components/meview/capability/TopNav";
 import styled from "styled-components";
 import NoReview from "../../components/home/NoReview";
 import ReviewList from "../../components/home/ReviewList";

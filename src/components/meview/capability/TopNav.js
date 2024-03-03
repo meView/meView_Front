@@ -1,5 +1,7 @@
-import styled from "styled-components";
+import React, { useEffect, useState } from "react";
+import styled, { css } from "styled-components";
 import { useNavigate } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 const Container = styled.div`
   align-items: flex-start;
@@ -10,47 +12,16 @@ const Container = styled.div`
   .top-margin {
     margin-top: 40px;
   }
+  .bottom-margin {
+    margin-bottom: 10px;
+  }
 `;
+
 const NavBar = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
   width: 100%;
-
-  .button-nav {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    font-size: var(--headline-06);
-    font-weight: bold;
-    color: white;
-    width: 48px;
-    height: 48px;
-    position: relative;
-    margin: 0 12px 0 0;
-  }
-
-  .button-text {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    color: var(--Gray-11);
-  }
-
-  .button-text2 {
-    position: absolute;
-    left: 0;
-    bottom: 0;
-  }
-  .button-text2::after {
-    content: "";
-    position: absolute;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background-color: var(--primary);
-  }
 
   .button-icon {
     background: none;
@@ -61,33 +32,102 @@ const NavBar = styled.div`
   }
 `;
 
+const ButtonNav = styled.button`
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: var(--headline-06);
+  font-weight: bold;
+  width: 48px;
+  height: 48px;
+  position: relative;
+  margin: 0 12px 0 0;
+
+  color: ${({ $isactive }) => ($isactive ? "white" : "var(--Gray-11)")};
+
+  .button-text {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+  }
+
+  .button-text::after {
+    content: "";
+    position: absolute;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: ${({ $isactive, $isHovered, $hoveredMenu }) =>
+      $isactive && !$hoveredMenu
+        ? "yellow"
+        : $isHovered
+        ? "yellow"
+        : "var(--Gray-15)"};
+    transition: ${({ $disableTransition }) =>
+      $disableTransition ? "none" : "background-color 0.2s ease"};
+  }
+`;
+
 function TopNav() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [activeMenu, setActiveMenu] = useState("");
+  const [hoveredMenu, setHoveredMenu] = useState(null);
+  const [disableTransition, setDisableTransition] = useState(true);
 
-  const handleHome = () => {
-    navigate("/home");
+  useEffect(() => {
+    setDisableTransition(true);
+    const timeoutId = setTimeout(() => setDisableTransition(false), 50);
+    return () => clearTimeout(timeoutId);
+  }, [location.pathname]);
+
+  const handleNavigate = (path, menuName) => {
+    navigate(path);
+    setActiveMenu(menuName);
+    setHoveredMenu("");
   };
-  const handleMeview = () => {
-    navigate("/meview/strength");
-  }
-  const handleMypage = () => {
-    navigate("/mypage");
-  };
+
+  useEffect(() => {
+    const path = window.location.pathname;
+    setActiveMenu(path.includes("meview") ? "meview" : "home");
+    setDisableTransition(true);
+    const timeoutId = setTimeout(() => setDisableTransition(false), 50);
+    return () => clearTimeout(timeoutId);
+  }, [window.location.pathname]);
 
   return (
     <Container>
       <div className="top-margin"></div>
       <NavBar>
         <div>
-          <button className="button-nav" onClick={handleHome}>
+          <ButtonNav
+            onClick={() => handleNavigate("/home", "home")}
+            onMouseEnter={() => setHoveredMenu("home")}
+            onMouseLeave={() => setHoveredMenu(null)}
+            $isactive={activeMenu === "home"}
+            $isHovered={hoveredMenu === "home"}
+            $hoveredMenu={hoveredMenu !== null}
+            $disableTransition={disableTransition}
+          >
             <p className="button-text">홈</p>
-          </button>
-          <button className="button-nav" onClick={handleMeview}>
-            <p className="button-text2">미뷰</p>
-          </button>
+          </ButtonNav>
+          <ButtonNav
+            onClick={() => handleNavigate("/meview/strength", "meview")}
+            onMouseEnter={() => setHoveredMenu("meview")}
+            onMouseLeave={() => setHoveredMenu(null)}
+            $isactive={activeMenu === "meview"}
+            $isHovered={hoveredMenu === "meview"}
+            $hoveredMenu={hoveredMenu !== null}
+            $disableTransition={disableTransition}
+          >
+            <p className="button-text">미뷰</p>
+          </ButtonNav>
         </div>
-
-        <button className="button-icon" onClick={handleMypage}>
+        <button
+          className="button-icon"
+          onClick={() => handleNavigate("/mypage", "mypage")}
+        >
           <img alt="mypage" src="/image/mypage-logo.svg" />
         </button>
       </NavBar>

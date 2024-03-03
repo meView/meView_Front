@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import MainBody from "../../components/main/MainBody";
-import MainBottom from "../../components/main/MainBottom";
+import Login from "../../components/main/Login";
 
 const Container = styled.div`
   height: 100vh;
@@ -10,8 +10,8 @@ const Container = styled.div`
 function Mainpage() {
   return (
     <Container>
-      <MainBody/>
-      <MainBottom />
+      <MainBody />
+      <Login />
     </Container>
   );
 }
