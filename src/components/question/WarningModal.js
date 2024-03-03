@@ -60,6 +60,9 @@ const Bottom = styled.div`
     border-radius: 0 0 0 12px;
     text-align: center;
     line-height: 56px;
+    &:hover {
+      background-color: var(--Hover);
+    }
   }
   .yes {
     background-color: var(--primary);
@@ -69,6 +72,9 @@ const Bottom = styled.div`
     border-radius: 0 0 12px 0;
     text-align: center;
     line-height: 56px;
+    &:hover {
+      background-color: var(--Hover-02);
+    }
   }
 `;
 
