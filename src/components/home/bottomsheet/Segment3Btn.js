@@ -46,29 +46,37 @@ const Container = styled.div`
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
   }
+  .unselected {
+    &:hover {
+      background-color: var(--Hover);
+    }
+  }
   .selected {
     background-color: var(--primary);
     color: var(--Gray-15);
+    &:hover {
+      background-color: var(--Hover-02);
+    }
   }
 `;
 
 function Segment3Btn(props) {
-  const [strength, setStrength] = useState("");
-  const [weakness, setWeakness] = useState("");
-  const [both, setBoth] = useState("");
+  const [strength, setStrength] = useState(props.type === 'strength' ? "selected" : "unselected");
+  const [weakness, setWeakness] = useState(props.type === 'weakness' ? "selected" : "unselected");
+  const [both, setBoth] = useState(props.type === 'both' ? "selected" : "unselected");
 
   useEffect(() => {
     if (props.type === "strength") {
       setStrength("selected");
-      setWeakness("");
-      setBoth("");
+      setWeakness("unselected");
+      setBoth("unselected");
     } else if (props.type === "weakness") {
-      setStrength("");
+      setStrength("unselected");
       setWeakness("selected");
-      setBoth("");
+      setBoth("unselected");
     } else if (props.type === "both") {
-      setStrength("");
-      setWeakness("");
+      setStrength("unselected");
+      setWeakness("unselected");
       setBoth("selected");
     }
   }, [props.type]);
