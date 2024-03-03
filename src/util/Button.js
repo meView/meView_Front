@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
 const Btn = styled.div`
   background-color: var(--primary);
@@ -8,13 +8,15 @@ const Btn = styled.div`
   font-weight: bold;
   text-align: center;
   line-height: 56px;
-  width: ${props => props.width};
-`
+  width: ${(props) => props.width};
+`;
 
-function Button (props) {
+function Button(props) {
   return (
-    <Btn width={props.width} onClick={props.onClick}>{props.text}</Btn>
-  )
+    <Btn width={props.width} onClick={props.onClick}>
+      {props.text}
+    </Btn>
+  );
 }
 
 export default Button;

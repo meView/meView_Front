@@ -73,9 +73,12 @@ const Bottom = styled.div`
 function Start() {
   const question = useRecoilValue(questionState);
   const [page, setPage] = useRecoilState(pageState);
-  const text2 = question.question_type === 'strength' ? "본인의 강점에 대한 리뷰를 원해요"
-  : question.question_type === 'weakness' ? "본인의 약점에 대한 리뷰를 원해요"
-  : "본인의 강점과 약점에 대한 리뷰를 원해요"
+  const text2 =
+    question.question_type === "strength"
+      ? "본인의 강점에 대한 리뷰를 원해요"
+      : question.question_type === "weakness"
+      ? "본인의 약점에 대한 리뷰를 원해요"
+      : "본인의 강점과 약점에 대한 리뷰를 원해요";
 
   return (
     <Container>
