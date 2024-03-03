@@ -71,11 +71,17 @@ const Top = styled.div`
     background-color: var(--primary);
     border-radius: 8px;
     height: 68px;
+    &:hover {
+      background-color: var(--Hover-02);
+    }
   }
   .unchecked {
     background-color: var(--Gray-14);
     border-radius: 8px;
     height: 68px;
+    &:hover {
+      background-color: var(--Hover);
+    }
   }
   .checked .answer-title {
     font-size: var(--subtitle-02);
@@ -113,8 +119,10 @@ function QuestionThird(props) {
   const [checkedWeakness, setCheckedWeakness] = useState(choice.answer3 === "weakness" ? "checked" : "unchecked");
   const [checkedBoth, setCheckedBoth] = useState(choice.answer3 === "both" ? "checked" : "unchecked");
   const [answer, setAnswer] = useRecoilState(answerState);
+  const [disabled, setDisabled] = useState(choice.answer3 === "" ? true : false);
 
   const handleAnswer = (number) => {
+    setDisabled(false);
     if (number === 1) {
       setAnswer({
         ...answer,
@@ -212,7 +220,7 @@ function QuestionThird(props) {
         </div>
       </Top>
       <Bottom>
-        <NavigateBtn />
+        <NavigateBtn isNextDisabled={disabled}/>
       </Bottom>
     </QuestionWrapper>
   );

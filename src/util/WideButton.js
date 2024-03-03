@@ -11,6 +11,10 @@ const Btn = styled.div`
   margin-left: 20px;
   margin-right: 20px;
   width: ${props => props.width};
+  
+  &:hover {
+    background-color: var(--Hover-02);
+  }
 `
 
 function WideButton (props) {

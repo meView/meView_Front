@@ -61,11 +61,17 @@ const Top = styled.div`
     background-color: var(--primary);
     border-radius: 8px;
     height: 68px;
+    &:hover {
+      background-color: var(--Hover-02);
+    }
   }
   .unchecked {
     background-color: var(--Gray-14);
     border-radius: 8px;
     height: 68px;
+    &:hover {
+      background-color: var(--Hover);
+    }
   }
   .checked .answer-title {
     font-size: var(--subtitle-02);
@@ -123,8 +129,12 @@ function QuestionFirst(props) {
   );
   /* 뒤로가기 버튼 - 모달 */
   const [modal, setModal] = useRecoilState(modalState);
+  
+  /* 답변 선택하지 않았을 때 버튼 disabled */
+  const [disabled, setDisabled] = useState(choice.answer1 === "" ? true : false);
 
   const handleAnswer = (number) => {
+    setDisabled(false);
     if (number === 1) {
       // 프로젝트 팀원에게 리뷰 요청
       setAnswer({
@@ -218,7 +228,7 @@ function QuestionFirst(props) {
             </div>
           </Top>
           <Bottom>
-            <NavigateBtn />
+            <NavigateBtn isNextDisabled={disabled}/>
           </Bottom>
         </QuestionWrapper>
       </div>
