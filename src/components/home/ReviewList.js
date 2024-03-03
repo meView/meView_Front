@@ -53,7 +53,10 @@ function ReviewList() {
                 onLinkClick={()=>{
                 /* 링크 복사하기 */
                 setShowToast(true);
-              }}/>
+              }}
+                isHovered={false}
+                isHoveredLink="button"
+              />
             )
           })
         }

@@ -1,7 +1,8 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  background-color: var(--Gray-14);
+  background-color: ${( {$isHovered} ) => $isHovered === 'true' ? "#2a291e" : "var(--Gray-14)" };
   margin: 0px 20px 16px 20px;
   color: white;
   height: 96px;
@@ -33,25 +34,20 @@ const Container = styled.div`
     height: 48px;
     padding-top: 0px;
   }
-  .copy-button {
-    width: 97px;
-    height: 32px;
-  }
   .arrow-icon {
     width: 20px;
     height: 20px;
     padding-top: 20px;
     padding-left: 4px;
   }
-
-  &:hover {
-    background-color: #2a291e;
-  }
 `;
 
 function ListItem(props) {
+  const [isHovered, setIsHovered] = useState(props.isHovered);
+  const [isHoveredLink, setIsHoveredLink] = useState(props.isHoveredLink);
+
   return (
-    <Container>
+    <Container $isHovered={isHovered}>
       <img
         className="question-icon"
         alt="question icon"
@@ -60,6 +56,8 @@ function ListItem(props) {
       <div>
         <div
           className="question-title"
+          onMouseEnter={() => setIsHovered("true")}
+          onMouseLeave={() => setIsHovered("false")}
           onClick={() => {
             /* 질문지 이동 */
             props.onQuestionClick();
@@ -76,7 +74,9 @@ function ListItem(props) {
           <img
             className="copy-button"
             alt="copy button"
-            src="./image/link-copy-button.svg"
+            src={`./image/link-copy-${isHoveredLink}.svg`}
+            onMouseEnter={() => setIsHoveredLink("hover")}
+            onMouseLeave={() => setIsHoveredLink("button")}
             onClick={() => {
               /* 링크 복사 */
               props.onLinkClick();
