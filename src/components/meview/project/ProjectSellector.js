@@ -22,7 +22,7 @@ const StyledButton = styled.button`
   flex: 1;
   justify-content: center;
   background-color: ${({ $isStrength }) =>
-    $isStrength ? "var(--primary)" : "var(--Gray-14)"};
+    $isStrength ? "white" : "var(--Gray-14)"};
   color: ${({ $isStrength }) =>
     $isStrength ? "var(--Gray-15)" : "var(--Gray-10)"};
   border: none;
@@ -35,6 +35,13 @@ const StyledButton = styled.button`
   .button-text {
     font-size: 16px;
     font-weight: bold;
+  }
+
+  &:hover {
+    background-color: ${({ $isStrength }) =>
+      // 256,256,256, 4%로
+      $isStrength ? "white" : "rgba(256,256,256,0.04)"};
+    transition: background-color 0.3s ease;
   }
 `;
 
