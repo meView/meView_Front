@@ -109,7 +109,7 @@ function AnswerStrength2(props) {
           ></div>
         </div>
         <div className="strength-box">
-          <p className="name">내가 고른 {question.user_id}님의 강점</p>
+          <p className="name">내가 고른 {question.user_id}님의 대표 강점</p>
           <div className="select-chips">
             {answer.strength.map((chip, i) => {
               return (

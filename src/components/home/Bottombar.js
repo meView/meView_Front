@@ -41,6 +41,7 @@ const RightSideButton = styled.button`
   font-weight: bold;
   width: 230px;
   height: 64px;
+  color: var(--Gray-15);
 
   &:hover {
     background-color: #fff594;

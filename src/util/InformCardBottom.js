@@ -1,4 +1,3 @@
-
 import React from "react";
 import styled from "styled-components";
 
@@ -19,9 +18,9 @@ const NotificationContainer = styled.div`
 
 const MessageContainer = styled.div`
   display: flex;
-  align-items: center; 
-  justify-content: space-between; 
-  width: 100%; 
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
   .pin {
     font-size: 24px;
     padding: 8px 0 0;
@@ -29,7 +28,7 @@ const MessageContainer = styled.div`
 `;
 
 const MainMessage = styled.p`
-  flex: 1; 
+  flex: 1;
   padding: 12px 0 0;
   font-weight: bold;
 `;

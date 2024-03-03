@@ -8,7 +8,6 @@ import { selectedChipInfoState } from "../../../recoil/ProjectListAtom";
 import { useEffect } from "react";
 import { imageLoadingState } from "../../../recoil/ProjectListAtom";
 
-
 const Container = styled.div`
   display: flex;
   justify-content: center;
@@ -76,6 +75,11 @@ const ChipContainer = styled.div`
     color: ${({ keyType }) => keyColors[keyType]};
     font-weight: bold;
   }
+  // hover -> 칩의 개수가 0 이상일때만 크기 1.1 증가 + 0.3초 동안 애니메이션
+  &:hover {
+    ${({ value }) => value > 0 && "transform: scale(1.1); transition: 0.2s;"}
+  }
+
 
   .valueStyle {
     padding-left: 4px;
@@ -141,6 +145,9 @@ const imagePaths = {
     selected: "/image/perseverance-selected.svg",
   },
 };
+const PaddingBottom = styled.div`
+  padding-bottom: 30px;
+`;
 
 const keyMapping = {
   COMMUNICATION: "소통능력",
@@ -270,6 +277,7 @@ function BodyCharacter() {
         </Chips>
       </Container>
       <BodySelect totalStrength={totalStrength} totalWeakness={totalWeakness} />
+      <PaddingBottom />
     </>
   );
 }
