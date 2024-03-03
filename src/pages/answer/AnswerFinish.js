@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import WideButton from 'util/WideButton'
 
 const Container = styled.div`
   width: 100%;
@@ -58,14 +59,8 @@ const Body = styled.div`
 const Bottom = styled.div`
   position: fixed;
   bottom: 24px;
-  margin: 24px 20px 0 20px;
-  .button-img {
-    width: 100%;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-  }
+  width: 100%;
+  max-width: 500px;
   .button {
     width: 100%;
   }
@@ -94,11 +89,9 @@ function AnswerFinish(props) {
       <Body>
       </Body>
       <Bottom>
-        <button className='button-img' onClick={()=>{
+        <WideButton className="button" text="나도 리뷰 받아보기" onClick={()=>{
           navigate('/')
-        }}>
-          <img className='button' alt="answer finish" src="./image/answer-finish.svg"/>
-        </button>
+        }}/>
       </Bottom>
     </Container>
   )

@@ -1,5 +1,6 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
+import WideButton from "util/WideButton";
 import { pageState, questionState } from "../../recoil/AnswerAtom";
 
 const Container = styled.div`
@@ -56,15 +57,8 @@ const Top = styled.div`
 const Bottom = styled.div`
   position: fixed;
   bottom: 24px;
-  margin-left: 20px;
-  margin-right: 20px;
-  .button-img {
-    width: 100%;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-  }
+  width: 100%;
+  max-width: 500px;
   .button {
     width: 100%;
   }
@@ -98,18 +92,9 @@ function Start() {
         <span className="subtitle">모든 답변은 익명으로 전달돼요</span>
       </Top>
       <Bottom>
-        <button
-          className="button-img"
-          onClick={() => {
+        <WideButton className="button" text="리뷰 시작하기" onClick={() => {
             setPage(page + 1);
-          }}
-        >
-          <img
-            className="button"
-            alt="review start button"
-            src="./image/review-start-button.svg"
-          />
-        </button>
+          }}/>
       </Bottom>
     </Container>
   );
