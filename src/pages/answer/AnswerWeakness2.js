@@ -6,7 +6,7 @@ import { answerState, questionState } from "../../recoil/AnswerAtom";
 import WeaknessAnswerBox from "../../components/answer/WeaknessAnswerBox";
 
 const Container = styled.div`
-  height: 100vh;
+  min-height: var(--vh);
   background-color: var(--Gray-15);
 `;
 const Top = styled.div`
@@ -49,7 +49,7 @@ const Top = styled.div`
 
 const Body = styled.div`
   background-color: var(--Gray-15);
-  padding-bottom: 90px;
+  padding-bottom: 50px;
 `
 
 const Bottom = styled.div`
@@ -65,6 +65,7 @@ function AnswerWeakness2(props) {
   const [answer, setAnswer] = useRecoilState(answerState);
   const question = useRecoilValue(questionState);
   const [count, setCount] = useState(answer.weakness.length);
+
 
   /* 답변 입력 X -> 다음 버튼 비활성화 */
   const [isDisabled, setIsDisabled] = useState(true);

@@ -10,8 +10,8 @@ import { useMutation } from "react-query";
 import Toast from "util/Toast";
 
 const QuestionWrapper = styled.div`
-  height: 100vh;
   background-color: var(--Gray-15);
+  height: var(--vh);
   position: relative;
   width: 100%;
   max-width: 500px;
@@ -20,7 +20,7 @@ const QuestionWrapper = styled.div`
 const Background = styled.div`
   width: 100%;
   max-width: 500px;
-  height: 100vh;
+  height: var(--vh);
   position: relative; 
   overflow: hidden;
 
@@ -115,7 +115,7 @@ function QuestionFourth(props) {
   return (
     <QuestionWrapper>
       <Background>
-        <object className="background" data="./image/question-background.svg"/>
+        <object className="background" data="./image/question-background.svg" aria-label='question-background'/>
       </Background>
       <Top>
         <div className="progress-bar">

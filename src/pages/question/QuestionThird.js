@@ -4,10 +4,10 @@ import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import NavigateBtn from "../../components/question/NavigateBtn";
 import QuestionText from "../../components/question/QuestionText";
-import { answerState, pageState } from "../../recoil/QuestionAtom";
+import { answerState } from "../../recoil/QuestionAtom";
 
 const QuestionWrapper = styled.div`
-  height: 100vh;
+  height: var(--vh);
   background-color: var(--Gray-15);
   position: relative;
 `;
@@ -156,7 +156,7 @@ function QuestionThird(props) {
       setCheckedWeakness("unchecked");
       setCheckedBoth("checked");
     }
-  }, [answer]);
+  }, [choice.answer3]);
 
   return (
     <QuestionWrapper>

@@ -1,14 +1,13 @@
-import { useRecoilState } from 'recoil';
-import styled from 'styled-components'
-import NavigateBtn from '../../components/answer/navigateBtn';
-import { answerState, modalState } from '../../recoil/AnswerAtom';
-import WarningModal from '../../components/answer/WarningModal';
-import { useState } from 'react';
+import { useRecoilState } from "recoil";
+import styled from "styled-components";
+import NavigateBtn from "../../components/answer/navigateBtn";
+import { answerState, modalState } from "../../recoil/AnswerAtom";
+import WarningModal from "../../components/answer/WarningModal";
+import { useState } from "react";
 
 const Container = styled.div`
-  height: 100vh;
   background-color: var(--Gray-15);
-`
+`;
 
 const Top = styled.div`
   width: 100%;
@@ -40,14 +39,13 @@ const Top = styled.div`
     position: absolute;
     bottom: 16px;
     left: 36px;
-    color: #8B8B8B;
+    color: #8b8b8b;
   }
   .warning {
     margin-top: 16px;
     margin-left: 20px;
   }
-`
-
+`;
 
 const TextArea = styled.textarea`
   outline: none;
@@ -73,8 +71,8 @@ const TextArea = styled.textarea`
   `}
   &:focus {
     ${({ $textState }) =>
-    $textState === "writing" &&
-    `
+      $textState === "writing" &&
+      `
     outline: 1px solid var(--primary); // 글자 수가 1~19일 때
   `}
   }
@@ -95,28 +93,28 @@ const Bottom = styled.div`
   bottom: 0;
   width: 100%;
   max-width: 500px;
-`
+`;
 
 /* 배경 블러 처리 */
 const BlurContainer = styled.div`
-height: 100vh;
-position: fixed;
-top: 0;
-left: 50%;
-transform: translate(-50%, 0);
-width: 100%;
-max-width: 500px;
-backdrop-filter: blur(8px);
-background-color: rgba(0, 0, 0, 0.48);
-display: ${({ $show }) => $show === 'true' ? 'block' : 'none'};
-`
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 100%;
+  max-width: 500px;
+  backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.48);
+  display: ${({ $show }) => ($show === "true" ? "block" : "none")};
+`;
 
 const Modal = styled.div`
   position: fixed;
   top: 0;
   width: 100%;
-  max-width: 500px; 
-`
+  max-width: 500px;
+`;
 
 function AnswerName(props) {
   const [answer, setAnswer] = useRecoilState(answerState);
@@ -140,7 +138,7 @@ function AnswerName(props) {
   const handleBlur = () => {
     setIsFocused(false);
   };
-  
+
   const getTextState = (length) => {
     if (length >= 10) return "error";
     if (length > 0 && length < 10) return "writing";
@@ -160,9 +158,9 @@ function AnswerName(props) {
               style={{ width: `${props.progress}%` }}
             ></div>
           </div>
-          <div className='title'>
-            <p className='title-text'>간단한 자기소개 부탁해요!</p>
-            <p className='title-text'>본인을 나타낼 닉네임을 적어주세요</p>
+          <div className="title">
+            <p className="title-text">간단한 자기소개 부탁해요!</p>
+            <p className="title-text">본인을 나타낼 닉네임을 적어주세요</p>
           </div>
           <div className="answer">
             <TextArea
@@ -176,38 +174,37 @@ function AnswerName(props) {
               onBlur={handleBlur}
             />
             <div className="count">
-              <TextLength $textState={textState} $isFocused={isFocused}>{inputText.length}/</TextLength>
+              <TextLength $textState={textState} $isFocused={isFocused}>
+                {inputText.length}/
+              </TextLength>
               10자
             </div>
           </div>
-          {
-            textState === "error" 
-            ? <div className="warning">
-                <img alt="warning message" src="./image/warning-10msg.svg"/>
-              </div>
-            : null
-          }
+          {textState === "error" ? (
+            <div className="warning">
+              <img alt="warning message" src="./image/warning-10msg.svg" />
+            </div>
+          ) : null}
         </Top>
         <Bottom>
-          <NavigateBtn isNextDisabled={!inputText.trim()}/>
+          <NavigateBtn isNextDisabled={!inputText.trim()} />
         </Bottom>
       </Container>
-      <BlurContainer $show={modal.toString()}/>
-      {
-        modal && 
+      <BlurContainer $show={modal.toString()} />
+      {modal && (
         <Modal>
-          <WarningModal 
+          <WarningModal
             title="정말로 나가시겠어요?"
             description="질문지 작성 중간에 나가시면 작성한 내용은 사라져요"
             no="계속 할게요"
             yes="네"
             onClose={() => setModal(false)}
             modalstate={modalState}
-            />
+          />
         </Modal>
-      }
+      )}
     </>
-  )
+  );
 }
 
 export default AnswerName;

@@ -5,7 +5,6 @@ import NavigateBtn from "../../components/answer/navigateBtn";
 import { answerState, questionState } from "../../recoil/AnswerAtom";
 
 const Container = styled.div`
-  height: 100vh;
   background-color: var(--Gray-15);
 `;
 
@@ -60,7 +59,7 @@ const Body = styled.div`
 `;
 
 const Chips = styled.div`
-  position: absolute; // Container 내에서 절대 위치 사용
+  position: absolute;
   width: 100%;
   cursor: pointer;
 
@@ -170,7 +169,9 @@ function AnswerStrength(props) {
           ></div>
         </div>
         <div className="title">
-          <p className="title-text">{question.user_id}님을 대표하는 강점을 선택해주세요</p>
+          <p className="title-text">
+            {question.user_id}님을 대표하는 강점을 선택해주세요
+          </p>
           <p className="title-description">3개까지 선택할 수 있어요</p>
         </div>
       </Top>
@@ -179,7 +180,7 @@ function AnswerStrength(props) {
           <object
             className="maincharacter"
             data="/image/character_strength.svg"
-            alt="character_strength"
+            aria-label="character_strength"
           />
           <Chips>
             <img
@@ -249,7 +250,10 @@ function AnswerStrength(props) {
         </div>
       </Body>
       <Bottom>
-        <NavigateBtn count={count} isNextDisabled={answer.strength.length === 0} />
+        <NavigateBtn
+          count={count}
+          isNextDisabled={answer.strength.length === 0}
+        />
       </Bottom>
     </Container>
   );

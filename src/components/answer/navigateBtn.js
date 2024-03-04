@@ -38,7 +38,7 @@ const StyledButton = styled.button`
 
 function NavigateBtn({ isNextDisabled }) {
   const [page, setPage] = useRecoilState(pageState);
-  const [modal, setModal] = useRecoilState(modalState);
+  const [, setModal] = useRecoilState(modalState);
 
   return (
     <ButtonGroup>

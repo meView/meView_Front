@@ -6,7 +6,7 @@ import { answerState, questionState } from "../../recoil/AnswerAtom";
 import StrengthAnswerBox from "../../components/answer/StrengthAnswerBox";
 
 const Container = styled.div`
-  height: 100vh;
+  min-height: var(--vh);
   background-color: var(--Gray-15);
   position: relative;
 `;
@@ -50,7 +50,7 @@ const Top = styled.div`
 
 const Body = styled.div`
   background-color: var(--Gray-15);
-  padding-bottom: 90px;
+  padding-bottom: 50px;
 `
 
 const Bottom = styled.div`

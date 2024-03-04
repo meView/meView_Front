@@ -6,7 +6,6 @@ import { pageState, questionState } from "../../recoil/AnswerAtom";
 const Container = styled.div`
   width: 100%;
   max-width: 500px;
-  height: 100vh;
   color: var(--Gray-15);
   font-weight: bold;
   position: relative;
@@ -15,21 +14,21 @@ const Container = styled.div`
 const Background = styled.div`
   width: 100%;
   max-width: 500px;
-  height: 100vh;
-  position: relative; 
+  height: var(--vh);
+  position: relative;
   overflow: hidden;
 
   .background {
-    position: absolute; 
+    position: absolute;
     min-width: 100%;
     min-height: 100vh;
     z-index: 0;
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     object-fit: cover;
   }
-`
+`;
 
 const Top = styled.div`
   position: absolute;
@@ -77,7 +76,11 @@ function Start() {
   return (
     <Container>
       <Background>
-        <object className="background" data="./image/answer-background.svg"/>
+        <object
+          className="background"
+          data="./image/answer-background.svg"
+          aria-label="background-imagf"
+        />
       </Background>
       <Top>
         <span className="highlight">{question.user_id}님</span>
@@ -92,9 +95,13 @@ function Start() {
         <span className="subtitle">모든 답변은 익명으로 전달돼요</span>
       </Top>
       <Bottom>
-        <WideButton className="button" text="리뷰 시작하기" onClick={() => {
+        <WideButton
+          className="button"
+          text="리뷰 시작하기"
+          onClick={() => {
             setPage(page + 1);
-          }}/>
+          }}
+        />
       </Bottom>
     </Container>
   );

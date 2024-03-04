@@ -5,8 +5,9 @@ import NavigateBtn from "../../components/question/NavigateBtn";
 import QuestionText from "../../components/question/QuestionText";
 import { answerState } from "../../recoil/QuestionAtom";
 
+
 const QuestionWrapper = styled.div`
-  height: 100vh;
+  height: var(--vh);
   background-color: var(--Gray-15);
   position: relative;
 `;

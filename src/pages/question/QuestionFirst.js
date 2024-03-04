@@ -6,6 +6,7 @@ import NavigateBtn from "../../components/question/NavigateBtn";
 import QuestionText from "../../components/question/QuestionText";
 import { modalState, answerState } from "../../recoil/QuestionAtom";
 import WarningModal from "../../components/question/WarningModal";
+import useCustomVh from "util/useCustomVh";
 
 const GlobalStyle = createGlobalStyle`
   body.modal-active {
@@ -17,7 +18,7 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const QuestionWrapper = styled.div`
-  height: 100vh;
+  height: var(--vh);
   background-color: var(--Gray-15);
   position: relative;
 `;
@@ -149,6 +150,8 @@ function QuestionFirst(props) {
       });
     }
   };
+
+  useCustomVh ();
 
   useEffect(() => {
     setCheckedTeam(choice.answer1 === "team" ? "checked" : "unchecked");

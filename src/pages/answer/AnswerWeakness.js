@@ -5,7 +5,6 @@ import NavigateBtn from "../../components/answer/navigateBtn";
 import { answerState, questionState } from "../../recoil/AnswerAtom";
 
 const Container = styled.div`
-  height: 100vh;
   background-color: var(--Gray-15);
 `;
 
@@ -179,7 +178,7 @@ function AnswerWeakness(props) {
           <object
             className="maincharacter"
             data="/image/character_weakness.svg"
-            alt="character_weakness"
+            aria-label="character_weakness"
           />
           <Chips>
             <img

@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { answerState, pageState } from "../../recoil/AnswerAtom";
+import { pageState } from "../../recoil/AnswerAtom";
 import styled from "styled-components";
 
 const Modal = styled.div`
@@ -49,6 +49,7 @@ const Bottom = styled.div`
   flex-direction: row;
   height: 56px;
   font-weight: bold;
+  cursor: pointer;
   .no {
     background-color: var(--Gray-13);
     color: var(--Gray-01);
@@ -76,9 +77,8 @@ const Bottom = styled.div`
 `;
 
 function WarningModal(props) {
-  const [modal, setModal] = useRecoilState(props.modalstate);
-  const [answer, setAnswer] = useRecoilState(answerState);
-  const [page, setPage] = useRecoilState(pageState);
+  const [, setModal] = useRecoilState(props.modalstate);
+  const [, setPage] = useRecoilState(pageState);
 
   return (
     <Modal>

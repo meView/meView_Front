@@ -4,14 +4,14 @@ import WideButton from 'util/WideButton'
 
 const Container = styled.div`
   width: 100%;
+  height: var(--vh);
   max-width: 500px;
-  height: 100vh;
 `
 
 const Background = styled.div`
   width: 100%;
   max-width: 500px;
-  height: 100vh;
+  height: var(--vh);
   position: relative; 
   overflow: hidden;
 
@@ -59,6 +59,7 @@ const Body = styled.div`
 const Bottom = styled.div`
   position: fixed;
   bottom: 24px;
+
   width: 100%;
   max-width: 500px;
   .button {
@@ -72,7 +73,7 @@ function AnswerFinish(props) {
   return (
     <Container>
       <Background>
-        <object className="background" data="./image/answer-finish-background.svg"/>
+        <object className="background" data="./image/answer-finish-background.svg" aria-label='answer-finish'/>
       </Background>
       <Top>
         <div className="progress-bar">

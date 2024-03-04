@@ -62,6 +62,7 @@ const Bottom = styled.div`
     &:hover {
       background-color: var(--Hover);
     }
+    
   }
   .yes {
     background-color: var(--primary);
@@ -78,7 +79,7 @@ const Bottom = styled.div`
 `;
 
 function WarningModal(props) {
-  const [modal, setModal] = useRecoilState(props.modalstate);
+  const [, setModal] = useRecoilState(props.modalstate);
   const navigate = useNavigate();
 
   return (

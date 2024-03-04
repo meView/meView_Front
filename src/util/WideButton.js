@@ -11,6 +11,7 @@ const Btn = styled.div`
   margin-left: 20px;
   margin-right: 20px;
   width: ${props => props.width};
+  cursor: pointer;
   
   &:hover {
     background-color: var(--Hover-02);
