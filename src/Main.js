@@ -23,11 +23,8 @@ function Main() {
           <Route path="mypage" element={<Mypage />} />
           <Route path="question" element={<Question />} />
           <Route path="answer" element={<Answer />} />
-          <Route path="meview" element={<Outlet />}>
-            <Route path="strength" element={<MeviewPage />} />
-            <Route path="weakness" element={<MeviewPage />} />
-            <Route path="chipreview" element={<MeviewChipReview />} />
-          </Route>
+          <Route path="meview" element={<MeviewPage />} />
+          <Route path="meview/chipreview" element={<MeviewChipReview />} />
           <Route path="meview/projects" element={<MeviewProject />} />
           <Route
             path="meview/projectreview"

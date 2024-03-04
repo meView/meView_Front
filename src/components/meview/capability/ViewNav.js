@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { useNavigate, useLocation } from "react-router-dom";
+
 
 const Container = styled.div`
   margin-top: 24px;
@@ -61,18 +62,19 @@ function ViewNav() {
   };
 
   useEffect(() => {
-    const path = window.location.pathname;
-    setActiveMenu(path.includes("projects") ? "projects" : "skills");
+    setActiveMenu(
+      location.pathname.includes("projects") ? "projects" : "skills"
+    );
     setDisableTransition(true);
     const timeoutId = setTimeout(() => setDisableTransition(false), 50);
     return () => clearTimeout(timeoutId);
-  }, [window.location.pathname]);
+  }, [location.pathname]);
 
   return (
     <Container>
       <View>
         <StyledP
-          onClick={() => handleNavigation("/meview/strength", "skills")}
+          onClick={() => handleNavigation("/meview", "skills")}
           onMouseEnter={() => setHoveredMenu("skills")}
           onMouseLeave={() => setHoveredMenu(null)}
           $isActive={activeMenu === "skills"}

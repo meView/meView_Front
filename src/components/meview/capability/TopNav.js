@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
@@ -89,12 +89,11 @@ function TopNav() {
   };
 
   useEffect(() => {
-    const path = window.location.pathname;
-    setActiveMenu(path.includes("meview") ? "meview" : "home");
+    setActiveMenu(location.pathname.includes("meview") ? "meview" : "home");
     setDisableTransition(true);
     const timeoutId = setTimeout(() => setDisableTransition(false), 50);
     return () => clearTimeout(timeoutId);
-  }, [window.location.pathname]);
+  }, [location.pathname]);
 
   return (
     <Container>
@@ -113,7 +112,7 @@ function TopNav() {
             <p className="button-text">홈</p>
           </ButtonNav>
           <ButtonNav
-            onClick={() => handleNavigate("/meview/strength", "meview")}
+            onClick={() => handleNavigate("/meview", "meview")}
             onMouseEnter={() => setHoveredMenu("meview")}
             onMouseLeave={() => setHoveredMenu(null)}
             $isactive={activeMenu === "meview"}

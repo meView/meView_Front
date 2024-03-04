@@ -6,6 +6,14 @@ const { persistAtom } = recoilPersist({
   key: "localStorage", //원하는 key 값 입력
   storage: localStorage,
 });
+
+export const isStrengthActiveState = atom({
+  key: "isStrengthActiveState", // 고유한 키
+  default: "strength",
+  effects_UNSTABLE: [persistAtom],
+});
+
+
 // 강점 + 약점 칩 선택 정보 저장
 export const selectedChipInfoState = atom({
   key: "selectedChipInfoState",
@@ -37,4 +45,5 @@ export const nicknameState = atom({
 export const selectedStrengthState = atom({
   key: "selectedStrengthState",
   default: "Strength",
+  effects_UNSTABLE: [persistAtom],
 });

@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import InformCardBottom from "../../../util/InformCardBottom";
 import { useRecoilState } from "recoil";
 import { imageLoadingState } from "recoil/ProjectListAtom";
+import { isStrengthActiveState } from "recoil/ProjectListAtom";
 
 const Container = styled.div`
   display: flex;
@@ -58,29 +59,26 @@ const StyledButton = styled.button`
 function BodySelect({ totalStrength, totalWeakness }) {
   const navigate = useNavigate();
   const location = useLocation();
-  const [imagesLoaded] = useRecoilState(imageLoadingState);
+  const [isStrengthActive, setIsStrengthActive] = useRecoilState(
+    isStrengthActiveState
+  );
 
-  const handleNavigate = (path) => {
-    if (imagesLoaded) {
-      navigate(path);
-    }
+  const handleNavigate = (strengthStatus) => {
+    setIsStrengthActive(strengthStatus);
   };
-
-  const isStrengthActive = location.pathname === "/meview/strength";
-  const isWeaknessActive = location.pathname === "/meview/weakness";
 
   const noReviewMessage = "질문지를 생성하고 리뷰를 받아봐요 :)";
   const subReviewMessage = "질문지 결과에 따라서 강약점을 모아서 보여드려요";
 
   let mainMessage = "리뷰를 통해 나만의 유일무이한 강점을 발굴해보세요 ;)";
   let subMessage = "역량 칩을 누르면 역량별 리뷰를 모아볼 수 있어요";
-  if (totalStrength === 0 && isStrengthActive) {
+  if (totalStrength === 0 && isStrengthActive === "strength") {
     mainMessage = noReviewMessage;
     subMessage = subReviewMessage;
-  } else if (totalWeakness === 0 && isWeaknessActive) {
+  } else if (totalWeakness === 0 && isStrengthActive === "weakness") {
     mainMessage = noReviewMessage;
     subMessage = subReviewMessage;
-  } else if (isWeaknessActive) {
+  } else if (isStrengthActive === "strength") {
     mainMessage = "약점은 극복하면 그만! 주먹 불끈쥐고 강점으로 만들어봐요";
   }
 
@@ -89,15 +87,15 @@ function BodySelect({ totalStrength, totalWeakness }) {
       <Container>
         <ButtonContainer>
           <StyledButton
-            $isActive={isStrengthActive}
-            onClick={() => handleNavigate("/meview/strength")}
+            $isActive={isStrengthActive === "strength"}
+            onClick={() => handleNavigate("strength")}
           >
             <span className="button-text">내 강점</span>
             <span className="button-text2"> +{totalStrength}</span>
           </StyledButton>
           <StyledButton
-            $isActive={isWeaknessActive}
-            onClick={() => handleNavigate("/meview/weakness")}
+            $isActive={isStrengthActive === "weakness"}
+            onClick={() => handleNavigate("weakness")}
           >
             <span className="button-text">내 약점</span>
             <span className="button-text2"> +{totalWeakness}</span>

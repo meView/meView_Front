@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import BodySelect from "./BodySelect";
-import { useSetRecoilState, useRecoilState } from "recoil";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useSetRecoilState, useRecoilState, useRecoilValue } from "recoil";
+import { useNavigate } from "react-router-dom";
 import { useQuery } from "react-query";
 import { getStrength, getWeakness } from "../../../api/Meview_API";
 import { selectedChipInfoState } from "../../../recoil/ProjectListAtom";
 import { useEffect } from "react";
 import { imageLoadingState } from "../../../recoil/ProjectListAtom";
+import { isStrengthActiveState } from "recoil/ProjectListAtom";
 
 const Container = styled.div`
   display: flex;
@@ -161,12 +162,11 @@ const keyMapping = {
 function BodyCharacter() {
   const setChipInfo = useSetRecoilState(selectedChipInfoState);
   const [imagesLoaded, setImagesLoaded] = useRecoilState(imageLoadingState);
-  const location = useLocation();
   const navigate = useNavigate();
 
-  const isStrengthActive = location.pathname === "/meview/strength";
+  const isStrengthActive = useRecoilValue(isStrengthActiveState);
 
-  const character_strength = isStrengthActive
+  const character_strength = isStrengthActive==='strength'
     ? "character_strength"
     : "character_weakness";
 
@@ -179,19 +179,17 @@ function BodyCharacter() {
     imageUrls.push(`/image/${character_strength}.svg`);
     let loadedImages = 0;
 
-    // 각 이미지에 대해 Image 인스턴스를 생성하고 로드 완료 시 로드된 이미지 수를 업데이트
     imageUrls.forEach((url) => {
       const img = new Image();
       img.onload = () => {
         loadedImages++;
-        // 모든 이미지가 로드되었는지 확인
         if (loadedImages === imageUrls.length) {
           setImagesLoaded(true);
         }
       };
       img.src = url;
     });
-  }, [character_strength]);
+  }, [character_strength, setImagesLoaded]);
 
   // api 연동
   const {
@@ -222,7 +220,7 @@ function BodyCharacter() {
     (total, currentValue) => total + currentValue,
     0
   );
-  const isstrength = isStrengthActive ? strength : weakness;
+  const isstrength = isStrengthActive==='strength' ? strength : weakness;
 
   const handleChipClick = (chipName) => {
     const ChipInfo = {
@@ -231,7 +229,7 @@ function BodyCharacter() {
     };
 
     setChipInfo(ChipInfo);
-    navigate("../chipreview");
+    navigate("./chipreview");
   };
 
   if (!imagesLoaded) {

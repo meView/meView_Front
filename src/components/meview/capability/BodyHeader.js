@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { useLocation } from "react-router-dom";
+import { isStrengthActiveState } from "recoil/ProjectListAtom";
+import { useRecoilValue } from "recoil";
 
 const StyledBox = styled.div`
   position: relative;
@@ -32,11 +34,11 @@ const StyledBox = styled.div`
 
 function BodyHeader() {
   const location = useLocation();
-  const isStrengthActive = location.pathname === "/meview/strength";
+  const isStrengthActive = useRecoilValue(isStrengthActiveState);
 
-  const headerText = isStrengthActive ? "강점" : "약점";
-  const emoji = isStrengthActive ? "💪🏻" : "✊🏻";
-  const ending = isStrengthActive ? "은!" : "은..!";
+  const headerText = isStrengthActive==='strength' ? "강점" : "약점";
+  const emoji = isStrengthActive==='strength' ? "💪🏻" : "✊🏻";
+  const ending = isStrengthActive==='strength' ? "은!" : "은..!";
 
   return (
     <StyledBox>

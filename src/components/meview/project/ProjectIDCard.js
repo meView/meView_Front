@@ -23,6 +23,7 @@ const NickName = styled.div`
     right: 0;
     cursor: pointer;
   }
+
 `;
 
 function ProjectIDCard({ nickname, reviews }) {
