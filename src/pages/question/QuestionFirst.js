@@ -6,7 +6,6 @@ import NavigateBtn from "../../components/question/NavigateBtn";
 import QuestionText from "../../components/question/QuestionText";
 import { modalState, answerState } from "../../recoil/QuestionAtom";
 import WarningModal from "../../components/question/WarningModal";
-import useCustomVh from "util/useCustomVh";
 
 const GlobalStyle = createGlobalStyle`
   body.modal-active {
@@ -130,9 +129,11 @@ function QuestionFirst(props) {
   );
   /* 뒤로가기 버튼 - 모달 */
   const [modal, setModal] = useRecoilState(modalState);
-  
+
   /* 답변 선택하지 않았을 때 버튼 disabled */
-  const [disabled, setDisabled] = useState(choice.answer1 === "" ? true : false);
+  const [disabled, setDisabled] = useState(
+    choice.answer1 === "" ? true : false
+  );
 
   const handleAnswer = (number) => {
     setDisabled(false);
@@ -151,7 +152,8 @@ function QuestionFirst(props) {
     }
   };
 
-  useCustomVh ();
+ 
+
 
   useEffect(() => {
     setCheckedTeam(choice.answer1 === "team" ? "checked" : "unchecked");
@@ -231,7 +233,7 @@ function QuestionFirst(props) {
             </div>
           </Top>
           <Bottom>
-            <NavigateBtn isNextDisabled={disabled}/>
+            <NavigateBtn isNextDisabled={disabled} />
           </Bottom>
         </QuestionWrapper>
       </div>

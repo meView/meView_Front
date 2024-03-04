@@ -1,12 +1,14 @@
+import { useRecoilValue } from "recoil";
 import QuestionFirst from "./QuestionFirst";
-import { pageState } from "../../recoil/QuestionAtom";
 import QuestionSecond from "./QuestionSecond";
 import QuestionThird from "./QuestionThird";
 import QuestionFinish from "./QuestionFinish";
-import { useRecoilValue } from "recoil";
+import { pageState } from "recoil/QuestionAtom";
+import usePreventRefresh from "util/usePreventRefresh";
 
 function Question() {
   const page = useRecoilValue(pageState);
+  usePreventRefresh(page !== 4);
 
   return (
     <>

@@ -79,8 +79,8 @@ const Bottom = styled.div`
 `;
 
 function WarningModal(props) {
-  const [modal, setModal] = useRecoilState(props.modalstate);
-  const [answer, setAnswer] = useRecoilState(answerState);
+  const [, setModal] = useRecoilState(props.modalstate);
+  const [, setAnswer] = useRecoilState(answerState);
   const navigate = useNavigate();
 
   return (

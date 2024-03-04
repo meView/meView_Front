@@ -65,7 +65,6 @@ const ChipContainer = styled.div`
         border-right: 4px solid ${keyColors[keyType]};
       `
       : ""}
-
   .chipimg {
     padding-right: 4px;
   }
@@ -77,9 +76,11 @@ const ChipContainer = styled.div`
     color: ${({ keyType }) => keyColors[keyType]};
     font-weight: bold;
   }
+
+  transition: transform 0.2s;
   // hover -> 칩의 개수가 0 이상일때만 크기 1.1 증가 + 0.3초 동안 애니메이션
   &:hover {
-    ${({ value }) => value > 0 && "transform: scale(1.1); transition: 0.2s;"}
+    ${({ value }) => value > 0 && "transform: scale(1.05);"}
   }
 
   .valueStyle {
@@ -275,7 +276,8 @@ function BodyCharacter() {
           })}
         </Chips>
       </Container>
-      <BodySelect totalStrength={totalStrength} totalWeakness={totalWeakness} /> /
+      <BodySelect totalStrength={totalStrength} totalWeakness={totalWeakness} />{" "}
+      /
       <PaddingBottom />
     </>
   );
