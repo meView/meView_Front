@@ -3,13 +3,23 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 
 const Container = styled.div`
-  display: inline-flex;
+  display: flex;
+  max-width: 500px;
+  width: 100%; 
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   flex-direction: column;
+
+`;
+
+const Position = styled.div`
+  display: flex;
+  position: fixed;
+  flex-direction: column;
+  align-items: center;
+  max-width: 500px;
   width: 100%;
-  height: 50%;
-  cursor: pointer;
+  bottom: 0px;
 
   .tooltip {
     margin: 0 0 6px 20px;
@@ -79,15 +89,21 @@ function Login() {
 
   return (
     <Container>
-      <img className="tooltip" alt="tool_tip" src="/image/tooltip.svg" />
-      <button className="button-img" onClick={kakakologinHandler}>
-        <img className="imglogin" alt="kakao" src="/image/kakao-button.svg" />
-      </button>
+      <Position>
+        <img className="tooltip" alt="tool_tip" src="/image/tooltip.svg" />
+        <button className="button-img" onClick={kakakologinHandler}>
+          <img className="imglogin" alt="kakao" src="/image/kakao-button.svg" />
+        </button>
 
-      <button className="button-img">
-        <img className="imglogin" alt="google" src="/image/google-button.svg" />
-      </button>
-      <div className="marginbottom"> </div>
+        <button className="button-img">
+          <img
+            className="imglogin"
+            alt="google"
+            src="/image/google-button.svg"
+          />
+        </button>
+        <div className="marginbottom"> </div>
+      </Position>
     </Container>
   );
 }
