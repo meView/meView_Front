@@ -1,12 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import QuestionText from "../../components/question/QuestionText";
 import { answerState, pageState } from "../../recoil/QuestionAtom";
 import WideButton from "../../util/WideButton";
 import { postQuestion } from "api/Question_API";
 import { useMutation } from "react-query";
+import Toast from "util/Toast";
 
 const QuestionWrapper = styled.div`
   height: 100vh;
@@ -64,8 +65,19 @@ const Top = styled.div`
     cursor: pointer;
   }
 `;
+const Body = styled.div`
+  position: absolute;
+  width: 100%;
+  height: calc(100vh - 286px);
+  top: 206px;
+  .toast {
+    position: absolute;
+    width: 100%;
+    bottom: 20px;
+  }
+`
 const Bottom = styled.div`
-  height: 88px;
+  height: 80px;
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -77,6 +89,7 @@ function QuestionFourth(props) {
   const navigate = useNavigate();
   const [answer, setAnswer] = useRecoilState(answerState);
   const [, setPage] = useRecoilState(pageState);
+  const [showToast, setShowToast] = useState(false);
 
   // react-query 사용
   const questionData = {
@@ -135,8 +148,17 @@ function QuestionFourth(props) {
           description={"링크를 복사해서 지인에게 리뷰를 요청해보세요!"}
         />
       </Top>
+      <Body>
+        <div className="toast">
+          {showToast && <Toast text="질문지 링크가 복사 되었어요!" onClick={()=>{
+            setShowToast(false);
+          }}/>}
+        </div>
+      </Body>
       <Bottom>
-        <WideButton text={"질문지 공유하기"} />
+        <WideButton text={"질문지 공유하기"} onClick={()=>{
+          setShowToast(true);
+        }}/>
       </Bottom>
     </QuestionWrapper>
   );

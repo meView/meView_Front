@@ -40,22 +40,30 @@ const Container = styled.div`
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
   }
+  .unselected {
+    &:hover {
+      background-color: var(--Hover);
+    }
+  }
   .selected {
     background-color: var(--primary);
     color: var(--Gray-15);
+    &:hover {
+      background-color: var(--Hover-02);
+    }
   }
 `;
 
 function Segment2Btn(props) {
-  const [team, setTeam] = useState("");
-  const [friend, setFriend] = useState("");
+  const [team, setTeam] = useState(props.target === "team" ? "selected" : "unselected");
+  const [friend, setFriend] = useState(props.target === "friend" ? "selected" : "unselected");
 
   useEffect(() => {
     if (props.target === "team") {
       setTeam("selected");
-      setFriend("");
+      setFriend("unselected");
     } else if (props.target === "friend") {
-      setTeam("");
+      setTeam("unselected");
       setFriend("selected");
     }
   }, [props.target]);

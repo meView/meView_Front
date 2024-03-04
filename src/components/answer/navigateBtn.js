@@ -29,6 +29,11 @@ const StyledButton = styled.button`
   line-height: 56px;
   border: none; 
   cursor: ${({ $isDisabled }) => ($isDisabled ? "not-allowed" : "pointer")};
+
+  &:hover {
+    background-color : ${({ $isDisabled }) =>
+    $isDisabled ?  "var(--Gray-14)" : "var(--Hover-02)"};
+  }
 `;
 
 function NavigateBtn({ isNextDisabled }) {
