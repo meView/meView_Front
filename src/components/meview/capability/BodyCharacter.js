@@ -212,6 +212,8 @@ function BodyCharacter() {
   if (isErrorStrength || isErrorWeakness) {
     return <div>An error has occurred: ' + error.message</div>;
   }
+  console.log(strength);
+  console.log(weakness);
 
   //칩 별 총 개수
   const totalStrength = Object.values(strength).reduce(

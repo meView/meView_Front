@@ -1,14 +1,17 @@
 import axios from "axios";
 
-// 토큰 있을 때 ->
+// // 토큰 있을 때 ->
+// const url_getStrength = "http://meview.store/meview/capability/strength";
+// const access_token ="";
+
 // export const getStrength = async () => {
-//   const response = await axios.get(url, {
+//   const response = await axios.get(url_getStrength, {
 //     headers: {
 //       Authorization: `Bearer ${access_token}`,
 //     },
 //   });
-//   return response.data;
-// }
+//   return response.data.data;
+// };
 
 // meview/capability 내 강점
 const url_getStrength = "http://localhost:3001/strength";
@@ -74,16 +77,16 @@ export const getProjects = async () => {
   return response.data.data;
 };
 
-// 미뷰/project 내 강점 
+// 미뷰/project 내 강점
 const url_getProjectStrength = "http://localhost:3001";
 export const getProjectStrength = async (question_id) => {
   try {
     const response = await axios.get(
       `${url_getProjectStrength}/${question_id}`
-      );
-      return response.data.data;
-    } catch (error) {
-      console.error("Failed to fetch project strength:", error);
+    );
+    return response.data.data;
+  } catch (error) {
+    console.error("Failed to fetch project strength:", error);
     throw error;
   }
 };
@@ -101,4 +104,3 @@ export const getProjectWeakness = async (question_id) => {
     throw error;
   }
 };
-

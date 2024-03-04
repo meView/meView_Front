@@ -9,7 +9,6 @@ const Container = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-
 `;
 
 const Position = styled.div`
@@ -81,7 +80,7 @@ function Login() {
       const data = await response.json();
       console.log(data);
 
-      navigate("/home"); // 응답 성공 후 /home으로 리디렉션
+      navigate("/home"); 
     } catch (error) {
       console.error(error.message);
     }

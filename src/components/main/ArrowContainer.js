@@ -11,26 +11,42 @@ const Container = styled.div`
   width: 100%;
   align-items: center;
   padding: 32px 0 0;
-  .button {
-    padding: 0 20px;
-    img {
-      cursor: pointer;
-    }
+`;
+
+const StyledButton = styled.div`
+  padding: 0 20px;
+`;
+
+const BackButton = styled.div`
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  background-image: url("./image/button-back.svg");
+  &:hover {
+    background-image: url("./image/button-back-hover.svg");
   }
+  transition: background-image 0.1s;
+`;
+
+const ForwardButton = styled.div`
+  width: 48px;
+  height: 48px;
+  cursor: pointer;
+  background-image: url("./image/button-forward.svg");
+  &:hover {
+    background-image: url("./image/button-forward-hover.svg");
+  }
+  transition: background-image 0.1s;
 `;
 
 function ArrowContainer() {
   const [mainpage, setMainpage] = useRecoilState(mainpageState);
 
-
-  // mainpage가 1보다 작을 때는 뒤로가기 버튼을 숨김
   const goBack = () => {
     if (mainpage > 1) {
       setMainpage(mainpage - 1);
     }
   };
-
-  // mainpage가 3보다 클 때는 앞으로가기 버튼을 숨김
   const goForward = () => {
     if (mainpage < 4) {
       setMainpage(mainpage + 1);
@@ -39,24 +55,12 @@ function ArrowContainer() {
 
   return (
     <Container>
-      <div className="button">
-        {mainpage > 1 && (
-          <img
-            src="./image/button-back.svg"
-            alt="left-arrow"
-            onClick={goBack}
-          />
-        )}
-      </div>
-      <div className="button">
-        {mainpage < 4 && (
-          <img
-            src="./image/button-forward.svg"
-            alt="right-arrow"
-            onClick={goForward}
-          />
-        )}
-      </div>
+      <StyledButton>
+        {mainpage > 1 && <BackButton onClick={goBack}></BackButton>}
+      </StyledButton>
+      <StyledButton>
+        {mainpage < 4 && <ForwardButton onClick={goForward}></ForwardButton>}
+      </StyledButton>
     </Container>
   );
 }
