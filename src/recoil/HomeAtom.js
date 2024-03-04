@@ -1,6 +1,6 @@
 import { atom } from 'recoil';
-import questionList from '../api/home/questions'
-import questionDetail from '../api/home/questiondetail'
+// import questionList from '../api/home/questions'
+// import questionDetail from '../api/home/questiondetail'
 /* home/질문지 리스트 */
 export const questionFormListState = atom({
     key: 'questionFormListState',

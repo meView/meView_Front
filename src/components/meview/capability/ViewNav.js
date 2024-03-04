@@ -14,7 +14,6 @@ const View = styled.div`
   max-width: 500px;
   margin-top: 24px;
   border-bottom: 2px solid var(--Gray-14);
-  // 
 `;
 
 const StyledP = styled.p`

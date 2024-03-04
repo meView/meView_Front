@@ -1,8 +1,6 @@
 import styled from "styled-components";
-import { useNavigate, useLocation } from "react-router-dom";
 import InformCardBottom from "../../../util/InformCardBottom";
 import { useRecoilState } from "recoil";
-import { imageLoadingState } from "recoil/ProjectListAtom";
 import { isStrengthActiveState } from "recoil/ProjectListAtom";
 
 const Container = styled.div`
@@ -57,8 +55,6 @@ const StyledButton = styled.button`
 `;
 
 function BodySelect({ totalStrength, totalWeakness }) {
-  const navigate = useNavigate();
-  const location = useLocation();
   const [isStrengthActive, setIsStrengthActive] = useRecoilState(
     isStrengthActiveState
   );

@@ -49,10 +49,11 @@ const ChipContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
   backdrop-filter: blur(5px);
   border-radius: 4px; // 둥근 모서리
-  drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.25));
+  /* drop-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25); */
+  filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.25));
   cursor: ${({ value }) => (value > 0 ? "pointer" : "default")};
 
   ${({ value, keyType }) =>
@@ -68,9 +69,9 @@ const ChipContainer = styled.div`
   .chipimg {
     padding-right: 4px;
   }
-  
+
   .chipValue {
-     display: flex; 
+    display: flex;
     align-items: center;
     justify-content: center;
     color: ${({ keyType }) => keyColors[keyType]};
@@ -81,15 +82,14 @@ const ChipContainer = styled.div`
     ${({ value }) => value > 0 && "transform: scale(1.1); transition: 0.2s;"}
   }
 
-
   .valueStyle {
     padding-left: 4px;
     font-size: 14px;
   }
 
   &.COMMUNICATION {
-  top: 236px;
-  left: 13.6%;
+    top: 236px;
+    left: 13.6%;
   }
   &.EXECUTION {
     top: 228px;
@@ -166,9 +166,10 @@ function BodyCharacter() {
 
   const isStrengthActive = useRecoilValue(isStrengthActiveState);
 
-  const character_strength = isStrengthActive==='strength'
-    ? "character_strength"
-    : "character_weakness";
+  const character_strength =
+    isStrengthActive === "strength"
+      ? "character_strength"
+      : "character_weakness";
 
   useEffect(() => {
     setImagesLoaded(false);
@@ -220,7 +221,7 @@ function BodyCharacter() {
     (total, currentValue) => total + currentValue,
     0
   );
-  const isstrength = isStrengthActive==='strength' ? strength : weakness;
+  const isstrength = isStrengthActive === "strength" ? strength : weakness;
 
   const handleChipClick = (chipName) => {
     const ChipInfo = {
@@ -274,7 +275,7 @@ function BodyCharacter() {
           })}
         </Chips>
       </Container>
-      <BodySelect totalStrength={totalStrength} totalWeakness={totalWeakness} />
+      <BodySelect totalStrength={totalStrength} totalWeakness={totalWeakness} /> /
       <PaddingBottom />
     </>
   );
