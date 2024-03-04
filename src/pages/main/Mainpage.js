@@ -1,13 +1,34 @@
-import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import React, { useState, useEffect, useRef } from "react";
+import styled, { keyframes, css } from "styled-components";
 import { useRecoilValue } from "recoil";
 import { mainpageState } from "recoil/MainpageAtom";
 import Login from "../../components/main/Login";
 import ArrowContainer from "components/main/ArrowContainer";
+import PageDot from "components/main/PageDot";
+
+const slideInLeft = keyframes`
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+`;
+
+const slideInRight = keyframes`
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+`;
 
 const Container = styled.div`
   height: var(--vh);
   display: ${(props) => (props.$isLoading ? "none" : "block")};
+  background-color: ${(props) =>
+    props.$currentPage === 1 ? "var(--mainpg)" : "transparent"};
 `;
 
 const BackGround = styled.div`
@@ -19,19 +40,46 @@ const BackGround = styled.div`
 
   .background {
     position: absolute;
-    min-width: 100%;
-    min-height: 100vh;
+    width: 100%;
+    height: 100vh;
     z-index: 0;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    top: 0;
+    left: 0;
     object-fit: cover;
+    animation: ${(props) =>
+      props.direction === "left"
+        ? css`
+            ${slideInLeft} 0.5s ease-out
+          `
+        : props.direction === "right"
+        ? css`
+            ${slideInRight} 0.5s ease-out
+          `
+        : css`
+              none
+            `};
   }
 `;
 
 function Mainpage() {
   const currentPage = useRecoilValue(mainpageState);
   const [isLoading, setIsLoading] = useState(true);
+  const [direction, setDirection] = useState("none");
+  const prevPageRef = useRef(currentPage);
+  const [key, setKey] = useState(new Date().getTime()); // 키 상태 추가
+
+  useEffect(() => {
+    if (prevPageRef.current < currentPage) {
+      setDirection("right");
+    }
+    if (prevPageRef.current > currentPage) {
+      setDirection("left");
+    }
+
+    prevPageRef.current = currentPage;
+    setKey(new Date().getTime());
+  }, [currentPage]);
+
   const imagePaths = [
     "./image/main-1.svg",
     "./image/main-2.svg",
@@ -64,22 +112,28 @@ function Mainpage() {
   const backgroundImage = `./image/main-${currentPage}.svg`;
 
   return (
-    <Container $isLoading={isLoading}>
+    <Container $isLoading={isLoading} $currentPage={currentPage}>
       {!isLoading && (
         <>
-          <BackGround>
+          <BackGround direction={direction} key={key}>
             <object
-              type="image/svg+xml"
               data={backgroundImage}
               className="background"
               aria-label="main-background"
             ></object>
+            {/* <img
+              src={backgroundImage}
+              className="background"
+              alt="main-background"
+            /> */}
           </BackGround>
           <ArrowContainer />
+          <PageDot currentPage={currentPage} />
           <Login />
         </>
       )}
     </Container>
   );
 }
+
 export default Mainpage;
