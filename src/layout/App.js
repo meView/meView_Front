@@ -6,7 +6,7 @@ import useCustomVh from "util/useCustomVh";
 
 const GlobalStyle = createGlobalStyle`
   body {
-    background-color: #434343;   
+    background-color: #333333;   
   }
 `;
 

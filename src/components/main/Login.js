@@ -1,11 +1,9 @@
 import styled from "styled-components";
-import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 const Container = styled.div`
   display: flex;
   max-width: 500px;
-  width: 100%; 
+  width: 100%;
   align-items: center;
   justify-content: center;
   flex-direction: column;
@@ -45,45 +43,18 @@ const Position = styled.div`
 function Login() {
   const KAKAO_REST_API_KEY = process.env.REACT_APP_KAKAO_REST_API_KEY;
   const KAKAO_REDIRECT_URI = process.env.REACT_APP_KAKAO_REDIRECT_URI;
-  const link = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URI}&response_type=code`;
-  const navigate = useNavigate();
+  const kakaolink = `https://kauth.kakao.com/oauth/authorize?client_id=${KAKAO_REST_API_KEY}&redirect_uri=${KAKAO_REDIRECT_URI}&response_type=code`;
 
-  const kakakologinHandler = () => {
-    window.location.href = link;
+  const GOOGLE_CLIENT_ID = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+  const GOOGLE_REDIRECT_URI = process.env.REACT_APP_GOOGLE_REDIRECT_URI;
+  const googlelink = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${GOOGLE_CLIENT_ID}&redirect_uri=${GOOGLE_REDIRECT_URI}&response_type=code&scope=email profile`;
+
+  const googleloginHandler = () => {
+    window.location.href = googlelink;
   };
 
-  useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search);
-    const code = searchParams.get("code");
-
-    if (code) {
-      sendCodeToServer(code);
-    }
-  }, [navigate]); // useEffect 의존성 배열에 navigate 추가
-
-  const sendCodeToServer = async (code) => {
-    try {
-      const response = await fetch(
-        `http://localhost:4000/auth/kakao_login?code=${code}`,
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("서버로부터 응답을 받는데 실패했습니다.");
-      }
-
-      const data = await response.json();
-      console.log(data);
-
-      navigate("/home"); 
-    } catch (error) {
-      console.error(error.message);
-    }
+  const kakakologinHandler = () => {
+    window.location.href = kakaolink;
   };
 
   return (
@@ -94,7 +65,7 @@ function Login() {
           <img className="imglogin" alt="kakao" src="/image/kakao-button.svg" />
         </button>
 
-        <button className="button-img">
+        <button className="button-img" onClick={googleloginHandler}>
           <img
             className="imglogin"
             alt="google"

@@ -65,7 +65,7 @@ const ButtonNav = styled.button`
         ? "yellow"
         : "var(--Gray-15)"};
     transition: ${({ $disableTransition }) =>
-      $disableTransition ? "none" : "background-color 0.2s ease"};
+      $disableTransition ? "none" : "background-color 0.3s ease"};
   }
 `;
 

@@ -8,6 +8,7 @@ import { selectedChipInfoState } from "../../../recoil/ProjectListAtom";
 import { useEffect } from "react";
 import { imageLoadingState } from "../../../recoil/ProjectListAtom";
 import { isStrengthActiveState } from "recoil/ProjectListAtom";
+import { userAccessTokenState } from "recoil/UserAtom";
 
 const Container = styled.div`
   display: flex;
@@ -164,8 +165,8 @@ function BodyCharacter() {
   const setChipInfo = useSetRecoilState(selectedChipInfoState);
   const [imagesLoaded, setImagesLoaded] = useRecoilState(imageLoadingState);
   const navigate = useNavigate();
-
   const isStrengthActive = useRecoilValue(isStrengthActiveState);
+  const access_token = useRecoilValue(userAccessTokenState);
 
   const character_strength =
     isStrengthActive === "strength"
@@ -194,6 +195,13 @@ function BodyCharacter() {
   }, [character_strength, setImagesLoaded]);
 
   // api 연동
+  // const {
+  //   data: strength,
+  //   isLoading: isLoadingStrength,
+  //   error: isErrorStrength,
+  // } = useQuery(["strength", access_token], () => getStrength(access_token), {
+  //   enabled: !!access_token,
+  // });
   const {
     data: strength,
     isLoading: isLoadingStrength,

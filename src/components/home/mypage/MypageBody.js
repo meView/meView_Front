@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import { userInfoState } from "recoil/UserAtom";
-import LogoutKakao from "components/main/LogoutKakao";
+import Logout from "components/main/Logout";
 
 const Container = styled.div`
   padding: 0 20px;
@@ -38,8 +38,9 @@ function MypageBody() {
         {/* <span className="email"> {useremail} </span> */}
       </Profile>
       <BodyContainer>서비스 소개</BodyContainer>
-      <BodyContainer>로그아웃</BodyContainer>
-      <LogoutKakao />
+      <BodyContainer>
+        <Logout>로그아웃</Logout>
+      </BodyContainer>
     </Container>
   );
 }
