@@ -6,13 +6,13 @@ import { userAccessTokenState, userInfoState } from "recoil/UserAtom";
 
 const RedirectionKakao = () => {
   const code = window.location.search;
+  const server_address = process.env.REACT_APP_SERVER_ADDRESS;
   const navigate = useNavigate();
   const [, setUserAccessToken] = useRecoilState(userAccessTokenState);
   const [, setUserInfo] = useRecoilState(userInfoState);
 
   useEffect(() => {
-    const baseUrl = "http://meview.store";
-    const url = `${baseUrl}/auth/kakao_login${code}`;
+    const url = `${server_address}/auth/kakao_login${code}`;
 
     axios
       .get(url)
@@ -26,7 +26,7 @@ const RedirectionKakao = () => {
       });
   }, [navigate]);
 
-  return <div>로그인 중입니다</div>;
+  return <div></div>;
 };
 
 export default RedirectionKakao;
