@@ -31,7 +31,7 @@ function ProjectCollection() {
   if (!projectData || projectData.length === 0) {
     return (
       <>
-        <NoReview />
+        <NoReview box='288px' />
         <Bottombar />
       </>
     );

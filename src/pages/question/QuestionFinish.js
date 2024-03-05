@@ -9,7 +9,6 @@ import { postQuestion } from "api/Question_API";
 import { useMutation } from "react-query";
 import Toast from "util/Toast";
 import { userAccessTokenState, userInfoState } from "recoil/UserAtom";
-import { postState } from "recoil/QuestionAtom";
 
 const QuestionWrapper = styled.div`
   background-color: var(--Gray-15);
@@ -117,6 +116,7 @@ function QuestionFourth(props) {
   }, []);
 
   const handleCopyLink = async (question_id) => {
+    console.log(`copy link id: ${question_id}`)
     const link = `${process.env.REACT_APP_URL}/answer?user_id=${userInfo.user_id}&question_id=${question_id}`
     try {
       await navigator.clipboard.writeText(link);
