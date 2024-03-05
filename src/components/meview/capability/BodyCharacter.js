@@ -194,24 +194,17 @@ function BodyCharacter() {
     });
   }, [character_strength, setImagesLoaded]);
 
-  // api 연동
-  // const {
-  //   data: strength,
-  //   isLoading: isLoadingStrength,
-  //   error: isErrorStrength,
-  // } = useQuery(["strength", access_token], () => getStrength(access_token), {
-  //   enabled: !!access_token,
-  // });
   const {
     data: strength,
     isLoading: isLoadingStrength,
     error: isErrorStrength,
-  } = useQuery("strength", getStrength);
+  } = useQuery("strength", () => getStrength(access_token));
+
   const {
     data: weakness,
     isLoading: isLoadingWeakness,
     error: isErrorWeakness,
-  } = useQuery("weakness", getWeakness);
+  } = useQuery("weakness", () => getWeakness(access_token));
 
   if (isLoadingStrength || isLoadingWeakness) {
     return <></>;
@@ -220,8 +213,6 @@ function BodyCharacter() {
   if (isErrorStrength || isErrorWeakness) {
     return <div>An error has occurred: ' + error.message</div>;
   }
-  console.log(strength);
-  console.log(weakness);
 
   //칩 별 총 개수
   const totalStrength = Object.values(strength).reduce(

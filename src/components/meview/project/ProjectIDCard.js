@@ -19,11 +19,23 @@ const NickName = styled.div`
   padding: 0 0 6px 0;
   cursor: pointer;
   .arrow {
+    background-image: url("/image/rightarrow.svg");
+    width: 24px;
+    height: 24px;
     position: absolute;
     right: 0;
     cursor: pointer;
   }
-
+  &:hover {
+    .nickname {
+      color: var(--primary);
+    }
+    .arrow {
+      background-image: url("/image/rightarrow_hover2.svg");
+      width: 24px;
+      height: 24px;
+    }
+  }
 `;
 
 function ProjectIDCard({ nickname, reviews }) {
@@ -40,7 +52,7 @@ function ProjectIDCard({ nickname, reviews }) {
     <Container>
       <NickName onClick={handleNickNameClick}>
         <span className="nickname">{nickname}</span>
-        <img className="arrow" src="/image/rightarrow.svg" alt="arrow" />
+        <span className="arrow"></span>
       </NickName>
       {reviews.map((review, index) => (
         <ProjectReviewCard

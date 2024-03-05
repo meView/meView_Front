@@ -39,9 +39,8 @@ const StyledButton = styled.button`
 
   &:hover {
     background-color: ${({ $isStrength }) =>
-      // 256,256,256, 4%로
       $isStrength ? "white" : "rgba(256,256,256,0.04)"};
-    transition: background-color 0.3s ease;
+    transition: background-color 0.2s ease;
   }
 `;
 
@@ -58,6 +57,7 @@ function ProjectSelector() {
     setSelectedStrength("Weakness");
   };
 
+  console.log(selectedStrength);
   return (
     <>
       <Container>

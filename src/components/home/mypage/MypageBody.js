@@ -28,14 +28,14 @@ const BodyContainer = styled.div`
 `;
 
 function MypageBody() {
-  // const userInfo = useRecoilValue(userInfoState);
-  // const useremail = userInfo.user_email;
+  const userInfo = useRecoilValue(userInfoState);
+  const useremail = userInfo.user_email;
 
   return (
     <Container>
       <Profile>
         <img className="profileimg" src="image/profile.svg" alt="profile" />
-        {/* <span className="email"> {useremail} </span> */}
+        <span className="email"> {useremail} </span>
       </Profile>
       <BodyContainer>서비스 소개</BodyContainer>
       <BodyContainer>

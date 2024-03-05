@@ -24,26 +24,31 @@ const StyledBox = styled.div`
 `;
 const Header = styled.div`
   display: flex;
+  align-items: center;
   padding-bottom: 16px;
   border-bottom: 2px solid var(--Gray-13);
   position: relative;
-  align-items: center;
+
   cursor: pointer;
-  .nickname {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--Gray-08);
-    padding-right: 8px;
-  }
+
   .projectname {
     font-size: 20px;
     font-weight: bold;
     color: var(--Gray-01);
     padding-right: 8px;
   }
+  .nickname {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--Gray-08);
+    padding-right: 8px;
+  }
   .arrow {
+    background-image: url("/image/rightarrow.svg");
     position: absolute;
     right: 0;
+    width: 28px;
+    height: 28px;
   }
 
   // 호버시 글씨색 노란색으로
@@ -53,6 +58,11 @@ const Header = styled.div`
     }
     .nickname {
       color: rgba(255, 243, 116, 0.6);
+    }
+    .arrow {
+      background-image: url("/image/rightarrow_hover.svg");
+      width: 28px;
+      height: 28px;
     }
   }
 `;
@@ -74,7 +84,7 @@ function ReviewCard(props) {
         <p className="projectname">{props.title}</p>
         <p className="nickname">•</p>
         <p className="nickname">{props.responder}</p>
-        <img className="arrow" src="/image/rightarrow.svg" alt="arrow" />
+        <p className="arrow"></p>
       </Header>
       <p className="bodycontent">{props.description}</p>
     </StyledBox>
