@@ -98,13 +98,13 @@ function QuestionSecond(props) {
 
   const answer1 = getAnswer.answer1;
   const text =
-    answer1 === "team"
+    answer1 === "TEAM"
       ? "어떤 프로젝트 리뷰를 듣고 싶나요?"
-      : "리뷰 제목을 지어주세요!";
-  const description =
-    answer1 === "team"
-      ? "진행한 프로젝트 명을 써주세요!"
       : "무엇과 관련해서 피드백을 받고 싶으신가요?";
+  const description =
+    answer1 === "TEAM"
+      ? "진행한 프로젝트 명을 써주세요!"
+      : "리뷰 제목을 지어주세요!";
 
   const handleChange = (e) => {
     if (e.target.value.length <= 20) {
