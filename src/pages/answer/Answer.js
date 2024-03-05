@@ -1,6 +1,5 @@
-import { useRecoilValue } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { pageState, questionState } from "../../recoil/AnswerAtom";
-import { questionFormState } from "../../recoil/HomeAtom";
 import AnswerFinish from "./AnswerFinish";
 import AnswerName from "./AnswerName";
 import AnswerStrength from "./AnswerStrength";
@@ -9,29 +8,54 @@ import AnswerWeakness from "./AnswerWeakness";
 import AnswerWeakness2 from "./AnswerWeakness2";
 import Start from "./Start";
 import usePreventRefresh from "util/usePreventRefresh";
+import { useQuery } from "react-query";
+import { useSearchParams } from "react-router-dom";
+import { getAnswerForm } from "api/Answer_API";
+import { useEffect } from "react";
 
 function Answer() {
-  const id = 1;
-  const question = useRecoilValue(questionState);
-  /* 
-    질문지 id에 해당하는 질문지의 type 가져오기 - 질문지 불러오기 api 요청 -> 해당 내용 전역 상태 저장
-    답변 모두 저장 후 -> 답변 작성 api 요청
-  */
+  const [searchParams, ] = useSearchParams();
+  const id = searchParams.get('question_id');
+  const [question, setQuestion] = useRecoilState(questionState);
+
+  const {
+    data: questionForm,
+    isLoading: isLoadingQuestionForm,
+    isError: isErrorQuestionForm,
+  } = useQuery(
+    ["questionForm"],
+    () => getAnswerForm(id),
+  );
+
+  useEffect(() => {
+    if (questionForm !== undefined) {
+      setQuestion({
+        user_id: questionForm.user_id,
+        user_name: questionForm.user.user_nickname,
+        question_target: questionForm.question_target,
+        question_type: questionForm.question_type,
+        question_title: questionForm.question_title
+      })
+    }
+  }, [questionForm])
+
   const type =
-    question.question_type === "strength"
-      ? "strength"
-      : question.question_type === "weakness"
-      ? "weakness"
-      : "both";
+    question.question_type === "STRENGTH"
+      ? "STRENGTH"
+      : question.question_type === "WEAKNESS"
+      ? "WEAKNESS"
+      : "BOTH";
       
   const page = useRecoilValue(pageState);
-
-  const lastPage = type === "strength" ? 4 : type === "weakness" ? 4 : 6;
+  const lastPage = type === "STRENGTH" ? 4 : type === "WEAKNESS" ? 4 : 6;
   usePreventRefresh(page !== lastPage);
+
+  if (isLoadingQuestionForm) return <div></div>;
+  if (isErrorQuestionForm) return <div>Error occurred</div>;
 
   return (
     <>
-      {type === "strength" ? (
+      {type === "STRENGTH" ? (
         page === 0 ? (
           <Start />
         ) : page === 1 ? (
@@ -44,7 +68,7 @@ function Answer() {
           <AnswerFinish progress="100" />
         )
       ) : null}
-      {type === "weakness" ? (
+      {type === "WEAKNESS" ? (
         page === 0 ? (
           <Start />
         ) : page === 1 ? (
@@ -57,7 +81,7 @@ function Answer() {
           <AnswerFinish progress="100" />
         )
       ) : null}
-      {type === "both" ? (
+      {type === "BOTH" ? (
         page === 0 ? (
           <Start />
         ) : page === 1 ? (

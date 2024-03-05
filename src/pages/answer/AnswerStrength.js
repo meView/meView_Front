@@ -80,7 +80,7 @@ const Chips = styled.div`
       top: 296px;
       left: 20%;
     }
-    &.judgement {
+    &.judgment {
       top: 60px;
       left: 48%;
     }
@@ -128,7 +128,7 @@ function AnswerStrength(props) {
     answer.strength.includes("execution") ? "" : "un"
   );
   const [jud, setJud] = useState(
-    answer.strength.includes("judgement") ? "" : "un"
+    answer.strength.includes("judgment") ? "" : "un"
   );
   const [per, setPer] = useState(
     answer.strength.includes("perseverance") ? "" : "un"
@@ -211,11 +211,11 @@ function AnswerStrength(props) {
               }}
             />
             <img
-              className="judgement"
-              src={`/image/judgement-${jud}clicked.svg`}
-              alt="judegment"
+              className="judgment"
+              src={`/image/judgment-${jud}clicked.svg`}
+              alt="judgment"
               onClick={() => {
-                clickChip("judgement");
+                clickChip("judgment");
                 setJud(jud === "un" && count < 3 ? "" : "un");
               }}
             />

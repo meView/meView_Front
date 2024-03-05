@@ -80,7 +80,7 @@ const Chips = styled.div`
       top: 296px;
       left: 20%;
     }
-    &.judgement {
+    &.judgment {
       top: 60px;
       left: 48%;
     }
@@ -128,7 +128,7 @@ function AnswerWeakness(props) {
     answer.weakness.includes("execution") ? "" : "un"
   );
   const [jud, setJud] = useState(
-    answer.weakness.includes("judgement") ? "" : "un"
+    answer.weakness.includes("judgment") ? "" : "un"
   );
   const [per, setPer] = useState(
     answer.weakness.includes("perseverance") ? "" : "un"
@@ -209,11 +209,11 @@ function AnswerWeakness(props) {
               }}
             />
             <img
-              className="judgement"
-              src={`/image/judgement-${jud}clicked.svg`}
-              alt="judgement"
+              className="judgment"
+              src={`/image/judgment-${jud}clicked.svg`}
+              alt="judgment"
               onClick={() => {
-                clickChip("judgement");
+                clickChip("judgment");
                 setJud(jud === "un" && count < 3 ? "" : "un");
               }}
             />

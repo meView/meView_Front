@@ -137,7 +137,7 @@ function StrengthAnswerBox(props) {
   const chip_dictionary = {
     communication: "소통능력",
     observation: "관찰력",
-    judgement: "판단력",
+    judgment: "판단력",
     execution: "실행력",
     friendliness: "친화력",
     listening: "경청능력",
@@ -149,7 +149,7 @@ function StrengthAnswerBox(props) {
       "ex) 상대방이 이해하기 쉽게 의견을 전달하는 능력 덕분에 갈등 없이 프로젝트를 원활하게 진행할 있었어요.",
     observation:
       "ex) 다른 팀원들이 놓치고 있던 중요한 오류를 발견해 준 덕분에 큰 문제 없이 프로젝트를 마칠 수 있었어요.",
-    judgement:
+    judgment:
       "ex) 어려운 과제에 직면했을 때 신속하고 합리적인 결정을 내려준 덕분에 프로젝트를 무사히 마칠 수 있었어요.",
     execution:
       "ex) 생각에 그치지 않고 실제로 행동하고 구현해 내는 능력 덕분에 프로젝트를 성공적으로 마칠 수 있었어요.",

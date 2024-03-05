@@ -67,9 +67,9 @@ function Start() {
   const question = useRecoilValue(questionState);
   const [page, setPage] = useRecoilState(pageState);
   const text2 =
-    question.question_type === "strength"
+    question.question_type === "STRENGTH"
       ? "본인의 강점에 대한 리뷰를 원해요"
-      : question.question_type === "weakness"
+      : question.question_type === "WEAKNESS"
       ? "본인의 약점에 대한 리뷰를 원해요"
       : "본인의 강점과 약점에 대한 리뷰를 원해요";
 
@@ -83,7 +83,7 @@ function Start() {
         />
       </Background>
       <Top>
-        <span className="highlight">{question.user_id}님</span>
+        <span className="highlight">{question.user_name}님</span>
         <span className="text">
           이<br></br>
         </span>

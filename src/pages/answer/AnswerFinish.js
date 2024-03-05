@@ -1,4 +1,9 @@
-import { useNavigate } from 'react-router-dom'
+import { postAnswer } from 'api/Answer_API'
+import { useEffect } from 'react'
+import { useMutation } from 'react-query'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import { useRecoilValue } from 'recoil'
+import { answerState, questionState } from 'recoil/AnswerAtom'
 import styled from 'styled-components'
 import WideButton from 'util/WideButton'
 
@@ -68,7 +73,59 @@ const Bottom = styled.div`
 `
 
 function AnswerFinish(props) {
+  const question = useRecoilValue(questionState);
+  const answerData = useRecoilValue(answerState);
   const navigate = useNavigate();
+  const [searchParams, ] = useSearchParams();
+  const question_id = searchParams.get('question_id');
+  const user_id = searchParams.get('user_id');
+
+  const chip_dictionary = {
+    'judgment': 1,
+    'observation': 2,
+    'listening': 3,
+    'communication': 4,
+    'friendliness': 5,
+    'execution': 6,
+    'perseverance': 7
+  }
+  
+  const mutation = useMutation((postData) => postAnswer(postData), {
+    onSuccess: (data) => {
+      console.log(data);
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
+  // 페이지 로드 시 POST 요청 수행
+  useEffect(() => {
+    let review = []
+    for (let i=0; i < answerData.strength.length; i++) {
+      const pushData = {
+        review_type: "STRENGTH",
+        review_description: answerData.strengthReview[answerData.strength[i]],
+        chip_id: chip_dictionary[answerData.strength[i]]
+      }
+      review.push(pushData)
+    }
+    for (let i=0; i < answerData.weakness.length; i++) {
+      const pushData = {
+        review_type: "WEAKNESS",
+        review_description: answerData.weaknessReview[answerData.weakness[i]],
+        chip_id: chip_dictionary[answerData.weakness[i]]
+      }
+      review.push(pushData)
+    }
+    const postData = {
+      user_id: parseInt(user_id),
+      question_id: parseInt(question_id),
+      response_title: question.question_title,
+      response_responder: answerData.name,
+      review_data: review
+    }
+    mutation.mutate(postData);
+  }, []);
 
   return (
     <Container>

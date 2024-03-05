@@ -137,7 +137,7 @@ function WeaknessAnswerBox(props) {
   const chip_dictionary = {
     communication: "소통능력",
     observation: "관찰력",
-    judgement: "판단력",
+    judgment: "판단력",
     execution: "실행력",
     friendliness: "친화력",
     listening: "경청능력",
@@ -149,7 +149,7 @@ function WeaknessAnswerBox(props) {
       "ex) 말하려는 바가 명료하지 않아서 이해가 어려울 때가 있어요. 생각을 한번 정리한 후에 이야기해주면 좋겠어요.",
     observation:
       "ex) 큰 그림은 잘 그리지만 디테일을 놓칠 때가 있어요. 사소한 부분도 발견해 내는 관찰력을 기른다면 더 나은 인재로 성장할 거예요. ",
-    judgement:
+    judgment:
       "ex) 완벽을 추구하다 보니 중요한 순간에 결정을 못 할 때가 있어 아쉬웠어요. 신속하게 판단하는 능력을 기른다면 더 나은 인재로 성장할 거예요. ",
     execution:
       "ex) 실제로 행동하지 않아서 방치되는 아이디어가 많아 아쉬워요. 실행력을 기른다면 더 나은 인재로 성장할 거예요. ",

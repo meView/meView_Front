@@ -1,5 +1,4 @@
 import { atom } from 'recoil';
-import questionForm from '../api/answer/answerdetail'
 
 export const modalState = atom({
     key: 'answerModalState',
@@ -14,7 +13,9 @@ export const pageState = atom({
 /* 질문지 불러오기 */
 export const questionState = atom({
   key: 'questionIdForm',
-  default: questionForm.data,
+  default: {
+
+  },
 })
 
 /* 답변 저장 */
