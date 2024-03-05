@@ -8,7 +8,7 @@ import NavigateBtn from './NavigateBtn';
 import Segment2Btn from './Segment2Btn';
 import Segment3Btn from './Segment3Btn';
 import { useQuery, useMutation } from "react-query";
-import { getQuestionDetail, getQuestionUpdate } from "../../../api/Home_API";
+import { getQuestionDelete, getQuestionDetail, getQuestionUpdate } from "../../../api/Home_API";
 import { userAccessTokenState } from 'recoil/UserAtom';
 
 const slideUp = keyframes`
@@ -172,7 +172,7 @@ function BottomSheet() {
   const [bottomsheet, setBottomsheet] = useRecoilState(bottomSheetState);
   const [isOpen, setIsOpen] = useState(bottomsheet);
   const [question, setQuestion] = useRecoilState(questionFormState);
-  const [, setQuestionList] = useRecoilState(questionFormListState);
+  const [questionList, setQuestionList] = useRecoilState(questionFormListState);
   const [isFocused, setIsFocused] = useState(false);
   const question_id = useRecoilValue(questionIdState);
   const [inputText, setInputText] = useState(question.question_title);
@@ -246,26 +246,44 @@ function BottomSheet() {
   }, [target, inputText, type])
 
   /* 수정하기 버튼 눌렀을 때 내용 변경 */
-  const mutation = useMutation((newData) => getQuestionUpdate(newData), {
-    onSuccess: data => {
-      setQuestion(data);
+  const updateMutation = useMutation((newData) => getQuestionUpdate(newData, question_id, access_token), {
+    onSuccess: (data) => {
+      const updateQuestion = (question_id, newQuestion) => {
+        setQuestionList(questionList.map(question => 
+          question.question_id === question_id ? newQuestion : question
+        ));
+      };
+      const newQuestion = {
+        question_id: data.question_id,
+        question_title: data.question_title,
+        question_type: data.question_type,
+        question_target: data.question_target,
+      }
+      updateQuestion(data.question_id, newQuestion);
     },
     onError: (error) => {
       console.error(error);
     },
   });
   const handleUpdate = () => {
-    mutation.mutate({
-      id: question_id,
-      target: target,
-      type: type,
-      title: inputText,
+    updateMutation.mutate({
+      question_target: target,
+      question_type: type,
+      question_title: inputText,
     });
   };
 
   /* 삭제하기 눌렀을 때 삭제 */
+  const deleteMutation = useMutation(() => getQuestionDelete(question_id, access_token), {
+    onSuccess: (data) => {
+      setQuestionList((questions) => questions.filter((question) => question.question_id !== question_id));
+    },
+    onError: (error) => {
+      console.error(error);
+    },
+  });
   const handleDelete = () => {
-    setQuestionList((questions) => questions.filter((question) => question.question_id !== question_id));
+    deleteMutation.mutate();
   }
 
   const [showToast, setShowToast] = useRecoilState(modifiedToastState);
