@@ -5,6 +5,7 @@ import NoReview from "../../components/home/NoReview";
 import ReviewList from "../../components/home/ReviewList";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { bottomSheetState, questionFormListState } from "../../recoil/HomeAtom";
+import { userAccessTokenState } from "recoil/UserAtom";
 import BottomSheet from "../../components/home/bottomsheet/BottomSheet";
 import { useEffect } from "react";
 import { useQuery } from "react-query";
@@ -33,6 +34,7 @@ function Myhome() {
   /* 전역 상태에 저장해둔 생성 질문지 가져오기 */
   const [reviewList, setReviewList] = useRecoilState(questionFormListState);
   const showBottomSheet = useRecoilValue(bottomSheetState);
+  const access_token = useRecoilValue(userAccessTokenState);
 
   useEffect(() => {
     if (showBottomSheet) {
@@ -49,7 +51,7 @@ function Myhome() {
     isError: isErrorQuestions,
   } = useQuery(
     ["questions"],
-    () => getQuestions(),
+    () => getQuestions(access_token),
   );
 
   useEffect(() => {
