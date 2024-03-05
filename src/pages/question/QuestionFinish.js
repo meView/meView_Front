@@ -95,9 +95,9 @@ function QuestionFourth(props) {
 
   // react-query 사용
   const questionData = {
-    question_target: answer.answer1, // ["team" or "friend"]
+    question_target: answer.answer1, // ["TEAM" or "FRIEND"]
     question_title: answer.answer2, // 질문지 제목
-    question_type: answer.answer3, // ["strength" or "weakness" or "both"]
+    question_type: answer.answer3, // ["STRENGTH" or "WEAKNESS" or "BOTH"]
   };
 
   const mutation = useMutation(() => postQuestion(questionData, access_token), {

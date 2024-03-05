@@ -13,9 +13,13 @@ export const getQuestions = async (access_token) => {
 
 // 질문지 상세보기
 const url_getQuestionDetail = `${process.env.REACT_APP_SERVER_ADDRESS}/home/question`;
-export const getQuestionDetail = async (question_id) => {
+export const getQuestionDetail = async (question_id, access_token) => {
   try {
-    const response = await axios.get(`${url_getQuestionDetail}/${question_id}`);
+    const response = await axios.get(`${url_getQuestionDetail}/${question_id}`, {
+      headers : {
+        'Authorization' : `Bearer ${access_token}`
+      }
+    });
     return response.data.data;
   } catch (error) {
     console.error("Failed to fetch question detail:", error);
