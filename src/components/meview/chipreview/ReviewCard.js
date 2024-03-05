@@ -15,7 +15,6 @@ const StyledBox = styled.div`
     color: var(--Gray-05);
     padding: 16px 0 0;
   }
-  // 왜 모바일에서 이 bodycontent만 글씨 크기가 다르게 나올까요 ㅠㅠㅠㅠㅠ 임시로 해결했지만 원인을 모르겠어요
   @media (max-width: 768px) {
     .bodycontent {
       font-size: 13.5px;
@@ -81,7 +80,12 @@ function ReviewCard(props) {
   return (
     <StyledBox>
       <Header onClick={handleNickNameClick}>
-        <p className="projectname">{props.title}</p>
+        <p className="projectname">
+          {props.title.length > 10
+            ? `${props.title.substring(0, 10)}...`
+            : props.title}
+        </p>
+
         <p className="nickname">•</p>
         <p className="nickname">{props.responder}</p>
         <p className="arrow"></p>
