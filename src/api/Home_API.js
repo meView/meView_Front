@@ -27,36 +27,34 @@ export const getQuestionDetail = async (question_id, access_token) => {
   }
 };
 
-// 질문지 삭제하기
-const url_getDelete = "http://localhost:3001/question";
-export const getQuestionDelete = async () => {
+// 질문지 수정하기
+const url_getUpdate = `${process.env.REACT_APP_SERVER_ADDRESS}/home/question/update`;
+export const getQuestionUpdate = async (data, question_id, access_token) => {
   try {
-    const response = await axios.put(`${url_getDelete}`, {
-      is_used : false
-    });
+    const response = await axios.put(`${url_getUpdate}/${question_id}`, data, {
+      headers : {
+        'Authorization' : `Bearer ${access_token}`
+      }
+    })
+    return response.data.data;
   } catch (error) {
     console.error("Failed to fetch question detail:", error);
     throw error;
   }
 };
-// 질문지 수정하기
-const url_getUpdate = "http://localhost:3001/question";
-export const getQuestionUpdate = async (data) => {
+
+// 질문지 삭제하기
+const url_getDelete = `${process.env.REACT_APP_SERVER_ADDRESS}/home/question/delete`;
+export const getQuestionDelete = async (question_id, access_token) => {
   try {
-    const response = await axios.put(`${url_getUpdate}`, {
-        id: data.id,
-        success: true,
-        code: "OK",
-        data: {
-          question_id: data.id,
-          question_title: data.title,
-          question_type: data.type,
-          question_target: data.target
-        },
-        statusCode: 200
+    const response = await axios.put(`${url_getDelete}/${question_id}`, {
+      is_used: false
+    }, {
+      headers : {
+        'Authorization' : `Bearer ${access_token}`
       }
-    )
-    return response.data.data;
+    });
+    return response.data.data
   } catch (error) {
     console.error("Failed to fetch question detail:", error);
     throw error;
