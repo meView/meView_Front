@@ -1,17 +1,21 @@
 import axios from "axios";
 
 // 홈/질문지 불러오기
-const url_getQuestions = "http://localhost:3001/questions";
-export const getQuestions = async () => {
-  const response = await axios.get(url_getQuestions);
+const url_getQuestions = `${process.env.REACT_APP_SERVER_ADDRESS}/home/questions`;
+export const getQuestions = async (access_token) => {
+  const response = await axios.get(url_getQuestions, {
+    headers : {
+        'Authorization' : `Bearer ${access_token}`
+    }
+  });
   return response.data.data;
 };
 
 // 질문지 상세보기
-const url_getQuestionDetail = "http://localhost:3001/question";
-export const getQuestionDetail = async () => {
+const url_getQuestionDetail = `${process.env.REACT_APP_SERVER_ADDRESS}/home/question`;
+export const getQuestionDetail = async (question_id) => {
   try {
-    const response = await axios.get(`${url_getQuestionDetail}`);
+    const response = await axios.get(`${url_getQuestionDetail}/${question_id}`);
     return response.data.data;
   } catch (error) {
     console.error("Failed to fetch question detail:", error);

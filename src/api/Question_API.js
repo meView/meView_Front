@@ -1,19 +1,11 @@
 import axios from "axios";
 
-
-// export const postQuestion = async (data, accessToken) => {
-//   const response = await axios.post(url, data, {
-//     headers: {
-//       Authorization: `Bearer ${accessToken}`,
-//     },
-//   });
-//   return response.data;
-// };
-
-
-const url_postQuestion = "http://localhost:3001/create";
-
-export const postQuestion = async (data) => {
-  const response = await axios.post(url_postQuestion, data);
+const url_postQuestion = `${process.env.REACT_APP_SERVER_ADDRESS}/question/create`;
+export const postQuestion = async (data, access_token) => {
+  const response = await axios.post(url_postQuestion, data, {
+		headers : {
+			'Authorization' : `Bearer ${access_token}`
+		}
+  });
   return response.data;
 };
