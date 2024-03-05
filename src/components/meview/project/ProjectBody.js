@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import ProjectIDCard from "./ProjectIDCard";
 import { useRecoilValue } from "recoil";
 import { selectedStrengthState } from "../../../recoil/ProjectListAtom";
@@ -5,6 +6,11 @@ import { useQuery } from "react-query";
 import { getProjectStrength, getProjectWeakness } from "api/Meview_API";
 import { question_idState } from "recoil/ProjectListAtom";
 import { userAccessTokenState } from "recoil/UserAtom";
+import NoReview from "components/home/NoReview";
+
+const NoReviewContainer = styled.div`
+  margin-top: -30px;
+`;
 
 function ProjectBody() {
   const selectedStrength = useRecoilValue(selectedStrengthState);
@@ -49,6 +55,14 @@ function ProjectBody() {
       : projectWeaknessReviews;
 
   console.log(projectReviews);
+  const ProjectReviewLength = projectReviews.length;
+  if (ProjectReviewLength === 0) {
+    return (
+      <NoReviewContainer>
+        <NoReview />
+      </NoReviewContainer>
+    );
+  }
 
   return (
     <div>

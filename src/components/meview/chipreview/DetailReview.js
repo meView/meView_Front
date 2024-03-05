@@ -8,6 +8,7 @@ import { getStrengthChipDetail, getWeaknessChipDetail } from "api/Meview_API";
 import ReviewCard from "./ReviewCard";
 import TopDescription from "./TopDescription";
 
+
 const Container = styled.div`
   padding: 24px 20px 50px;
 `;
@@ -51,6 +52,8 @@ function DetailReview() {
 
   if (isLoadingStrength || isLoadingWeakness) return <div></div>;
   if (isErrorStrength || isErrorWeakness) return <div>Error occurred</div>;
+
+  
 
   // 현재 선택된 칩의 리뷰 데이터 결정
   const reviewChip =
