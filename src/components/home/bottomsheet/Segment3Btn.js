@@ -61,20 +61,20 @@ const Container = styled.div`
 `;
 
 function Segment3Btn(props) {
-  const [strength, setStrength] = useState(props.type === 'strength' ? "selected" : "unselected");
-  const [weakness, setWeakness] = useState(props.type === 'weakness' ? "selected" : "unselected");
-  const [both, setBoth] = useState(props.type === 'both' ? "selected" : "unselected");
+  const [strength, setStrength] = useState(props.type === 'STRENGTH' ? "selected" : "unselected");
+  const [weakness, setWeakness] = useState(props.type === 'WEAKNESS' ? "selected" : "unselected");
+  const [both, setBoth] = useState(props.type === 'BOTH' ? "selected" : "unselected");
 
   useEffect(() => {
-    if (props.type === "strength") {
+    if (props.type === "STRENGTH") {
       setStrength("selected");
       setWeakness("unselected");
       setBoth("unselected");
-    } else if (props.type === "weakness") {
+    } else if (props.type === "WEAKNESS") {
       setStrength("unselected");
       setWeakness("selected");
       setBoth("unselected");
-    } else if (props.type === "both") {
+    } else if (props.type === "BOTH") {
       setStrength("unselected");
       setWeakness("unselected");
       setBoth("selected");

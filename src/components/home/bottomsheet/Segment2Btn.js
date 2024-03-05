@@ -55,14 +55,14 @@ const Container = styled.div`
 `;
 
 function Segment2Btn(props) {
-  const [team, setTeam] = useState(props.target === "team" ? "selected" : "unselected");
-  const [friend, setFriend] = useState(props.target === "friend" ? "selected" : "unselected");
+  const [team, setTeam] = useState(props.target === "TEAM" ? "selected" : "unselected");
+  const [friend, setFriend] = useState(props.target === "FRIEND" ? "selected" : "unselected");
 
   useEffect(() => {
-    if (props.target === "team") {
+    if (props.target === "TEAM") {
       setTeam("selected");
       setFriend("unselected");
-    } else if (props.target === "friend") {
+    } else if (props.target === "FRIEND") {
       setTeam("unselected");
       setFriend("selected");
     }

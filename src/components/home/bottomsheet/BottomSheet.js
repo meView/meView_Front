@@ -9,6 +9,7 @@ import Segment2Btn from './Segment2Btn';
 import Segment3Btn from './Segment3Btn';
 import { useQuery, useMutation } from "react-query";
 import { getQuestionDetail, getQuestionUpdate } from "../../../api/Home_API";
+import { userAccessTokenState } from 'recoil/UserAtom';
 
 const slideUp = keyframes`
   0% { transform: translateY(100%); }
@@ -178,6 +179,7 @@ function BottomSheet() {
   const [target, setTarget] = useState(question.question_target);
   const [type, setType] = useState(question.question_type);
   const [isModifiedDisabled, setIsModifiedDisabled] = useState(true);
+  const access_token = useRecoilValue(userAccessTokenState);
 
   /* 질문지 상세보기 */  
   const {
@@ -186,7 +188,7 @@ function BottomSheet() {
     isError: isErrorDetail,
   } = useQuery(
     ["questionDetail"],
-    () => getQuestionDetail(question_id),
+    () => getQuestionDetail(question_id, access_token),
   );
   useEffect(() => {
     if (questionDetail !== undefined) {
@@ -216,19 +218,19 @@ function BottomSheet() {
   };
   const textState = getTextState(inputText !== undefined? inputText.length: 0);
   const changeTarget = (target) => {
-    if (target === 'team') {
-      setTarget('team');
-    } else if (target === 'friend') {
-      setTarget('friend');
+    if (target === 'TEAM') {
+      setTarget('TEAM');
+    } else if (target === 'FRIEND') {
+      setTarget('FRIEND');
     }
   }
   const changeType = (type) => {
-    if (type === 'strength') {
-      setType('strength');
-    } else if (type === 'weakness') {
-      setType('weakness');
-    } else if (type === 'both') {
-      setType('both')
+    if (type === 'STRENGTH') {
+      setType('STRENGTH');
+    } else if (type === 'WEAKNESS') {
+      setType('WEAKNESS');
+    } else if (type === 'BOTH') {
+      setType('BOTH')
     }
   }
 
@@ -295,15 +297,15 @@ function BottomSheet() {
             <div className='question-content'>
               <p className='subtitle'>리뷰 대상</p>
               <Segment2Btn id={question_id} onClickTeam={()=>{
-                changeTarget('team');
+                changeTarget('TEAM');
               }} onClickFriend={()=>{
-                changeTarget('friend');
+                changeTarget('FRIEND');
               }} target={target}/>
             </div>
             <div className='question-content'>
               <p className='subtitle'>
               {
-                target === 'team'
+                target === 'TEAM'
                 ? '프로젝트 명'
                 : '리뷰 명'
               }
@@ -336,11 +338,11 @@ function BottomSheet() {
             <div className='question-content'>
               <p className='subtitle'>리뷰 종류</p>
               <Segment3Btn id={question_id} onClickStrength={()=>{
-                changeType('strength')
+                changeType('STRENGTH')
               }} onClickWeakness={()=>{
-                changeType('weakness')
+                changeType('WEAKNESS')
               }} onClickBoth={()=>{
-                changeType('both')
+                changeType('BOTH')
               }} type={type}/>
             </div>
           </div>

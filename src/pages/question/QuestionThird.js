@@ -113,9 +113,9 @@ const Bottom = styled.div`
 function QuestionThird(props) {
   const choice = useRecoilValue(answerState);
   /* 답변 선택 */
-  const [checkedStrength, setCheckedStrength] = useState(choice.answer3 === "strength" ? "checked" : "unchecked");
-  const [checkedWeakness, setCheckedWeakness] = useState(choice.answer3 === "weakness" ? "checked" : "unchecked");
-  const [checkedBoth, setCheckedBoth] = useState(choice.answer3 === "both" ? "checked" : "unchecked");
+  const [checkedStrength, setCheckedStrength] = useState(choice.answer3 === "STRENGTH" ? "checked" : "unchecked");
+  const [checkedWeakness, setCheckedWeakness] = useState(choice.answer3 === "WEAKNESS" ? "checked" : "unchecked");
+  const [checkedBoth, setCheckedBoth] = useState(choice.answer3 === "BOTH" ? "checked" : "unchecked");
   const [answer, setAnswer] = useRecoilState(answerState);
   const [disabled, setDisabled] = useState(choice.answer3 === "" ? true : false);
 
@@ -124,32 +124,32 @@ function QuestionThird(props) {
     if (number === 1) {
       setAnswer({
         ...answer,
-        answer3: "strength",
+        answer3: "STRENGTH",
       });
     } else if (number === 2) {
       setAnswer({
         ...answer,
-        answer3: "weakness",
+        answer3: "WEAKNESS",
       });
     } else if (number === 3) {
       setAnswer({
         ...answer,
-        answer3: "both",
+        answer3: "BOTH",
       });
     }
   };
 
   /* 다른 페이지 이동 시에도 답변 그대로 유지 */
   useEffect(() => {
-    if (choice.answer3 === "strength") {
+    if (choice.answer3 === "STRENGTH") {
       setCheckedStrength("checked");
       setCheckedWeakness("unchecked");
       setCheckedBoth("unchecked");
-    } else if (choice.answer3 === "weakness") {
+    } else if (choice.answer3 === "WEAKNESS") {
       setCheckedStrength("unchecked");
       setCheckedWeakness("checked");
       setCheckedBoth("unchecked");
-    } else if (choice.answer3 === "both") {
+    } else if (choice.answer3 === "BOTH") {
       setCheckedStrength("unchecked");
       setCheckedWeakness("unchecked");
       setCheckedBoth("checked");

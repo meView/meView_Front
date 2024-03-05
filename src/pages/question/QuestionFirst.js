@@ -119,10 +119,10 @@ function QuestionFirst(props) {
   const choice = useRecoilValue(answerState);
   /* 답변 선택 */
   const [checkedTeam, setCheckedTeam] = useState(
-    choice.answer1 === "team" ? "checked" : "unchecked"
+    choice.answer1 === "TEAM" ? "checked" : "unchecked"
   );
   const [checkedFriend, setCheckedFriend] = useState(
-    choice.answer1 === "friend" ? "checked" : "unchecked"
+    choice.answer1 === "FRIEND" ? "checked" : "unchecked"
   );
   /* 뒤로가기 버튼 - 모달 */
   const [modal, setModal] = useRecoilState(modalState);
@@ -138,20 +138,20 @@ function QuestionFirst(props) {
       // 프로젝트 팀원에게 리뷰 요청
       setAnswer({
         ...answer,
-        answer1: "team",
+        answer1: "TEAM",
       });
     } else if (number === 2) {
       // 주변 지인에게 리뷰 요청
       setAnswer({
         ...answer,
-        answer1: "friend",
+        answer1: "FRIEND",
       });
     }
   };
 
   useEffect(() => {
-    setCheckedTeam(choice.answer1 === "team" ? "checked" : "unchecked");
-    setCheckedFriend(choice.answer1 === "friend" ? "checked" : "unchecked");
+    setCheckedTeam(choice.answer1 === "TEAM" ? "checked" : "unchecked");
+    setCheckedFriend(choice.answer1 === "FRIEND" ? "checked" : "unchecked");
 
     // blur 처리
     const toggleBlur = (isActive) => {
