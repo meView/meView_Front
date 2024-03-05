@@ -40,7 +40,7 @@ function TopDescription({ num }) {
   const userInfo = useRecoilValue(userInfoState);
 
 
-  const nickname =
+  const user_nickname =
     userInfo?.user_nickname?.length === 3
       ? userInfo.user_nickname.substring(1)
       : userInfo?.user_nickname;
@@ -57,7 +57,7 @@ function TopDescription({ num }) {
           총 {num}명
           <span className="rectangle" />
         </span>
-        <span className="text-wrapper">이 {nickname}님의 </span>
+        <span className="text-wrapper">이 {user_nickname}님의 </span>
         <span className="span">{keyMapping[selectedChipInfo.name]}</span>
         <span className="text-wrapper">이</span>
         <br />

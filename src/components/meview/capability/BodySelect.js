@@ -51,7 +51,7 @@ const StyledButton = styled.button`
     background-color: ${({ $isActive }) =>
       $isActive ? "var(--primary)" : "var(--Hover)"};
   }
-  transition: background-color 0.1s ease;
+  transition: background-color 0.2s ease;
 `;
 
 function BodySelect({ totalStrength, totalWeakness }) {
