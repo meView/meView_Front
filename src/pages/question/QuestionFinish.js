@@ -94,7 +94,6 @@ function QuestionFourth(props) {
   const [showToast, setShowToast] = useState(false);
   const userInfo = useRecoilValue(userInfoState);
   const access_token = useRecoilValue(userAccessTokenState);
-  const [questionPost, setQuestionPost] = useRecoilState(postState);
   const [id, setId] = useState();
 
   // react-query 사용
@@ -107,7 +106,6 @@ function QuestionFourth(props) {
   const mutation = useMutation(() => postQuestion(questionData, access_token), {
     onSuccess: (data) => {
       setId(data.data.question_id);
-      setQuestionPost(true);
     },
     onError: (error) => {
       console.error(error);
@@ -115,9 +113,7 @@ function QuestionFourth(props) {
   });
   // 페이지 로드 시 POST 요청 수행
   useEffect(() => {
-    if (questionPost === false) {
-      mutation.mutate();
-    }
+    mutation.mutate();
   }, []);
 
   const handleCopyLink = async (question_id) => {
@@ -153,7 +149,6 @@ function QuestionFourth(props) {
                 answer2: "",
                 answer3: "",
               });
-              setQuestionPost(true);
               setPage(1);
               navigate("/home");
             }}
