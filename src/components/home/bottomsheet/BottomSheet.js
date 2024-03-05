@@ -244,9 +244,12 @@ function BottomSheet() {
   }, [target, inputText, type])
 
   /* 수정하기 버튼 눌렀을 때 내용 변경 */
-  const mutation = useMutation(newData => getQuestionUpdate(newData), {
+  const mutation = useMutation((newData) => getQuestionUpdate(newData), {
     onSuccess: data => {
       setQuestion(data);
+    },
+    onError: (error) => {
+      console.error(error);
     },
   });
   const handleUpdate = () => {
