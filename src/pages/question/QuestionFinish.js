@@ -8,7 +8,8 @@ import WideButton from "../../util/WideButton";
 import { postQuestion } from "api/Question_API";
 import { useMutation } from "react-query";
 import Toast from "util/Toast";
-import { userAccessTokenState } from "recoil/UserAtom";
+import { userAccessTokenState, userInfoState } from "recoil/UserAtom";
+import { postState } from "recoil/QuestionAtom";
 
 const QuestionWrapper = styled.div`
   background-color: var(--Gray-15);
@@ -91,7 +92,10 @@ function QuestionFourth(props) {
   const [answer, setAnswer] = useRecoilState(answerState);
   const [, setPage] = useRecoilState(pageState);
   const [showToast, setShowToast] = useState(false);
+  const userInfo = useRecoilValue(userInfoState);
   const access_token = useRecoilValue(userAccessTokenState);
+  const [questionPost, setQuestionPost] = useRecoilState(postState);
+  const [id, setId] = useState();
 
   // react-query 사용
   const questionData = {
@@ -102,7 +106,8 @@ function QuestionFourth(props) {
 
   const mutation = useMutation(() => postQuestion(questionData, access_token), {
     onSuccess: (data) => {
-      console.log(data);
+      setId(data.data.question_id);
+      setQuestionPost(true);
     },
     onError: (error) => {
       console.error(error);
@@ -110,9 +115,19 @@ function QuestionFourth(props) {
   });
   // 페이지 로드 시 POST 요청 수행
   useEffect(() => {
-    mutation.mutate();
-    //eslint-disable-next-line react-hooks/exhaustive-deps
+    if (questionPost === false) {
+      mutation.mutate();
+    }
   }, []);
+
+  const handleCopyLink = async (question_id) => {
+    const link = `${process.env.REACT_APP_URL}/answer?user_id=${userInfo.user_id}&question_id=${question_id}`
+    try {
+      await navigator.clipboard.writeText(link);
+    } catch (err) {
+      console.error('Failed to copy link: ', err);
+    }
+  };
 
   return (
     <QuestionWrapper>
@@ -138,6 +153,7 @@ function QuestionFourth(props) {
                 answer2: "",
                 answer3: "",
               });
+              setQuestionPost(true);
               setPage(1);
               navigate("/home");
             }}
@@ -157,6 +173,7 @@ function QuestionFourth(props) {
       </Body>
       <Bottom>
         <WideButton text={"질문지 공유하기"} onClick={()=>{
+          handleCopyLink(id);
           setShowToast(true);
         }}/>
       </Bottom>
