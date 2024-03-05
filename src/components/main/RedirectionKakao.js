@@ -11,8 +11,7 @@ const RedirectionKakao = () => {
   const [, setUserInfo] = useRecoilState(userInfoState);
 
   useEffect(() => {
-    const baseUrl = "http://meview.store";
-    const url = `${baseUrl}/auth/kakao_login${code}`;
+    const url = `${process.env.REACT_APP_SERVER_ADDRESS}/auth/kakao_login${code}`;
 
     axios
       .get(url)
