@@ -45,6 +45,16 @@ const Header = styled.div`
     position: absolute;
     right: 0;
   }
+
+  // 호버시 글씨색 노란색으로
+  &:hover {
+    .projectname {
+      color: var(--primary);
+    }
+    .nickname {
+      color: rgba(255, 243, 116, 0.6);
+    }
+  }
 `;
 
 function ReviewCard(props) {

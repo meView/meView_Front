@@ -121,11 +121,6 @@ function Mainpage() {
               className="background"
               aria-label="main-background"
             ></object>
-            {/* <img
-              src={backgroundImage}
-              className="background"
-              alt="main-background"
-            /> */}
           </BackGround>
           <ArrowContainer />
           <PageDot currentPage={currentPage} />

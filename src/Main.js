@@ -11,6 +11,7 @@ import MeviewProjectReview from "./pages/meview/MeviewProjectReview";
 import MeviewNicknameReview from "./pages/meview/MeviewNicknameReview";
 import Mypage from "pages/home/Mypage";
 import RedirectionKakao from "components/main/RedirectionKakao";
+import RedirectionGoogle from "components/main/RedirectionGoogle";
 
 function Main() {
   return (
@@ -19,6 +20,7 @@ function Main() {
         <Route path="/" element={<App />}>
           <Route path="" element={<Mainpage />} />
           <Route path="auth/kakao_login" element={<RedirectionKakao />} />
+          <Route path="auth/google_login" element={<RedirectionGoogle />} />
           <Route path="home" element={<Homepage />} />
           <Route path="mypage" element={<Mypage />} />
           <Route path="question" element={<Question />} />
