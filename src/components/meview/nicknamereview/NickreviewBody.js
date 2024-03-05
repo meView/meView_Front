@@ -1,12 +1,10 @@
 import styled from "styled-components";
 import { useQuery } from "react-query";
 import { useRecoilValue } from "recoil";
-import { getNicknameReview } from "../../../api/Meview_API";
+import { getNicknameReview } from "api/Meview_API";
 import ProjectReviewCard from "../project/ProjectReviewCard";
-import {
-  question_idState,
-  nicknameState,
-} from "../../../recoil/ProjectListAtom";
+import { question_idState, nicknameState } from "recoil/ProjectListAtom";
+import { userAccessTokenState } from "recoil/UserAtom";
 import TopDescrip from "./TopDescrip";
 
 const Container = styled.div`
@@ -20,6 +18,7 @@ const Divider = styled.div`
 function NickreviewBody() {
   const question_id = useRecoilValue(question_idState);
   const nickname = useRecoilValue(nicknameState);
+  const access_token = useRecoilValue(userAccessTokenState);
 
   const {
     data: nicknameReviews,
@@ -27,7 +26,7 @@ function NickreviewBody() {
     isError,
   } = useQuery(
     ["nicknameReviews", question_id, nickname],
-    () => getNicknameReview(question_id, nickname),
+    () => getNicknameReview(access_token, question_id, nickname),
     {
       enabled: !!question_id && !!nickname,
     }
@@ -39,30 +38,40 @@ function NickreviewBody() {
   const strengthReviews = nicknameReviews?.STRENGTH ?? [];
   const weaknessReviews = nicknameReviews?.WEAKNESS ?? [];
 
+  const strengthReviewCount = strengthReviews.length;
+  const weaknessReviewCount = weaknessReviews.length;
+
   return (
     <>
-      <TopDescrip nickname={nickname} strength={"강점"} />
-      <Container>
-        {strengthReviews.map((review, index) => (
-          <ProjectReviewCard
-            key={index}
-            chipName={review.chip}
-            reviewDescription={review.review_description}
-          />
-        ))}
-      </Container>
-      <Divider />
-
-      <TopDescrip nickname={nickname} strength={"약점"} />
-      <Container>
-        {weaknessReviews.map((review, index) => (
-          <ProjectReviewCard
-            key={index}
-            chipName={review.chip}
-            reviewDescription={review.review_description}
-          />
-        ))}
-      </Container>
+      {strengthReviewCount > 0 && (
+        <>
+          <TopDescrip nickname={nickname} strength={"강점"} />
+          <Container>
+            {strengthReviews.map((review, index) => (
+              <ProjectReviewCard
+                key={`strength-${index}`}
+                chipName={review.chip_name}
+                reviewDescription={review.review_description}
+              />
+            ))}
+          </Container>
+          <Divider />
+        </>
+      )}
+      {weaknessReviewCount > 0 && (
+        <>
+          <TopDescrip nickname={nickname} strength={"약점"} />
+          <Container>
+            {weaknessReviews.map((review, index) => (
+              <ProjectReviewCard
+                key={`weakness-${index}`}
+                chipName={review.chip_name}
+                reviewDescription={review.review_description}
+              />
+            ))}
+          </Container>
+        </>
+      )}
     </>
   );
 }

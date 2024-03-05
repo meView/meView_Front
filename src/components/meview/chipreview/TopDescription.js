@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useRecoilValue } from "recoil";
 import { selectedChipInfoState } from "../../../recoil/ProjectListAtom";
+import { userInfoState } from "recoil/UserAtom";
 
 const StyledBox = styled.div`
   position: relative;
@@ -36,10 +37,13 @@ const keyMapping = {
 
 function TopDescription({ num }) {
   const selectedChipInfo = useRecoilValue(selectedChipInfoState);
+  const userInfo = useRecoilValue(userInfoState);
 
-  if (!selectedChipInfo) {
-    return null;
-  }
+
+  const nickname =
+    userInfo?.user_nickname?.length === 3
+      ? userInfo.user_nickname.substring(1)
+      : userInfo?.user_nickname;
 
   const ment =
     selectedChipInfo.strength === "character_weakness"
@@ -53,7 +57,7 @@ function TopDescription({ num }) {
           총 {num}명
           <span className="rectangle" />
         </span>
-        <span className="text-wrapper">이 민지님의 </span>
+        <span className="text-wrapper">이 {nickname}님의 </span>
         <span className="span">{keyMapping[selectedChipInfo.name]}</span>
         <span className="text-wrapper">이</span>
         <br />

@@ -2,6 +2,8 @@ import styled from "styled-components";
 import ProjectList from "./ProjectList";
 import NoReview from "components/home/NoReview";
 import Bottombar from "components/home/Bottombar";
+import { useRecoilValue } from "recoil";
+import { userAccessTokenState } from "recoil/UserAtom";
 import { useQuery } from "react-query";
 import { getProjects } from "api/Meview_API";
 
@@ -15,11 +17,13 @@ const PJList = styled.div`
 `;
 
 function ProjectCollection() {
+  const access_token = useRecoilValue(userAccessTokenState);
+
   const {
     data: projectData,
     isLoading,
     isError,
-  } = useQuery(["nicknameReviews"], () => getProjects());
+  } = useQuery(["nicknameReviews"], () => getProjects(access_token));
 
   if (isLoading) return <div></div>;
   if (isError) return <div>Error occurred</div>;

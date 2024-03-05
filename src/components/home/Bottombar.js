@@ -42,6 +42,14 @@ const RightSideButton = styled.button`
   width: 230px;
   height: 64px;
   color: var(--Gray-15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .textplus {
+    font-size: 24px;
+    padding: 0 4px 0 0;
+  }
 
   &:hover {
     background-color: #fff594;
@@ -69,7 +77,8 @@ function Bottombar() {
       <Content>
         <div className="leftside"></div>
         <RightSideButton onClick={handleCreateQ}>
-          <div className="text">+ 질문지 생성</div>
+          <span className="textplus">+ </span>
+          <span className="text">질문지 생성</span>
         </RightSideButton>
       </Content>
     </Container>
