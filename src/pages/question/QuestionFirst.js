@@ -61,9 +61,6 @@ const Top = styled.div`
     background-color: var(--primary);
     border-radius: 8px;
     height: 68px;
-    &:hover {
-      background-color: var(--Hover-02);
-    }
   }
   .unchecked {
     background-color: var(--Gray-14);
@@ -151,9 +148,6 @@ function QuestionFirst(props) {
       });
     }
   };
-
- 
-
 
   useEffect(() => {
     setCheckedTeam(choice.answer1 === "team" ? "checked" : "unchecked");

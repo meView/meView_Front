@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useMutation } from "react-query";
 import { useRecoilValue } from "recoil";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
@@ -71,9 +72,6 @@ const Top = styled.div`
     background-color: var(--primary);
     border-radius: 8px;
     height: 68px;
-    &:hover {
-      background-color: var(--Hover-02);
-    }
   }
   .unchecked {
     background-color: var(--Gray-14);

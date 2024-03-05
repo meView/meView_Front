@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useRecoilState } from "recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 import QuestionText from "../../components/question/QuestionText";
@@ -8,6 +8,7 @@ import WideButton from "../../util/WideButton";
 import { postQuestion } from "api/Question_API";
 import { useMutation } from "react-query";
 import Toast from "util/Toast";
+import { userAccessTokenState } from "recoil/UserAtom";
 
 const QuestionWrapper = styled.div`
   background-color: var(--Gray-15);
@@ -90,6 +91,7 @@ function QuestionFourth(props) {
   const [answer, setAnswer] = useRecoilState(answerState);
   const [, setPage] = useRecoilState(pageState);
   const [showToast, setShowToast] = useState(false);
+  const access_token = useRecoilValue(userAccessTokenState);
 
   // react-query 사용
   const questionData = {
@@ -98,7 +100,7 @@ function QuestionFourth(props) {
     question_type: answer.answer3, // ["strength" or "weakness" or "both"]
   };
 
-  const mutation = useMutation(() => postQuestion(questionData), {
+  const mutation = useMutation(() => postQuestion(questionData, access_token), {
     onSuccess: (data) => {
       console.log(data);
     },
@@ -130,8 +132,6 @@ function QuestionFourth(props) {
             alt="close button"
             src="/image/close.svg"
             onClick={() => {
-              /* 답변 데이터베이스 저장 */
-
               /* 질문지 생성 -> answer 상태 초기화 */
               setAnswer({
                 answer1: "",
