@@ -69,7 +69,7 @@ function Bottombar() {
       <Content>
         <div className="leftside"></div>
         <RightSideButton onClick={handleCreateQ}>
-          <div className="text">+질문지 생성</div>
+          <div className="text">+ 질문지 생성</div>
         </RightSideButton>
       </Content>
     </Container>

@@ -1,10 +1,9 @@
 import axios from "axios";
 
+
 // // 토큰 있을 때 ->
 // const url_getStrength = "http://meview.store/meview/capability/strength";
-// const access_token ="";
-
-// export const getStrength = async () => {
+// export const getStrength = async (access_token) => {
 //   const response = await axios.get(url_getStrength, {
 //     headers: {
 //       Authorization: `Bearer ${access_token}`,

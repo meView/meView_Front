@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import { userAccessTokenState, userInfoState } from "recoil/UserAtom";
 
-const RedirectionKakao = () => {
+
+const RedirectionGoogle = () => {
   const code = window.location.search;
   const navigate = useNavigate();
   const [, setUserAccessToken] = useRecoilState(userAccessTokenState);
@@ -12,7 +13,7 @@ const RedirectionKakao = () => {
 
   useEffect(() => {
     const baseUrl = "http://meview.store";
-    const url = `${baseUrl}/auth/kakao_login${code}`;
+    const url = `${baseUrl}/auth/google_login${code}`;
 
     axios
       .get(url)
@@ -27,6 +28,6 @@ const RedirectionKakao = () => {
   }, [navigate]);
 
   return <div>로그인 중입니다</div>;
-};
+}
 
-export default RedirectionKakao;
+export default RedirectionGoogle;

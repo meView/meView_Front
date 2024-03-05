@@ -38,8 +38,9 @@ function MypageBody() {
         {/* <span className="email"> {useremail} </span> */}
       </Profile>
       <BodyContainer>서비스 소개</BodyContainer>
-      <BodyContainer>로그아웃</BodyContainer>
-      <LogoutKakao />
+      <BodyContainer>
+        <LogoutKakao>로그아웃</LogoutKakao>
+      </BodyContainer>
     </Container>
   );
 }
