@@ -1,4 +1,7 @@
 import styled from "styled-components";
+import { useRecoilValue } from "recoil";
+import { userInfoState } from "recoil/UserAtom";
+import LogoutKakao from "components/main/LogoutKakao";
 
 const Container = styled.div`
   padding: 0 20px;
@@ -25,14 +28,18 @@ const BodyContainer = styled.div`
 `;
 
 function MypageBody() {
+  // const userInfo = useRecoilValue(userInfoState);
+  // const useremail = userInfo.user_email;
+
   return (
     <Container>
       <Profile>
         <img className="profileimg" src="image/profile.svg" alt="profile" />
-        <span className="email"> 태건아이디@kakao.com </span>
+        {/* <span className="email"> {useremail} </span> */}
       </Profile>
-      <BodyContainer>로그아웃</BodyContainer>
       <BodyContainer>서비스 소개</BodyContainer>
+      <BodyContainer>로그아웃</BodyContainer>
+      <LogoutKakao />
     </Container>
   );
 }

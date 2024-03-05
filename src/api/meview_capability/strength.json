@@ -2,12 +2,12 @@
   "success": true,
   "code": "OK",
   "data": {
-    "JUDGMENT": 2,
-    "OBSERVATION": 1,
-    "LISTENING": 3,
-    "COMMUNICATION": 1,
-    "FRIENDLINESS": 1,
-    "EXECUTION": 1,
+    "JUDGMENT": 0,
+    "OBSERVATION": 0,
+    "LISTENING": 0,
+    "COMMUNICATION": 0,
+    "FRIENDLINESS": 0,
+    "EXECUTION": 0,
     "PERSEVERANCE": 0
   },
   "statusCode": 200

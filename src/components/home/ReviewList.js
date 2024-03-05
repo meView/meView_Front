@@ -1,7 +1,13 @@
 import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
-import { bottomSheetState, linkToastState, questionFormListState, questionIdState } from "../../recoil/HomeAtom";
+import {
+  bottomSheetState,
+  linkToastState,
+  questionFormListState,
+  questionIdState,
+} from "../../recoil/HomeAtom";
 import ListItem from "./ListItem";
+import { userInfoState, userAccessTokenState } from "recoil/UserAtom";
 
 const Container = styled.div`
   font-weight: var(--font-weight-bold);
@@ -25,44 +31,52 @@ const Container = styled.div`
     height: 16px;
     background-color: var(--primary-700);
   }
-`
+`;
 
 function ReviewList() {
   const reviewList = useRecoilValue(questionFormListState);
   const [, setShowToast] = useRecoilState(linkToastState);
   const [, setShowBottom] = useRecoilState(bottomSheetState);
   const [, setQuestionId] = useRecoilState(questionIdState);
-  
+
+  const userInfo = useRecoilValue(userInfoState);
+  const userAccessToken = useRecoilValue(userAccessTokenState);
+
+  console.log("userInfo", userInfo);
+  console.log("userAccessTokenState", userAccessToken);
+
   return (
     <Container>
       <div className="title">
         <div className="underline"></div>
-        <span className="highlight">용도에 따라 질문지</span>를 만들고,<br/>
+        <span className="highlight">용도에 따라 질문지</span>를 만들고,
+        <br />
         카톡으로 리뷰를 주고 받아보세요!
       </div>
       <div className="review-list">
-        {
-          reviewList.map((a, i)=>{
-            return (
-              <ListItem question_title={a.question_title} question_id={a.question_id} key={i}
-                onQuestionClick={()=>{
+        {reviewList.map((a, i) => {
+          return (
+            <ListItem
+              question_title={a.question_title}
+              question_id={a.question_id}
+              key={i}
+              onQuestionClick={() => {
                 /* 프로젝트 질문지 팝업 */
                 setShowBottom(true);
                 setQuestionId(a.question_id);
-              }} 
-                onLinkClick={()=>{
+              }}
+              onLinkClick={() => {
                 /* 링크 복사하기 */
                 setShowToast(true);
               }}
-                isHovered={false}
-                isHoveredLink="button"
-              />
-            )
-          })
-        }
+              isHovered={false}
+              isHoveredLink="button"
+            />
+          );
+        })}
       </div>
     </Container>
-  )
+  );
 }
 
 export default ReviewList;
