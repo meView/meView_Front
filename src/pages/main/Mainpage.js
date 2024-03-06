@@ -25,7 +25,7 @@ const slideInRight = keyframes`
 `;
 
 const Container = styled.div`
-  height: var(--vh);
+  height: 101vh;
   display: ${(props) => (props.$isLoading ? "none" : "block")};
   background-color: ${(props) =>
     props.$currentPage === 1 ? "var(--mainpg)" : "transparent"};
@@ -105,10 +105,10 @@ function Mainpage() {
         console.error("Error loading images:", error);
       }
     };
+    document.body.style.overflow = 'hidden';
 
     loadImages();
   }, []);
-
   const backgroundImage = `./image/main-${currentPage}.svg`;
 
   return (
