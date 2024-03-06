@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 const fadeIn = keyframes`
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
@@ -19,7 +19,7 @@ const fadeOut = keyframes`
   }
   to {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(10px);
   }
 `;
 
@@ -37,16 +37,16 @@ const Container = styled.div`
   filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.25));
 
   .div-box {
-    display: flex;
-    position: absolute;
-    padding-left: 16px;
-    padding-right: 16px;
-    top: 50%;
-    transform: translate(0, -50%);
+    display: flex; /* Flexbox를 사용 */
+    align-items: center; /* 세로 중앙 정렬 */
+    justify-content: space-between; /* 내용을 양 끝으로 정렬 */
+    position: relative; /* 상대 위치로 변경, 필요에 따라 조정 */
+    padding: 16px 16px; /* 좌우 패딩 */
     box-sizing: border-box;
-    width: 100%;
+    width: 100%; /* 너비 100% 유지 */
   }
   .text {
+    flex: 1; /* 두 요소가 공간을 공유하도록 설정 */
     color: var(--Gray-15);
     font-weight: var(--font-weight-regular);
     font-size: var(--button-02);
@@ -56,6 +56,10 @@ const Container = styled.div`
     white-space: nowrap;
   }
   .button {
+    flex: 1; /* 두 요소가 공간을 공유하도록 설정 */
+    /* 글씨는 왼쪽정렬 */
+    text-align: right;
+    white-space: nowrap;
     color: var(--Success);
     font-weight: var(--font-weight-bold);
     font-size: var(--button-02);
@@ -63,7 +67,7 @@ const Container = styled.div`
     width: 100%;
   }
   .button-text {
-    float: right;
+    /* float: right; */
     cursor: pointer;
   }
 `;

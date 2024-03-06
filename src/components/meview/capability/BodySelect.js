@@ -74,9 +74,14 @@ function BodySelect({ totalStrength, totalWeakness }) {
   } else if (totalWeakness === 0 && isStrengthActive === "weakness") {
     mainMessage = noReviewMessage;
     subMessage = subReviewMessage;
-  } else if (isStrengthActive === "strength") {
+  } else if (isStrengthActive === "weakness") {
     mainMessage = "약점은 극복하면 그만! 주먹 불끈쥐고 강점으로 만들어봐요";
   }
+
+  console.log("totalStrength: ", totalStrength);
+  console.log("totalWeakness: ", totalWeakness);
+  console.log("isStrengthActive: ", isStrengthActive);
+  console.log("mainMessage: ", mainMessage);
 
   return (
     <>
