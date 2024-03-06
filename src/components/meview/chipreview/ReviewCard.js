@@ -15,7 +15,6 @@ const StyledBox = styled.div`
     color: var(--Gray-05);
     padding: 16px 0 0;
   }
-  // 왜 모바일에서 이 bodycontent만 글씨 크기가 다르게 나올까요 ㅠㅠㅠㅠㅠ 임시로 해결했지만 원인을 모르겠어요
   @media (max-width: 768px) {
     .bodycontent {
       font-size: 13.5px;
@@ -24,26 +23,31 @@ const StyledBox = styled.div`
 `;
 const Header = styled.div`
   display: flex;
+  align-items: center;
   padding-bottom: 16px;
   border-bottom: 2px solid var(--Gray-13);
   position: relative;
-  align-items: center;
+
   cursor: pointer;
-  .nickname {
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--Gray-08);
-    padding-right: 8px;
-  }
+
   .projectname {
     font-size: 20px;
     font-weight: bold;
     color: var(--Gray-01);
     padding-right: 8px;
   }
+  .nickname {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--Gray-08);
+    padding-right: 8px;
+  }
   .arrow {
+    background-image: url("/image/rightarrow.svg");
     position: absolute;
     right: 0;
+    width: 28px;
+    height: 28px;
   }
 
   // 호버시 글씨색 노란색으로
@@ -53,6 +57,11 @@ const Header = styled.div`
     }
     .nickname {
       color: rgba(255, 243, 116, 0.6);
+    }
+    .arrow {
+      background-image: url("/image/rightarrow_hover.svg");
+      width: 28px;
+      height: 28px;
     }
   }
 `;
@@ -71,10 +80,15 @@ function ReviewCard(props) {
   return (
     <StyledBox>
       <Header onClick={handleNickNameClick}>
-        <p className="projectname">{props.title}</p>
+        <p className="projectname">
+          {props.title.length > 10
+            ? `${props.title.substring(0, 10)}...`
+            : props.title}
+        </p>
+
         <p className="nickname">•</p>
         <p className="nickname">{props.responder}</p>
-        <img className="arrow" src="/image/rightarrow.svg" alt="arrow" />
+        <p className="arrow"></p>
       </Header>
       <p className="bodycontent">{props.description}</p>
     </StyledBox>

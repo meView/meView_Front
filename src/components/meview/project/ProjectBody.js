@@ -1,35 +1,42 @@
+import styled from "styled-components";
 import ProjectIDCard from "./ProjectIDCard";
 import { useRecoilValue } from "recoil";
 import { selectedStrengthState } from "../../../recoil/ProjectListAtom";
 import { useQuery } from "react-query";
 import { getProjectStrength, getProjectWeakness } from "api/Meview_API";
 import { question_idState } from "recoil/ProjectListAtom";
+import { userAccessTokenState } from "recoil/UserAtom";
+import NoReview from "components/home/NoReview";
+
+const NoReviewContainer = styled.div`
+  margin-top: -30px;
+`;
 
 function ProjectBody() {
   const selectedStrength = useRecoilValue(selectedStrengthState);
   const question_id = useRecoilValue(question_idState);
+  const access_token = useRecoilValue(userAccessTokenState);
 
   // 강점, 약점 데이터 가져오기
   const {
     data: projectStrengthReviews,
-    isLoadingStrength,
-    isErrorStrength,
+    isLoading: isLoadingStrength,
+    isError: isErrorStrength,
   } = useQuery(
-    ["nicknameReviews", question_id],
-    () => getProjectStrength(question_id),
+    ["nicknameReviews_strength", question_id],
+    () => getProjectStrength(access_token, question_id),
     {
       enabled: !!question_id,
     }
   );
 
-  // question_id->2로 임시로 수정하면 test가능
   const {
     data: projectWeaknessReviews,
     isLoading: isLoadingWeakness,
     isError: isErrorWeakness,
   } = useQuery(
-    ["nicknameReviews", question_id],
-    () => getProjectWeakness(question_id),
+    ["nicknameReviews_weakness", question_id],
+    () => getProjectWeakness(access_token, question_id),
     {
       enabled: !!question_id,
     }
@@ -47,15 +54,26 @@ function ProjectBody() {
       ? projectStrengthReviews
       : projectWeaknessReviews;
 
+  const ProjectReviewLength = projectReviews.length;
+  if (ProjectReviewLength === 0) {
+    return <NoReview box="288px" />;
+  }
+
   return (
     <div>
-      {projectReviews.map((review, index) => (
-        <ProjectIDCard
-          key={index}
-          nickname={review.response_responder}
-          reviews={review.reviews}
-        />
-      ))}
+      {projectReviews.map((review, index) => {
+        if (review.reviews.length !== 0) {
+          return (
+            <ProjectIDCard
+              key={index}
+              nickname={review.response_responder}
+              reviews={review.reviews}
+            />
+          );
+        } else {
+          return null;
+        }
+      })}
     </div>
   );
 }

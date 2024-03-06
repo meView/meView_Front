@@ -43,16 +43,14 @@ function ReviewList() {
   const userAccessToken = useRecoilValue(userAccessTokenState);
 
   const handleCopyLink = async (question_id) => {
-    const link = `${process.env.REACT_APP_URL}/answer?user_id=${userInfo.user_id}&question_id=${question_id}`
+    const link = `${process.env.REACT_APP_URL}/answer?user_id=${userInfo.user_id}&question_id=${question_id}`;
     try {
       await navigator.clipboard.writeText(link);
+      setShowToast(true);
     } catch (err) {
-      console.error('Failed to copy link: ', err);
+      console.error("Failed to copy link: ", err);
     }
   };
-
-  console.log("userInfo", userInfo);
-  console.log("userAccessTokenState", userAccessToken);
 
   return (
     <Container>
@@ -77,7 +75,6 @@ function ReviewList() {
               onLinkClick={() => {
                 /* 링크 복사하기 */
                 handleCopyLink(a.question_id);
-                setShowToast(true);
               }}
               isHovered={false}
               isHoveredLink="button"

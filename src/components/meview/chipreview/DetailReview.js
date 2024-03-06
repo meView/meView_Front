@@ -2,13 +2,12 @@ import React from "react";
 import styled from "styled-components";
 import { useQuery } from "react-query";
 import { useRecoilValue } from "recoil";
-import {
-  getStrengthChipDetail,
-  getWeaknessChipDetail,
-} from "../../../api/Meview_API";
-import { selectedChipInfoState } from "../../../recoil/ProjectListAtom";
+import { selectedChipInfoState } from "recoil/ProjectListAtom";
+import { userAccessTokenState } from "recoil/UserAtom";
+import { getStrengthChipDetail, getWeaknessChipDetail } from "api/Meview_API";
 import ReviewCard from "./ReviewCard";
 import TopDescription from "./TopDescription";
+
 
 const Container = styled.div`
   padding: 24px 20px 50px;
@@ -20,15 +19,16 @@ const CardContainer = styled.div`
 
 function DetailReview() {
   const selectedChipInfo = useRecoilValue(selectedChipInfoState);
+  const access_token = useRecoilValue(userAccessTokenState);
 
-  // 강점 리뷰 데이터 가져오기 (비동기 처리)
+
   const {
     data: strengthReviews,
     isLoading: isLoadingStrength,
     isError: isErrorStrength,
   } = useQuery(
     ["strengthChipDetail", selectedChipInfo?.name],
-    () => getStrengthChipDetail(selectedChipInfo?.name),
+    () => getStrengthChipDetail(access_token, selectedChipInfo?.name),
     {
       enabled:
         !!selectedChipInfo?.name &&
@@ -36,14 +36,13 @@ function DetailReview() {
     }
   );
 
-  // 약점 리뷰 데이터 가져오기 (비동기 처리)
   const {
     data: weaknessReviews,
     isLoading: isLoadingWeakness,
     isError: isErrorWeakness,
   } = useQuery(
     ["weaknessChipDetail", selectedChipInfo?.name],
-    () => getWeaknessChipDetail(selectedChipInfo?.name),
+    () => getWeaknessChipDetail(access_token, selectedChipInfo?.name),
     {
       enabled:
         !!selectedChipInfo?.name &&
@@ -53,6 +52,8 @@ function DetailReview() {
 
   if (isLoadingStrength || isLoadingWeakness) return <div></div>;
   if (isErrorStrength || isErrorWeakness) return <div>Error occurred</div>;
+
+  
 
   // 현재 선택된 칩의 리뷰 데이터 결정
   const reviewChip =
@@ -64,8 +65,8 @@ function DetailReview() {
     <>
       <TopDescription num={reviewChip.length} />
       <Container>
-        {reviewChip.map((review) => (
-          <CardContainer key={review.question_id}>
+        {reviewChip.map((review, index) => (
+          <CardContainer key={index}>
             <ReviewCard
               responder={review.response_responder}
               title={review.response_title}

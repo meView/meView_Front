@@ -69,7 +69,7 @@ function Myhome() {
         <TopNav />
         {
           reviewList.length === 0
-          ? <NoReview/>   
+          ? <NoReview box='208px'/>   
           : <ReviewList/>  
         }
         <Bottombar /> 

@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { linkToastState } from "../../recoil/HomeAtom";
 import Toast from "../../util/Toast";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 const Container = styled.div`
   position: fixed; /* 화면에 고정 */
@@ -42,6 +43,14 @@ const RightSideButton = styled.button`
   width: 230px;
   height: 64px;
   color: var(--Gray-15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .textplus {
+    font-size: 24px;
+    padding: 0 4px 0 0;
+  }
 
   &:hover {
     background-color: #fff594;
@@ -56,20 +65,31 @@ function Bottombar() {
     navigate("/question");
   };
 
+  const hideToast = () => setShowToast(false);
+  const handleToastClose = () => {
+    hideToast();
+  };
+  
+  useEffect(() => {
+    let timeoutId;
+    if (showToast) {
+      timeoutId = setTimeout(hideToast, 3500);
+    }
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [showToast, setShowToast]);
+
   return (
     <Container>
       {showToast && (
-        <Toast
-          text="설문지 링크가 복사되었어요!"
-          onClick={() => {
-            setShowToast(false);
-          }}
-        />
+        <Toast text="설문지 링크가 복사되었어요!" onClick={handleToastClose} />
       )}
       <Content>
         <div className="leftside"></div>
         <RightSideButton onClick={handleCreateQ}>
-          <div className="text">+ 질문지 생성</div>
+          <span className="textplus">+ </span>
+          <span className="text">질문지 생성</span>
         </RightSideButton>
       </Content>
     </Container>
