@@ -5,10 +5,13 @@ import QuestionThird from "./QuestionThird";
 import QuestionFinish from "./QuestionFinish";
 import { pageState } from "recoil/QuestionAtom";
 import usePreventRefresh from "util/usePreventRefresh";
+import usePreventBack from "util/usePreventBack";
 
 function Question() {
   const page = useRecoilValue(pageState);
+
   usePreventRefresh(page !== 4);
+  usePreventBack(page !==4);
 
   return (
     <>

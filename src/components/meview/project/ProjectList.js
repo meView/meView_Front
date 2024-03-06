@@ -49,7 +49,6 @@ function ProjectList(props) {
 
   const handleProjectClick = () => {
     setQuestion_id(props.question_id);
-    console.log("question id:", props.question_id);
     navigate("/meview/projectreview");
   };
 

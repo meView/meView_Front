@@ -44,7 +44,6 @@ function ProjectIDCard({ nickname, reviews }) {
   const navigate = useNavigate();
   const handleNickNameClick = () => {
     setNicknameState(nickname);
-    console.log("nickname:", nickname);
     navigate("/meview/nicknamereview");
   };
 
