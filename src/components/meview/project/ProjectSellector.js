@@ -57,7 +57,6 @@ function ProjectSelector() {
     setSelectedStrength("Weakness");
   };
 
-  console.log(selectedStrength);
   return (
     <>
       <Container>

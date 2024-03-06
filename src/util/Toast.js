@@ -1,6 +1,33 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+import { useEffect, useState } from "react";
+
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const fadeOut = keyframes`
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+`;
 
 const Container = styled.div`
+  animation: ${fadeIn} 0.5s ease-out;
+  &.fade-out {
+    animation: ${fadeOut} 0.5s ease-out forwards;
+  }
   background-color: var(--Gray-02);
   height: 60px;
   border-radius: 8px;
@@ -41,18 +68,32 @@ const Container = styled.div`
   }
 `;
 
-function Toast(props) {
+function Toast({ text, onClick }) {
+  const [isVisible, setIsVisible] = useState(true);
+
+  useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setIsVisible(false);
+    }, 3000);
+
+    return () => clearTimeout(timeoutId);
+  }, [onClick]);
+
+  const handleClose = () => {
+    setIsVisible(false);
+    setTimeout(() => {
+      if (onClick) {
+        onClick();
+      }
+    }, 500);
+  };
+
   return (
-    <Container>
+    <Container className={!isVisible ? "fade-out" : ""}>
       <div className="div-box">
-        <div className="text">{props.text}</div>
+        <div className="text">{text}</div>
         <div className="button">
-          <span
-            className="button-text"
-            onClick={() => {
-              props.onClick();
-            }}
-          >
+          <span className="button-text" onClick={handleClose}>
             확인
           </span>
         </div>

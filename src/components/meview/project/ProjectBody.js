@@ -54,7 +54,6 @@ function ProjectBody() {
       ? projectStrengthReviews
       : projectWeaknessReviews;
 
-  console.log(projectReviews);
   const ProjectReviewLength = projectReviews.length;
   if (ProjectReviewLength === 0) {
     return (
