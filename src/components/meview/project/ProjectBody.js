@@ -56,11 +56,7 @@ function ProjectBody() {
 
   const ProjectReviewLength = projectReviews.length;
   if (ProjectReviewLength === 0) {
-    return (
-      <NoReviewContainer>
-        <NoReview />
-      </NoReviewContainer>
-    );
+    return <NoReview box="288px" />;
   }
 
   return (

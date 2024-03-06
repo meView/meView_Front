@@ -22,20 +22,20 @@ const Background = styled.div`
   width: 100%;
   max-width: 500px;
   height: var(--vh);
-  position: relative; 
+  position: relative;
   overflow: hidden;
 
   .background {
-    position: absolute; 
+    position: absolute;
     min-width: 100%;
     min-height: 100vh;
     z-index: 0;
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     object-fit: cover;
   }
-`
+`;
 
 const Top = styled.div`
   position: absolute;
@@ -76,7 +76,7 @@ const Body = styled.div`
     width: 100%;
     bottom: 20px;
   }
-`
+`;
 const Bottom = styled.div`
   height: 80px;
   position: absolute;
@@ -116,19 +116,22 @@ function QuestionFourth(props) {
   }, []);
 
   const handleCopyLink = async (question_id) => {
-    console.log(`copy link id: ${question_id}`)
-    const link = `${process.env.REACT_APP_URL}/answer?user_id=${userInfo.user_id}&question_id=${question_id}`
+    const link = `${process.env.REACT_APP_URL}/answer?user_id=${userInfo.user_id}&question_id=${question_id}`;
     try {
       await navigator.clipboard.writeText(link);
     } catch (err) {
-      console.error('Failed to copy link: ', err);
+      console.error("Failed to copy link: ", err);
     }
   };
 
   return (
     <QuestionWrapper>
       <Background>
-        <object className="background" data="./image/question-background.svg" aria-label='question-background'/>
+        <object
+          className="background"
+          data="./image/question-background.svg"
+          aria-label="question-background"
+        />
       </Background>
       <Top>
         <div className="progress-bar">
@@ -161,16 +164,24 @@ function QuestionFourth(props) {
       </Top>
       <Body>
         <div className="toast">
-          {showToast && <Toast text="질문지 링크가 복사 되었어요!" onClick={()=>{
-            setShowToast(false);
-          }}/>}
+          {showToast && (
+            <Toast
+              text="질문지 링크가 복사 되었어요!"
+              onClick={() => {
+                setShowToast(false);
+              }}
+            />
+          )}
         </div>
       </Body>
       <Bottom>
-        <WideButton text={"질문지 공유하기"} onClick={()=>{
-          handleCopyLink(id);
-          setShowToast(true);
-        }}/>
+        <WideButton
+          text={"질문지 공유하기"}
+          onClick={() => {
+            handleCopyLink(id);
+            setShowToast(true);
+          }}
+        />
       </Bottom>
     </QuestionWrapper>
   );
