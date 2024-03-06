@@ -108,6 +108,9 @@ function Mainpage() {
     document.body.style.overflow = 'hidden';
 
     loadImages();
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
   }, []);
   const backgroundImage = `./image/main-${currentPage}.svg`;
 
