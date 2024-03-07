@@ -5,7 +5,7 @@ import styled from "styled-components";
 const ButtonGroup = styled.div`
   display: flex;
   flex-direction: row;
-  position: fixed;
+  position: absolute;
   max-width: 460px;
   width: calc(100% - 40px);
   left: 50%;
