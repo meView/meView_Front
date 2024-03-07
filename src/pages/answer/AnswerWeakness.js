@@ -169,7 +169,7 @@ function AnswerWeakness(props) {
           ></div>
         </div>
         <div className="title">
-          <p className="title-text">{question.user_id}님의 아쉬운 점이 있으신가요?</p>
+          <p className="title-text">{question.user_name}님의 아쉬운 점이 있으신가요?</p>
           <p className="title-description">3개까지 선택할 수 있어요</p>
         </div>
       </Top>

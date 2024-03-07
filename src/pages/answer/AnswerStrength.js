@@ -170,7 +170,7 @@ function AnswerStrength(props) {
         </div>
         <div className="title">
           <p className="title-text">
-            {question.user_id}님을 대표하는 강점을 선택해주세요
+            {question.user_name}님을 대표하는 강점을 선택해주세요
           </p>
           <p className="title-description">3개까지 선택할 수 있어요</p>
         </div>

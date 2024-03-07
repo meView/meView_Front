@@ -109,7 +109,7 @@ function AnswerWeakness2(props) {
           ></div>
         </div>
         <div className="weakness-box">
-          <p className="name">내가 고른 {question.user_id}님의 아쉬운 점</p>
+          <p className="name">내가 고른 {question.user_name}님의 아쉬운 점</p>
           <div className="select-chips">
             {answer.weakness.map((chip, i) => {
               return (
