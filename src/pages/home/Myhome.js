@@ -25,6 +25,7 @@ const BlurContainer = styled.div`
   transform: translate(-50%, 0);
   width: 100%;
   max-width: 500px;
+  -webkit-backdrop-filter: blur(4px);
   backdrop-filter: blur(4px);
   background-color: rgba(0, 0, 0, 0.48);
   display: ${({$show}) => $show === 'true' ? 'block' : 'none'};

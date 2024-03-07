@@ -163,6 +163,7 @@ const BlurContainer = styled.div`
   transform: translate(-50%, 0);
   width: 100%;
   max-width: 500px;
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   background-color: rgba(0, 0, 0, 0.48);
   display: ${({ $show }) => $show === 'true' ? 'block' : 'none'};
@@ -285,6 +286,23 @@ function BottomSheet() {
   const handleDelete = () => {
     deleteMutation.mutate();
   }
+
+  /* 모바일 스크롤 방지 */
+  function preventDefault(e) { e.preventDefault(); }
+  function disableScroll() {
+    window.addEventListener('scroll', preventDefault, { passive: false });
+    window.addEventListener('touchmove', preventDefault, { passive: false }); 
+    window.addEventListener('mousewheel', preventDefault, { passive: false });
+  }
+  function enableScroll() {
+    window.removeEventListener('scroll', preventDefault, { passive: false });
+    window.removeEventListener('touchmove', preventDefault, { passive: false });
+    window.removeEventListener('mousewheel', preventDefault, { passive: false });
+  }
+  useEffect(() => {
+    disableScroll();
+    return () => enableScroll();
+  }, [])
 
   const [showToast, setShowToast] = useRecoilState(modifiedToastState);
   const [backModal, setBackModal] = useRecoilState(backModalState);
