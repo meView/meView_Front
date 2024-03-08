@@ -112,6 +112,7 @@ const Bottom = styled.div`
 function AnswerStrength(props) {
   const [answer, setAnswer] = useRecoilState(answerState);
   const question = useRecoilValue(questionState);
+  const [count, setCount] = useState(answer.strength.length);
 
   /* 칩 선택 상태 확인 */
   const [comm, setComm] = useState(
@@ -136,9 +137,8 @@ function AnswerStrength(props) {
     answer.strength.includes("perseverance") ? "" : "un"
   );
   /* 선택 칩 개수 확인 */
-  let count = 0;
   useEffect(() => {
-    count = answer.strength.length;
+    setCount(answer.strength.length);
   }, [comm, ob, fr, lis, exe, jud, per]);
 
   /* 칩 선택 or 취소 */
@@ -151,7 +151,7 @@ function AnswerStrength(props) {
         strength: [...update.filter((item) => item !== chip)],
       });
     } else if (update.includes(chip) === false) {
-      if (answer.strength.length < 3) {
+      if (count < 3) {
         update.push(chip);
         setAnswer({
           ...answer,
