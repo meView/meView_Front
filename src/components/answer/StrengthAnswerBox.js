@@ -43,16 +43,9 @@ const Container = styled.div`
 `;
 const TextArea = styled.textarea`
   &::-webkit-scrollbar {
-    width: 7px;
+    display: none;
   }
-  &::-webkit-scrollbar-thumb {
-    background: var(--Gray-12);
-    border-radius: 7px;
-  }
-  &::-webkit-scrollbar-thumb:hover {
-    background: var(--Gray-11);
-  }
-
+  
   outline: none;
   border: none;
   height: 296px;

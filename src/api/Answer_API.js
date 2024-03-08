@@ -14,8 +14,10 @@ export const getAnswerForm = async (question_id) => {
 const url_postAnswer = `${process.env.REACT_APP_SERVER_ADDRESS}/answer/create`;
 export const postAnswer = async (data) => {
   try {
-    const response = await axios.post(url_postAnswer, data);
-    return response.data;
+    if (data.response_responder.length <= 10) {
+      const response = await axios.post(url_postAnswer, data);
+      return response.data;
+    }
   } catch (error) {
     console.error("Failed to post answer:", error);
     throw error;

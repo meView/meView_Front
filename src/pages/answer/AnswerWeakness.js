@@ -65,8 +65,10 @@ const Chips = styled.div`
 
   img {
     position: absolute;
+    -webkit-backdrop-filter: blur(6px);
     backdrop-filter: blur(6px);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    height: 44px;
     &.communication {
       top: 236px;
       left: 13.6%;
@@ -110,6 +112,7 @@ const Bottom = styled.div`
 function AnswerWeakness(props) {
   const [answer, setAnswer] = useRecoilState(answerState);
   const question = useRecoilValue(questionState);
+  const [count, setCount] = useState(answer.weakness.length);
 
   /* 칩 선택 상태 확인 */
   const [comm, setComm] = useState(
@@ -134,9 +137,8 @@ function AnswerWeakness(props) {
     answer.weakness.includes("perseverance") ? "" : "un"
   );
   /* 선택 칩 개수 확인 */
-  let count = 0;
   useEffect(() => {
-    count = answer.weakness.length;
+    setCount(answer.weakness.length);
   }, [comm, ob, fr, lis, exe, jud, per]);
 
   /* 칩 선택 or 취소 */
@@ -149,7 +151,7 @@ function AnswerWeakness(props) {
         weakness: [...update.filter((item) => item !== chip)],
       });
     } else if (update.includes(chip) === false) {
-      if (answer.weakness.length < 3) {
+      if (count < 3) {
         update.push(chip);
         setAnswer({
           ...answer,
@@ -169,7 +171,7 @@ function AnswerWeakness(props) {
           ></div>
         </div>
         <div className="title">
-          <p className="title-text">{question.user_id}님의 아쉬운 점이 있으신가요?</p>
+          <p className="title-text">{question.user_name}님의 아쉬운 점이 있으신가요?</p>
           <p className="title-description">3개까지 선택할 수 있어요</p>
         </div>
       </Top>
@@ -183,7 +185,7 @@ function AnswerWeakness(props) {
           <Chips>
             <img
               className="communication"
-              src={`/image/communication-${comm}clicked.svg`}
+              src={`/image/communication-${comm}clicked.png`}
               alt="communication"
               onClick={() => {
                 clickChip("communication");
@@ -192,7 +194,7 @@ function AnswerWeakness(props) {
             />
             <img
               className="executive"
-              src={`/image/execution-${exe}clicked.svg`}
+              src={`/image/execution-${exe}clicked.png`}
               alt="executive"
               onClick={() => {
                 clickChip("execution");
@@ -201,7 +203,7 @@ function AnswerWeakness(props) {
             />
             <img
               className="friendliness"
-              src={`/image/friendliness-${fr}clicked.svg`}
+              src={`/image/friendliness-${fr}clicked.png`}
               alt="friendliness"
               onClick={() => {
                 clickChip("friendliness");
@@ -210,7 +212,7 @@ function AnswerWeakness(props) {
             />
             <img
               className="judgment"
-              src={`/image/judgment-${jud}clicked.svg`}
+              src={`/image/judgment-${jud}clicked.png`}
               alt="judgment"
               onClick={() => {
                 clickChip("judgment");
@@ -219,7 +221,7 @@ function AnswerWeakness(props) {
             />
             <img
               className="listening"
-              src={`/image/listening-${lis}clicked.svg`}
+              src={`/image/listening-${lis}clicked.png`}
               alt="listening"
               onClick={() => {
                 clickChip("listening");
@@ -228,7 +230,7 @@ function AnswerWeakness(props) {
             />
             <img
               className="observation"
-              src={`/image/observation-${ob}clicked.svg`}
+              src={`/image/observation-${ob}clicked.png`}
               alt="observation"
               onClick={() => {
                 clickChip("observation");
@@ -237,7 +239,7 @@ function AnswerWeakness(props) {
             />
             <img
               className="perseverance"
-              src={`/image/perseverance-${per}clicked.svg`}
+              src={`/image/perseverance-${per}clicked.png`}
               alt="perseverance"
               onClick={() => {
                 clickChip("perseverance");

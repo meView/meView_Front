@@ -181,7 +181,7 @@ function BottomSheet() {
   const [type, setType] = useState(question.question_type);
   const [isModifiedDisabled, setIsModifiedDisabled] = useState(true);
   const access_token = useRecoilValue(userAccessTokenState);
-
+  
   /* 질문지 상세보기 */  
   const {
     data: questionDetail,
@@ -244,7 +244,7 @@ function BottomSheet() {
     } else {
       setIsModifiedDisabled(false);
     }
-  }, [target, inputText, type])
+  }, [target, inputText, type, question])
 
   /* 수정하기 버튼 눌렀을 때 내용 변경 */
   const updateMutation = useMutation((newData) => getQuestionUpdate(newData, question_id, access_token), {
@@ -261,6 +261,7 @@ function BottomSheet() {
         question_target: data.question_target,
       }
       updateQuestion(data.question_id, newQuestion);
+      setQuestion(newQuestion);
     },
     onError: (error) => {
       console.error(error);
@@ -290,14 +291,10 @@ function BottomSheet() {
   /* 모바일 스크롤 방지 */
   function preventDefault(e) { e.preventDefault(); }
   function disableScroll() {
-    window.addEventListener('scroll', preventDefault, { passive: false });
     window.addEventListener('touchmove', preventDefault, { passive: false }); 
-    window.addEventListener('mousewheel', preventDefault, { passive: false });
   }
   function enableScroll() {
-    window.removeEventListener('scroll', preventDefault, { passive: false });
     window.removeEventListener('touchmove', preventDefault, { passive: false });
-    window.removeEventListener('mousewheel', preventDefault, { passive: false });
   }
   useEffect(() => {
     disableScroll();

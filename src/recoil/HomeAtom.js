@@ -22,7 +22,7 @@ export const questionFormListState = atom({
 export const questionFormState = atom({
     key: 'questionFormState',
     default: {
-        qustion_id: -1,
+        question_id: -1,
         question_title: "",
         question_type: "",
         question_target: "",
