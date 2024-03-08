@@ -2,7 +2,7 @@ import { postAnswer } from 'api/Answer_API'
 import { useEffect } from 'react'
 import { useMutation } from 'react-query'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { answerState, questionState } from 'recoil/AnswerAtom'
 import styled from 'styled-components'
 import WideButton from 'util/WideButton'
@@ -74,7 +74,7 @@ const Bottom = styled.div`
 
 function AnswerFinish(props) {
   const question = useRecoilValue(questionState);
-  const answerData = useRecoilValue(answerState);
+  const [answerData, setAnswerData] = useRecoilState(answerState);
   const navigate = useNavigate();
   const [searchParams, ] = useSearchParams();
   const question_id = searchParams.get('question_id');
@@ -92,6 +92,13 @@ function AnswerFinish(props) {
   
   const mutation = useMutation((postData) => postAnswer(postData), {
     onSuccess: (data) => {
+      setAnswerData({
+        name: 'This review has been submitted!',
+        strength: [],
+        strengthReview: {},
+        weakness: [],
+        weaknessReview: {},
+      });
       console.log(data);
     },
     onError: (error) => {
