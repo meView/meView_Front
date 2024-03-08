@@ -14,30 +14,32 @@ import { getAnswerForm } from "api/Answer_API";
 import { useEffect } from "react";
 
 function Answer() {
-  const [searchParams, ] = useSearchParams();
-  const id = searchParams.get('question_id');
+  const [searchParams] = useSearchParams();
+  const id = searchParams.get("question_id");
   const [question, setQuestion] = useRecoilState(questionState);
 
   const {
     data: questionForm,
     isLoading: isLoadingQuestionForm,
     isError: isErrorQuestionForm,
-  } = useQuery(
-    ["questionForm"],
-    () => getAnswerForm(id),
-  );
+  } = useQuery(["questionForm"], () => getAnswerForm(id));
 
   useEffect(() => {
     if (questionForm !== undefined) {
+      const user_nickname =
+        questionForm.user.user_nickname.length === 3
+          ? questionForm.user.user_nickname.substring(1)
+          : questionForm.user.user_nickname;
+
       setQuestion({
         user_id: questionForm.user_id,
-        user_name: questionForm.user.user_nickname,
+        user_name: user_nickname, // user_nickname을 활용
         question_target: questionForm.question_target,
         question_type: questionForm.question_type,
-        question_title: questionForm.question_title
-      })
+        question_title: questionForm.question_title,
+      });
     }
-  }, [questionForm])
+  }, [questionForm, setQuestion]);
 
   const type =
     question.question_type === "STRENGTH"
@@ -45,7 +47,7 @@ function Answer() {
       : question.question_type === "WEAKNESS"
       ? "WEAKNESS"
       : "BOTH";
-      
+
   const page = useRecoilValue(pageState);
   const lastPage = type === "STRENGTH" ? 4 : type === "WEAKNESS" ? 4 : 6;
   usePreventRefresh(page !== lastPage);

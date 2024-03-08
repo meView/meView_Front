@@ -12,6 +12,7 @@ import MeviewNicknameReview from "./pages/meview/MeviewNicknameReview";
 import Mypage from "pages/home/Mypage";
 import RedirectionKakao from "components/main/RedirectionKakao";
 import RedirectionGoogle from "components/main/RedirectionGoogle";
+import ProtectedRoute from "layout/ProtectedRoute";
 
 function Main() {
   return (
@@ -21,21 +22,24 @@ function Main() {
           <Route path="" element={<Mainpage />} />
           <Route path="auth/kakao_login" element={<RedirectionKakao />} />
           <Route path="auth/google_login" element={<RedirectionGoogle />} />
-          <Route path="home" element={<Homepage />} />
-          <Route path="mypage" element={<Mypage />} />
-          <Route path="question" element={<Question />} />
           <Route path="answer" element={<Answer />} />
-          <Route path="meview" element={<MeviewPage />} />
-          <Route path="meview/chipreview" element={<MeviewChipReview />} />
-          <Route path="meview/projects" element={<MeviewProject />} />
-          <Route
-            path="meview/projectreview"
-            element={<MeviewProjectReview />}
-          />
-          <Route
-            path="meview/nicknamereview"
-            element={<MeviewNicknameReview />}
-          />
+          {/* 유저전용 */}
+          <Route element={<ProtectedRoute />}>
+            <Route path="home" element={<Homepage />} />
+            <Route path="mypage" element={<Mypage />} />
+            <Route path="question" element={<Question />} />
+            <Route path="meview" element={<MeviewPage />} />
+            <Route path="meview/chipreview" element={<MeviewChipReview />} />
+            <Route path="meview/projects" element={<MeviewProject />} />
+            <Route
+              path="meview/projectreview"
+              element={<MeviewProjectReview />}
+            />
+            <Route
+              path="meview/nicknamereview"
+              element={<MeviewNicknameReview />}
+            />
+          </Route>
         </Route>
       </Routes>
     </BrowserRouter>
