@@ -161,6 +161,18 @@ function AnswerStrength(props) {
     }
   };
 
+  function preventDefault(e) { e.preventDefault(); }
+  function disableScroll() {
+    window.addEventListener('touchmove', preventDefault, { passive: false }); 
+  }
+  function enableScroll() {
+    window.removeEventListener('touchmove', preventDefault, { passive: false });
+  }
+  useEffect(() => {
+    disableScroll();
+    return () => enableScroll();
+  }, [])
+
   return (
     <Container>
       <Top>
