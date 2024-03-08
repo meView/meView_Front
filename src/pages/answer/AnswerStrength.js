@@ -65,8 +65,10 @@ const Chips = styled.div`
 
   img {
     position: absolute;
+    -webkit-backdrop-filter: blur(6px);
     backdrop-filter: blur(6px);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    height: 44px;
     &.communication {
       top: 236px;
       left: 13.6%;
@@ -185,7 +187,7 @@ function AnswerStrength(props) {
           <Chips>
             <img
               className="communication"
-              src={`/image/communication-${comm}clicked.svg`}
+              src={`/image/communication-${comm}clicked.png`}
               alt="communication"
               onClick={() => {
                 clickChip("communication");
@@ -194,7 +196,7 @@ function AnswerStrength(props) {
             />
             <img
               className="executive"
-              src={`/image/execution-${exe}clicked.svg`}
+              src={`/image/execution-${exe}clicked.png`}
               alt="executive"
               onClick={() => {
                 clickChip("execution");
@@ -203,7 +205,7 @@ function AnswerStrength(props) {
             />
             <img
               className="friendliness"
-              src={`/image/friendliness-${fr}clicked.svg`}
+              src={`/image/friendliness-${fr}clicked.png`}
               alt="friendliness"
               onClick={() => {
                 clickChip("friendliness");
@@ -212,7 +214,7 @@ function AnswerStrength(props) {
             />
             <img
               className="judgment"
-              src={`/image/judgment-${jud}clicked.svg`}
+              src={`/image/judgment-${jud}clicked.png`}
               alt="judgment"
               onClick={() => {
                 clickChip("judgment");
@@ -221,7 +223,7 @@ function AnswerStrength(props) {
             />
             <img
               className="listening"
-              src={`/image/listening-${lis}clicked.svg`}
+              src={`/image/listening-${lis}clicked.png`}
               alt="listening"
               onClick={() => {
                 clickChip("listening");
@@ -230,7 +232,7 @@ function AnswerStrength(props) {
             />
             <img
               className="observation"
-              src={`/image/observation-${ob}clicked.svg`}
+              src={`/image/observation-${ob}clicked.png`}
               alt="observation"
               onClick={() => {
                 clickChip("observation");
@@ -239,7 +241,7 @@ function AnswerStrength(props) {
             />
             <img
               className="perseverance"
-              src={`/image/perseverance-${per}clicked.svg`}
+              src={`/image/perseverance-${per}clicked.png`}
               alt="perseverance"
               onClick={() => {
                 clickChip("perseverance");
