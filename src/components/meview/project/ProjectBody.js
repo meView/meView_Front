@@ -59,9 +59,6 @@ function ProjectBody() {
     return <NoReview box="288px" />;
   }
 
-  console.log ("question id", question_id);
-  console.log ("projectReviews", projectReviews);
-
   return (
     <div>
       {projectReviews.map((review, index) => {

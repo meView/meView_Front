@@ -41,8 +41,6 @@ function NickreviewBody() {
   const strengthReviewCount = strengthReviews.length;
   const weaknessReviewCount = weaknessReviews.length;
 
-  console.log(nicknameReviews);
-
   return (
     <>
       {strengthReviewCount > 0 && (
