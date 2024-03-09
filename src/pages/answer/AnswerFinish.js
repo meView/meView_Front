@@ -2,7 +2,7 @@ import { postAnswer } from 'api/Answer_API'
 import { useEffect } from 'react'
 import { useMutation } from 'react-query'
 import { useNavigate, useSearchParams } from 'react-router-dom'
-import { useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { answerState, questionState } from 'recoil/AnswerAtom'
 import styled from 'styled-components'
 import WideButton from 'util/WideButton'
@@ -21,13 +21,14 @@ const Background = styled.div`
   overflow: hidden;
 
   .background {
-    position: absolute; 
+    position: absolute;
+    max-width: 500px;
     min-width: 100%;
     min-height: 100vh;
     z-index: 0;
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     object-fit: cover;
   }
 `
@@ -74,7 +75,7 @@ const Bottom = styled.div`
 
 function AnswerFinish(props) {
   const question = useRecoilValue(questionState);
-  const answerData = useRecoilValue(answerState);
+  const [answerData, setAnswerData] = useRecoilState(answerState);
   const navigate = useNavigate();
   const [searchParams, ] = useSearchParams();
   const question_id = searchParams.get('question_id');
@@ -92,6 +93,13 @@ function AnswerFinish(props) {
   
   const mutation = useMutation((postData) => postAnswer(postData), {
     onSuccess: (data) => {
+      setAnswerData({
+        name: 'This review has been submitted!',
+        strength: [],
+        strengthReview: {},
+        weakness: [],
+        weaknessReview: {},
+      });
       console.log(data);
     },
     onError: (error) => {
@@ -130,7 +138,10 @@ function AnswerFinish(props) {
   return (
     <Container>
       <Background>
-        <object className="background" data="./image/answer-finish-background.svg" aria-label='answer-finish'/>
+        <img 
+          className="background"
+          src="./image/answer-finish-background.png"
+          alt="answer finish background"/>
       </Background>
       <Top>
         <div className="progress-bar">

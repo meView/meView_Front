@@ -53,6 +53,8 @@ const Body = styled.div`
     position: relative;
 
     .maincharacter {
+      max-width: 500px;
+      //width: 100%;
       margin: 0 auto;
     }
   }
@@ -65,6 +67,9 @@ const Chips = styled.div`
 
   img {
     position: absolute;
+    border-radius: 4px;
+    height: 44px;
+    -webkit-backdrop-filter: blur(6px);
     backdrop-filter: blur(6px);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
     &.communication {
@@ -110,6 +115,7 @@ const Bottom = styled.div`
 function AnswerStrength(props) {
   const [answer, setAnswer] = useRecoilState(answerState);
   const question = useRecoilValue(questionState);
+  const [count, setCount] = useState(answer.strength.length);
 
   /* 칩 선택 상태 확인 */
   const [comm, setComm] = useState(
@@ -134,9 +140,8 @@ function AnswerStrength(props) {
     answer.strength.includes("perseverance") ? "" : "un"
   );
   /* 선택 칩 개수 확인 */
-  let count = 0;
   useEffect(() => {
-    count = answer.strength.length;
+    setCount(answer.strength.length);
   }, [comm, ob, fr, lis, exe, jud, per]);
 
   /* 칩 선택 or 취소 */
@@ -149,7 +154,7 @@ function AnswerStrength(props) {
         strength: [...update.filter((item) => item !== chip)],
       });
     } else if (update.includes(chip) === false) {
-      if (answer.strength.length < 3) {
+      if (count < 3) {
         update.push(chip);
         setAnswer({
           ...answer,
@@ -177,15 +182,15 @@ function AnswerStrength(props) {
       </Top>
       <Body>
         <div className="image-box">
-          <object
+          <img
             className="maincharacter"
-            data="/image/character_strength.svg"
-            aria-label="character_strength"
+            src="/image/character_strength.png"
+            alt="character_strength"
           />
           <Chips>
             <img
               className="communication"
-              src={`/image/communication-${comm}clicked.svg`}
+              src={`/image/communication-${comm}clicked.png`}
               alt="communication"
               onClick={() => {
                 clickChip("communication");
@@ -194,7 +199,7 @@ function AnswerStrength(props) {
             />
             <img
               className="executive"
-              src={`/image/execution-${exe}clicked.svg`}
+              src={`/image/execution-${exe}clicked.png`}
               alt="executive"
               onClick={() => {
                 clickChip("execution");
@@ -203,7 +208,7 @@ function AnswerStrength(props) {
             />
             <img
               className="friendliness"
-              src={`/image/friendliness-${fr}clicked.svg`}
+              src={`/image/friendliness-${fr}clicked.png`}
               alt="friendliness"
               onClick={() => {
                 clickChip("friendliness");
@@ -212,7 +217,7 @@ function AnswerStrength(props) {
             />
             <img
               className="judgment"
-              src={`/image/judgment-${jud}clicked.svg`}
+              src={`/image/judgment-${jud}clicked.png`}
               alt="judgment"
               onClick={() => {
                 clickChip("judgment");
@@ -221,7 +226,7 @@ function AnswerStrength(props) {
             />
             <img
               className="listening"
-              src={`/image/listening-${lis}clicked.svg`}
+              src={`/image/listening-${lis}clicked.png`}
               alt="listening"
               onClick={() => {
                 clickChip("listening");
@@ -230,7 +235,7 @@ function AnswerStrength(props) {
             />
             <img
               className="observation"
-              src={`/image/observation-${ob}clicked.svg`}
+              src={`/image/observation-${ob}clicked.png`}
               alt="observation"
               onClick={() => {
                 clickChip("observation");
@@ -239,7 +244,7 @@ function AnswerStrength(props) {
             />
             <img
               className="perseverance"
-              src={`/image/perseverance-${per}clicked.svg`}
+              src={`/image/perseverance-${per}clicked.png`}
               alt="perseverance"
               onClick={() => {
                 clickChip("perseverance");

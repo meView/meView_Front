@@ -20,6 +20,7 @@ const Background = styled.div`
 
   .background {
     position: absolute;
+    max-width: 500px;
     min-width: 100%;
     min-height: 100vh;
     z-index: 0;
@@ -76,11 +77,10 @@ function Start() {
   return (
     <Container>
       <Background>
-        <object
+        <img 
           className="background"
-          data="./image/answer-background.svg"
-          aria-label="background-imagf"
-        />
+          src="./image/answer-background.png"
+          alt="answer background"/>
       </Background>
       <Top>
         <span className="highlight">{question.user_name}님</span>

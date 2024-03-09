@@ -31,25 +31,28 @@ const Top = styled.div`
     line-height: 24px;
     font-weight: var(--font-weight-bold);
   }
+  ::-webkit-scrollbar {
+    display: none; 
+  }
   .select-chips {
     margin-top: 12px;
     margin-right: -12px;
     cursor: pointer;
+    white-space: nowrap;
+    overflow-x: auto;
+    padding-bottom: 20px;
   }
   .chip-image {
     margin-right: 12px;
     height: 44px;
-  }
-  .divider {
-    margin-top: 20px;
-    margin-bottom: 40px;
-    width: 100%;
   }
 `;
 
 const Body = styled.div`
   background-color: var(--Gray-15);
   padding-bottom: 50px;
+  padding-top: 40px;
+  border-top: 2px solid var(--Gray-14);
 `
 
 const Bottom = styled.div`
@@ -117,7 +120,7 @@ function AnswerWeakness2(props) {
                   className="chip-image"
                   key={i}
                   alt="chip"
-                  src={`./image/${chip}-clicked.svg`}
+                  src={`./image/${chip}-clicked.png`}
                   onClick={() => {
                     /* 고른 칩 삭제 (2개 이상일 경우만 가능) */
                     deleteChip(chip);
@@ -126,11 +129,6 @@ function AnswerWeakness2(props) {
               );
             })}
           </div>
-          <img
-            className="divider"
-            alt="divider"
-            src="./image/divider-small.svg"
-          />
         </div>
       </Top>
       <Body>

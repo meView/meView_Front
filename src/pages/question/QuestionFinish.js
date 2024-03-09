@@ -27,6 +27,7 @@ const Background = styled.div`
 
   .background {
     position: absolute;
+    max-width: 500px;
     min-width: 100%;
     min-height: 100vh;
     z-index: 0;
@@ -104,6 +105,11 @@ function QuestionFourth(props) {
 
   const mutation = useMutation(() => postQuestion(questionData, access_token), {
     onSuccess: (data) => {
+      setAnswer({
+        answer1: "",
+        answer2: "",
+        answer3: ""
+      });
       setId(data.data.question_id);
     },
     onError: (error) => {
@@ -127,10 +133,10 @@ function QuestionFourth(props) {
   return (
     <QuestionWrapper>
       <Background>
-        <object
+        <img
           className="background"
-          data="./image/question-background.svg"
-          aria-label="question-background"
+          src="./image/question-background.png"
+          alt="question background"
         />
       </Background>
       <Top>
