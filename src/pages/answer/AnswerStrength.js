@@ -53,6 +53,8 @@ const Body = styled.div`
     position: relative;
 
     .maincharacter {
+      max-width: 500px;
+      //width: 100%;
       margin: 0 auto;
     }
   }
@@ -179,10 +181,10 @@ function AnswerStrength(props) {
       </Top>
       <Body>
         <div className="image-box">
-          <object
+          <img
             className="maincharacter"
-            data="/image/character_strength.svg"
-            aria-label="character_strength"
+            src="/image/character_strength.png"
+            alt="character_strength"
           />
           <Chips>
             <img

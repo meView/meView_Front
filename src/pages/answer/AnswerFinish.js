@@ -21,13 +21,14 @@ const Background = styled.div`
   overflow: hidden;
 
   .background {
-    position: absolute; 
+    position: absolute;
+    max-width: 500px;
     min-width: 100%;
     min-height: 100vh;
     z-index: 0;
-    top: 50%; 
-    left: 50%; 
-    transform: translate(-50%, -50%); 
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     object-fit: cover;
   }
 `
@@ -137,7 +138,10 @@ function AnswerFinish(props) {
   return (
     <Container>
       <Background>
-        <object className="background" data="./image/answer-finish-background.svg" aria-label='answer-finish'/>
+        <img 
+          className="background"
+          src="./image/answer-finish-background.png"
+          alt="answer finish background"/>
       </Background>
       <Top>
         <div className="progress-bar">

@@ -53,6 +53,8 @@ const Body = styled.div`
     position: relative;
 
     .maincharacter {
+      max-width: 500px;
+      //width: 100%;
       margin: 0 auto;
     }
   }
@@ -177,10 +179,10 @@ function AnswerWeakness(props) {
       </Top>
       <Body>
         <div className="image-box">
-          <object
+          <img
             className="maincharacter"
-            data="/image/character_weakness.svg"
-            aria-label="character_weakness"
+            src="/image/character_weakness.png"
+            alt="character_weakness"
           />
           <Chips>
             <img
