@@ -67,10 +67,11 @@ const Chips = styled.div`
 
   img {
     position: absolute;
+    border-radius: 4px;
+    height: 44px;
     -webkit-backdrop-filter: blur(6px);
     backdrop-filter: blur(6px);
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
-    height: 44px;
     &.communication {
       top: 236px;
       left: 13.6%;
