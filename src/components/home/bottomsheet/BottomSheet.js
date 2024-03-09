@@ -61,8 +61,9 @@ const BodyContent = styled.div`
   }
   .title-box {
     display: flex;
-    margin-bottom: 8px;
+    padding-bottom: 8px;
     justify-content: space-between;
+    border-bottom: 2px solid var(--Gray-14);
   }
   .delete-button {
     color: var(--Error);
@@ -76,6 +77,7 @@ const BodyContent = styled.div`
     font-size: var(--headline-06);
     font-weight: var(--font-weight-bold);
     line-height: 34px;
+    height: 48px;
   }
   .question-content {
     margin-bottom: 28px; 
@@ -323,7 +325,6 @@ function BottomSheet() {
                 setDeleteModal(true);
               }}>삭제하기</div>
             </div>
-            <img alt="divider" src="./image/divider.svg"/>
           </div>
           {/* 답변 수정 부분 */}
           <div className='content'>
