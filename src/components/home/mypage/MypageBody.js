@@ -31,13 +31,18 @@ function MypageBody() {
   const userInfo = useRecoilValue(userInfoState);
   const useremail = userInfo.user_email;
 
+  const handelabout = () => {
+    window.open
+      ("https://your-june.notion.site/meView-e711e155af3244b68ccb536bee2a74c7", "_blank");
+  };
+
   return (
     <Container>
       <Profile>
         <img className="profileimg" src="image/profile.svg" alt="profile" />
         <span className="email"> {useremail} </span>
       </Profile>
-      <BodyContainer>서비스 소개</BodyContainer>
+      <BodyContainer onClick={handelabout}>서비스 소개</BodyContainer>
       <BodyContainer>
         <Logout>로그아웃</Logout>
       </BodyContainer>

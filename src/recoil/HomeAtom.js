@@ -1,16 +1,5 @@
 import { atom } from 'recoil';
 
-// 테스트용 
-/*import questionList from '../api/home/questions'
-import questionDetail from '../api/home/questiondetail'
-export const questionFormListState = atom({
-    key: 'questionFormListState',
-    default: questionList.data,
-});
-export const questionFormState = atom({
-    key: 'questionFormState',
-    default: [questionDetail.data],
-});*/
 
 /* home/질문지 리스트 */
 export const questionFormListState = atom({

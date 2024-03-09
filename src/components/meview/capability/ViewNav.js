@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useNavigate, useLocation } from "react-router-dom";
 
-
 const Container = styled.div`
   margin-top: 24px;
 `;
@@ -24,6 +23,10 @@ const StyledP = styled.p`
   margin: 0 37px;
   cursor: pointer;
   color: ${({ $isActive }) => ($isActive ? "white" : "var(--Gray-11)")};
+
+  @media (max-width: 500px) {
+    font-size: 16px;
+  }
 
   &::after {
     content: "";
