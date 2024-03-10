@@ -8,6 +8,7 @@ export const getQuestions = async (access_token) => {
         'Authorization' : `Bearer ${access_token}`
     }
   });
+  response.data.data.sort((a, b) => b.question_id - a.question_id);
   return response.data.data;
 };
 
