@@ -54,10 +54,12 @@ const Header = styled.div`
 const BodyContent = styled.div`
   margin-left: 20px;
   margin-right: 20px;
-  
+  position: relative;
+  height: 100%;
+
   .title {
     margin-top: 24px;
-    margin-bottom: 32px;
+    margin-bottom: 2px;
   }
   .title-box {
     display: flex;
@@ -65,6 +67,20 @@ const BodyContent = styled.div`
     justify-content: space-between;
     border-bottom: 2px solid var(--Gray-14);
   }
+
+  .content {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    padding-top: 30px;
+    position: absolute;
+    height: calc(100vh - 360px);
+    max-width: 500px;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
   .delete-button {
     color: var(--Error);
     font-size: var(--button-01);
