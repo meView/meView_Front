@@ -455,7 +455,7 @@ function BottomSheet() {
       { deleteModal && 
         <Modal>
           <WarningModal 
-            title={`삭제한 질문지는 복구되지 않아요.\n괜찮으신가요?`}
+            title={`질문지를 삭제하면 답변도 같이 사라져요.\n괜찮으신가요?`}
             no="취소"
             yes="삭제"
             navigate="/home"

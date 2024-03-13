@@ -83,7 +83,7 @@ function Bottombar() {
   return (
     <Container>
       {showToast && (
-        <Toast text="설문지 링크가 복사되었어요!" onClick={handleToastClose} />
+        <Toast text="질문지 링크가 복사되었어요!" onClick={handleToastClose} />
       )}
       <Content>
         <div className="leftside"></div>

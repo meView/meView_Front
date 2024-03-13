@@ -89,14 +89,10 @@ const Bottom = styled.div`
 `;
 
 function QuestionSecond(props) {
-  /* 프로젝트 팀원 or 주변 지인 */
-  const getAnswer = useRecoilValue(answerState);
-
-  /* 글자 수 세기 + 입력 값 저장 */
   const [answer, setAnswer] = useRecoilState(answerState);
   const [inputText, setInputText] = useState(answer.answer2 || "");
 
-  const answer1 = getAnswer.answer1;
+  const answer1 = answer.answer1;
   const text =
     answer1 === "TEAM"
       ? "어떤 프로젝트 리뷰를 듣고 싶나요?"
@@ -148,7 +144,7 @@ function QuestionSecond(props) {
           <TextArea
             maxLength="20"
             value={inputText}
-            placeholder="스위프 프로젝트"
+            placeholder={answer1 === "TEAM" ? "스위프 프로젝트" : "평상 시 내 모습"}
             onChange={handleChange}
             $textState={textState}
             onFocus={handleFocus}
