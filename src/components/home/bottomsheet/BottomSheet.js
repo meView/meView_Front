@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled, {keyframes} from 'styled-components'
 import { backModalState, bottomSheetState, deleteModalState, modifiedToastState, questionFormListState, questionFormState, questionIdState } from '../../../recoil/HomeAtom';
@@ -130,8 +130,8 @@ const TextArea = styled.textarea`
   height: 64px;
   box-sizing: border-box;
   position: absolute;
-  left: 20px;
-  right: 20px;
+  left: 21px;
+  right: 21px;
   background-color: var(--Gray-14);
   font-size: var(--button-02);
   font-weight: var(--font-weight-bold);
@@ -319,6 +319,21 @@ function BottomSheet() {
     return () => enableScroll();
   }, [])
 
+  const bottomRef = useRef(null);
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (bottomRef.current && !bottomRef.current.contains(e.target)) {
+        setIsOpen(false);
+        setTimeout(()=>{
+          setShowToast(false);
+          setBottomsheet(false);
+        }, 240);
+      }
+    };
+    window.addEventListener('mousedown', handleClick);
+    return () => window.removeEventListener('mousedown', handleClick);
+  }, [bottomRef]);
+
   const [showToast, setShowToast] = useRecoilState(modifiedToastState);
   const [backModal, setBackModal] = useRecoilState(backModalState);
   const [deleteModal, setDeleteModal] = useRecoilState(deleteModalState);
@@ -328,7 +343,7 @@ function BottomSheet() {
 
   return (
     <>
-      <Container $isOpen={isOpen}>
+      <Container $isOpen={isOpen} ref={bottomRef}>
         <Header>
           <img className='handler' alt="handler" src="./image/handler.svg"/>
         </Header>
