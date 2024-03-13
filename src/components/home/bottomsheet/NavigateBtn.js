@@ -3,7 +3,7 @@ import styled from "styled-components";
 const ButtonGroup = styled.div`
   display: flex;
   flex-direction: row;
-  position: absolute;
+  position: fixed;
   max-width: 460px;
   width: calc(100% - 40px);
   background-color: var(--Gray-15);
