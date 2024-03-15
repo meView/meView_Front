@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import styled, {keyframes} from 'styled-components'
 import { backModalState, bottomSheetState, deleteModalState, modifiedToastState, questionFormListState, questionFormState, questionIdState } from '../../../recoil/HomeAtom';
@@ -54,16 +54,33 @@ const Header = styled.div`
 const BodyContent = styled.div`
   margin-left: 20px;
   margin-right: 20px;
-  
+  position: relative;
+  height: 100%;
+
   .title {
     margin-top: 24px;
-    margin-bottom: 32px;
+    margin-bottom: 2px;
   }
   .title-box {
     display: flex;
-    margin-bottom: 8px;
+    padding-bottom: 8px;
     justify-content: space-between;
+    border-bottom: 2px solid var(--Gray-14);
   }
+
+  .content {
+    &::-webkit-scrollbar {
+      display: none;
+    }
+    padding-top: 30px;
+    position: absolute;
+    height: calc(100vh - 360px);
+    max-width: 500px;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
   .delete-button {
     color: var(--Error);
     font-size: var(--button-01);
@@ -76,6 +93,7 @@ const BodyContent = styled.div`
     font-size: var(--headline-06);
     font-weight: var(--font-weight-bold);
     line-height: 34px;
+    height: 48px;
   }
   .question-content {
     margin-bottom: 28px; 
@@ -112,8 +130,8 @@ const TextArea = styled.textarea`
   height: 64px;
   box-sizing: border-box;
   position: absolute;
-  left: 20px;
-  right: 20px;
+  left: 21px;
+  right: 21px;
   background-color: var(--Gray-14);
   font-size: var(--button-02);
   font-weight: var(--font-weight-bold);
@@ -301,6 +319,21 @@ function BottomSheet() {
     return () => enableScroll();
   }, [])
 
+  const bottomRef = useRef(null);
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (bottomRef.current && !bottomRef.current.contains(e.target)) {
+        setIsOpen(false);
+        setTimeout(()=>{
+          setShowToast(false);
+          setBottomsheet(false);
+        }, 240);
+      }
+    };
+    window.addEventListener('mousedown', handleClick);
+    return () => window.removeEventListener('mousedown', handleClick);
+  }, [bottomRef]);
+
   const [showToast, setShowToast] = useRecoilState(modifiedToastState);
   const [backModal, setBackModal] = useRecoilState(backModalState);
   const [deleteModal, setDeleteModal] = useRecoilState(deleteModalState);
@@ -310,7 +343,7 @@ function BottomSheet() {
 
   return (
     <>
-      <Container $isOpen={isOpen}>
+      <Container $isOpen={isOpen} ref={bottomRef}>
         <Header>
           <img className='handler' alt="handler" src="./image/handler.svg"/>
         </Header>
@@ -323,7 +356,6 @@ function BottomSheet() {
                 setDeleteModal(true);
               }}>삭제하기</div>
             </div>
-            <img alt="divider" src="./image/divider.svg"/>
           </div>
           {/* 답변 수정 부분 */}
           <div className='content'>
@@ -423,7 +455,7 @@ function BottomSheet() {
       { deleteModal && 
         <Modal>
           <WarningModal 
-            title={`삭제한 질문지는 복구되지 않아요.\n괜찮으신가요?`}
+            title={`질문지를 삭제하면 답변도 같이 사라져요.\n괜찮으신가요?`}
             no="취소"
             yes="삭제"
             navigate="/home"

@@ -1,17 +1,17 @@
 import styled from "styled-components";
-// import { useRecoilState } from "recoil";
-// import { questionFormState } from "../../../recoil/HomeAtom";
 
 const ButtonGroup = styled.div`
   display: flex;
   flex-direction: row;
-  position: absolute;
+  position: fixed;
   max-width: 460px;
   width: calc(100% - 40px);
+  background-color: var(--Gray-15);
+  box-shadow: 0px -6px 7px 6px var(--Gray-15);
   left: 50%;
   transform: translate(-50%, 0);
   bottom: 0;
-  padding-top: 8px;
+  padding-top: 1px;
   padding-bottom: 24px;
   .back-button {
     width: 50%;
@@ -42,7 +42,6 @@ const StyledButton = styled.button`
 `;
 
 function NavigateBtn({ isModifiedDisabled, onClickButton, onClickBackButton }) {
-  /* const [questionForm, setQuestionForm] = useRecoilState(questionFormState); */
 
   return (
     <ButtonGroup>
