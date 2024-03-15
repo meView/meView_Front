@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { question_idState } from "recoil/ProjectListAtom";
 import { useRecoilState } from "recoil";
+import { selectedNameState } from "recoil/ProjectListAtom";
 
 const Container = styled.div`
   background-color: var(--Gray-14);
@@ -46,9 +47,11 @@ const List = styled.div`
 function ProjectList(props) {
   const navigate = useNavigate();
   const [, setQuestion_id] = useRecoilState(question_idState);
+  const [, setSelectedName] = useRecoilState(selectedNameState);
 
   const handleProjectClick = () => {
     setQuestion_id(props.question_id);
+    setSelectedName(props.projectname);
     navigate("/meview/projectreview");
   };
 

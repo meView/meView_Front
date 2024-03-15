@@ -47,3 +47,10 @@ export const selectedStrengthState = atom({
   default: "Strength",
   effects_UNSTABLE: [persistAtom],
 });
+
+// 프로젝트 이름 저장 -> localStorage에 저장
+export const selectedNameState = atom({
+  key: "selectedNameState",
+  default: null,
+  effects_UNSTABLE: [persistAtom],
+});

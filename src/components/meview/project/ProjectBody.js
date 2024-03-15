@@ -1,4 +1,3 @@
-import styled from "styled-components";
 import ProjectIDCard from "./ProjectIDCard";
 import { useRecoilValue } from "recoil";
 import { selectedStrengthState } from "../../../recoil/ProjectListAtom";
@@ -8,9 +7,6 @@ import { question_idState } from "recoil/ProjectListAtom";
 import { userAccessTokenState } from "recoil/UserAtom";
 import NoReview from "components/home/NoReview";
 
-const NoReviewContainer = styled.div`
-  margin-top: -30px;
-`;
 
 function ProjectBody() {
   const selectedStrength = useRecoilValue(selectedStrengthState);

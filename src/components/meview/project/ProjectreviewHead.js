@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
+import {selectedNameState} from "recoil/ProjectListAtom";
+import {useRecoilValue} from "recoil";
 
 const Container = styled.div`
   padding: 0 20px;
@@ -28,6 +30,7 @@ const ArrowContainer = styled.div`
 
 function ProjectreviewHead() {
   const navigate = useNavigate();
+  const selectedName = useRecoilValue(selectedNameState);
 
   const handleBackClick = () => {
     navigate(-1);
@@ -43,7 +46,7 @@ function ProjectreviewHead() {
           alt="arrowback"
           onClick={handleBackClick}
         />
-        <p className="proojectname">프로젝트 리뷰</p>
+        <p className="proojectname">{selectedName}</p>
       </ArrowContainer>
     </Container>
   );
