@@ -78,7 +78,7 @@ const BodyContent = styled.div`
     max-width: 500px;
     width: 100%;
     overflow-x: hidden;
-    overflow-y: auto;
+    overflow-y: scroll;
   }
 
   .delete-button {
@@ -97,6 +97,9 @@ const BodyContent = styled.div`
   }
   .question-content {
     margin-bottom: 28px; 
+  }
+  .last {
+    padding-bottom: 65px;
   }
   .subtitle {
     font-size: var(--subtitle-01);
@@ -200,7 +203,7 @@ function BottomSheet() {
   const [isModifiedDisabled, setIsModifiedDisabled] = useState(true);
   const access_token = useRecoilValue(userAccessTokenState);
   
-  /* 질문지 상세보기 */  
+  /* 질문지 상세보기 */
   const {
     data: questionDetail,
     isLoading: isLoadingDetail,
@@ -307,7 +310,14 @@ function BottomSheet() {
   }
 
   /* 모바일 스크롤 방지 */
-  function preventDefault(e) { e.preventDefault(); }
+  const scrollableRef = useRef(null);
+  function preventDefault(e) { 
+    if (scrollableRef.current && scrollableRef.current.contains(e.target)) {
+      console.log(scrollableRef.current);
+      return;
+    }
+    else e.preventDefault();
+  }
   function disableScroll() {
     window.addEventListener('touchmove', preventDefault, { passive: false }); 
   }
@@ -358,7 +368,7 @@ function BottomSheet() {
             </div>
           </div>
           {/* 답변 수정 부분 */}
-          <div className='content'>
+          <div className='content' ref={scrollableRef}>
             <div className='question-content'>
               <p className='subtitle'>리뷰 대상</p>
               <Segment2Btn id={question_id} onClickTeam={()=>{
@@ -400,7 +410,7 @@ function BottomSheet() {
                 : null
               }
             </div>
-            <div className='question-content'>
+            <div className='question-content last'>
               <p className='subtitle'>리뷰 종류</p>
               <Segment3Btn id={question_id} onClickStrength={()=>{
                 changeType('STRENGTH')

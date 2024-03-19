@@ -89,7 +89,7 @@ const TextLength = styled.span`
 
 const Bottom = styled.div`
   height: 88px;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   max-width: 500px;

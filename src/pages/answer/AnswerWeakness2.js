@@ -58,7 +58,7 @@ const Body = styled.div`
 const Bottom = styled.div`
   height: 88px;
   background-color: var(--Gray-15);
-  position: ${({$count}) => ($count === 1 ? 'absolute' : 'relative')};
+  position: ${({$count}) => ($count === 1 ? 'fixed' : 'relative')};
   bottom: 0px;
   width: 100%;
   max-width: 500px;

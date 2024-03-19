@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import styled from "styled-components";
+import InformCardBottom from "util/InformCardBottom";
 import NavigateBtn from "../../components/answer/navigateBtn";
 import { answerState, questionState } from "../../recoil/AnswerAtom";
 
@@ -40,7 +41,7 @@ const Top = styled.div`
 const Body = styled.div`
   width: 100%;
   position: absolute;
-  top: 55%;
+  top: 52%;
   left: 50%;
   transform: translate(-50%, -50%);
   .image-box {
@@ -105,8 +106,7 @@ const Chips = styled.div`
 `;
 
 const Bottom = styled.div`
-  height: 88px;
-  position: absolute;
+  position: fixed;
   bottom: 0;
   width: 100%;
   max-width: 500px;
@@ -255,6 +255,7 @@ function AnswerStrength(props) {
         </div>
       </Body>
       <Bottom>
+        <InformCardBottom mainMessage={"강점과 관련된 신체부위를 선택해봐요!"}/>
         <NavigateBtn
           count={count}
           isNextDisabled={answer.strength.length === 0}

@@ -7,7 +7,8 @@ const ButtonGroup = styled.div`
   flex-direction: row;
   margin-left: 20px;
   margin-right: 20px;
-  padding-top: 8px;
+  padding-top: 20px;
+  padding-bottom: 24px;
   .back-button {
     width: 50%;
     padding-right: 2%;
