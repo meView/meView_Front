@@ -10,7 +10,8 @@
 
 ---
 ## 프론트엔드 시스템 아키텍처
-![image](https://github.com/meView/meView_Front/assets/73896327/c4cf8736-f4c7-4d0e-b1a7-7f83c6ae0520)
+![image](https://github.com/meView/meView_Front/assets/73896327/67a50de5-c0f2-4f40-a1c5-fc2edab5c383)
+
 ### 기술스택
 - **언어**: `javascript`
 - **라이브러리**: `React`
