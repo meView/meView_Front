@@ -16,6 +16,7 @@ const Container = styled.div`
   overflow-x: hidden;
   position: relative;
   .maincharacter {
+    max-width: 500px;
     margin: 0 auto;
   }
 `;
@@ -52,6 +53,7 @@ const ChipContainer = styled.div`
   justify-content: center;
 
   backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
   border-radius: 4px; // 둥근 모서리
   /* drop-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25); */
   filter: drop-shadow(0px 4px 8px rgba(0, 0, 0, 0.25));
@@ -244,7 +246,7 @@ function BodyCharacter() {
       <Container>
         <img
           className="maincharacter"
-          src={`/image/${character_strength}.svg`}
+          src={`/image/${character_strength}.png`}
           alt="character_strength"
         />
         <Chips>
